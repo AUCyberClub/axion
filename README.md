@@ -8,7 +8,7 @@ sudo apt-get install binwalk
 sudo apt-get install exiftool
 sudo apt-get install python-colorama
 git clone https://github.com/AUCyberClub/axion.git
-cd Axion-Framework
+cd axion
 python Axion.py
 ```
 ## Screenshots
