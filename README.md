@@ -13,7 +13,7 @@ python Axion.py
 ```
 ## Screenshots
 
-![screenshot](screenshots/1.png)
+![screenshot](screenshots/1-2.png)
 
 ![screenshot](screenshots/2.png)
 
