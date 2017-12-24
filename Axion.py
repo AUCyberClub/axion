@@ -122,8 +122,6 @@ def ram():
             sys.exit()
         else:
             errprint("Yanlış Girdi Tekrar deneyin...")  
-def bof():
-    errprint("eksik yerler")
 def main_menu():
     while (1):
         os.system('clear')
@@ -138,7 +136,6 @@ def main_menu():
         succesprint("1-->Dosya Analizi")
         succesprint("2-->Kripto ve Şifreleme")
         succesprint("3-->RAM Dump Analizi")
-        succesprint("9-->Buffer Over Flow Analizi")
         errprint("0-->Çıkmak istiyorum.")
 
         choice = input("Axion TERMINAL("+Style.BRIGHT+Fore.CYAN+"/"+Style.RESET_ALL+")-->")
@@ -148,8 +145,6 @@ def main_menu():
             crypto()
         elif choice == 3:
             ram()
-        elif choice == 9:
-            bof()
         elif choice == 0:
             sys.exit()
         else:
