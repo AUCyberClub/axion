@@ -26,7 +26,7 @@ def find_file_ext():
     warnprint("9-->Üst menüye dön.")
     errprint("0-->Çık")
     while (1):
-        file_path = raw_input("Axion TERMINAL(/file_analysis/find_file_ext)-->")
+        file_path = raw_input("Axion TERMINAL("+Style.BRIGHT+Fore.CYAN+"/file_analysis/find_file_ext"+Style.RESET_ALL+")-->")
 
         if file_path == "9":
             return
