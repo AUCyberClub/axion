@@ -4,6 +4,10 @@ import sys,os
 from imports.find_file_ext import find_file_ext
 from imports.binary_search import binary_search
 from imports.metadata_search import metadata_search
+from imports.hash_ident import hash_ident
+from imports.hash_extractor import hash_extractor
+from imports.hash_brute import hash_brute
+from imports.morse_decoder import morse_decoder
 
 from colorama import Fore, Back, Style
 
@@ -71,7 +75,7 @@ def crypto():
 
         choice = input("Axion TERMINAL("+Style.BRIGHT+Fore.CYAN+"/crypto"+Style.RESET_ALL+")-->")
         if choice == 1:
-            hast_ident()
+            hash_ident()
         elif choice == 2:
             hash_extractor()
         elif choice == 3:
@@ -79,9 +83,9 @@ def crypto():
         elif choice == 4:
             vigenere()
         elif choice == 5:
-            morse_decode()
+            morse_decoder()
         elif choice == 6:
-            morse_encode()
+            morse_encoder()
         elif choice == 9:
             main_menu()
         elif choice == 0:

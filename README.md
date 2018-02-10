@@ -6,7 +6,7 @@ AUCC AXION FRAMEWORK
 ```bash
 sudo apt-get install binwalk
 sudo apt-get install exiftool
-sudo apt-get install python-colorama
+sudo pip install -r requirements.txt
 git clone https://github.com/AUCyberClub/axion.git
 cd axion
 python Axion.py
