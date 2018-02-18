@@ -8,6 +8,7 @@ from imports.hash_ident import hash_ident
 from imports.hash_extractor import hash_extractor
 from imports.hash_brute import hash_brute
 from imports.morse_decoder import morse_decoder
+from imports.morse_encoder import morse_encoder
 
 from colorama import Fore, Back, Style
 
