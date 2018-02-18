@@ -42,7 +42,7 @@ morseAlphabet ={
     "Z" : "--..",
     " " : "/"
     }
-inverseMorseAlphabet=dict((v,k) for (k,v) in morseAlphabet.items())
+inverseMorseAlphabet = dict((v,k) for (k,v) in morseAlphabet.items())
 
 def decode_morse(morse_msg):
     text_msg = ""
@@ -67,7 +67,7 @@ def morse_decoder():
         errprint("0-->Çık")
 
         morse_msg = raw_input(
-            "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/file_analysis/morse_decoder" + Style.RESET_ALL + ")-->")
+            "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/crypto/morse_decoder" + Style.RESET_ALL + ")-->")
 
         if morse_msg == "9":
             return
@@ -76,11 +76,11 @@ def morse_decoder():
         else:
             text_msg = decode_morse(morse_msg)
             succesprint ("Mesajınız dönüştürüldü.")
-            print "Mesaj:\n--> ", text_msg
+            print ("Mesaj:\n--> %s" %text_msg)
 
         succesprint("Başka bir mesaj dönüştürmek ister misiniz? E/H")
         choice = raw_input(
-            "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/file_analysis/morse_decoder" + Style.RESET_ALL + ")-->")
+            "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/crypto/morse_decoder" + Style.RESET_ALL + ")-->")
 
         if choice == 'H':
             return
