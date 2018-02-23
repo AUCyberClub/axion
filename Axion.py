@@ -9,6 +9,7 @@ from imports.hash_extractor import hash_extractor
 from imports.hash_brute import hash_brute
 from imports.morse_decoder import morse_decoder
 from imports.morse_encoder import morse_encoder
+from imports.vigenere_decoder import vigenere_decoder
 
 from colorama import Fore, Back, Style
 
@@ -82,7 +83,7 @@ def crypto():
         elif choice == 3:
             hash_brute()
         elif choice == 4:
-            vigenere()
+            vigenere_decoder()
         elif choice == 5:
             morse_decoder()
         elif choice == 6:
