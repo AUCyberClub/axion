@@ -4,14 +4,21 @@ import sys
 from subprocess import Popen, PIPE, check_call
 from colorama import Fore, Style
 
-def errprint(text):
-    print(Style.BRIGHT + Fore.RED + text + Style.RESET_ALL)
+def colorprint(verbosity, text):
+    if verbosity == "fatal":
+        print(Style.BRIGHT + Fore.RED + text + Style.RESET_ALL)
+    if verbosity == "warn":
+        print(Fore.YELLOW + text + Style.RESET_ALL)
+    if verbosity == "info":
+        print(Style.BRIGHT + Fore.GREEN + text + Style.RESET_ALL)
 
-def succesprint(text):
-    print(Style.BRIGHT + Fore.GREEN + text + Style.RESET_ALL)
-
-def warnprint(text):
-    print(Fore.YELLOW + text + Style.RESET_ALL)
+logo = ("""
+    _    __  _____ ___  _   _         _   _   _  ____ ____
+   / \   \ \/ /_ _/ _ \| \ | |       / \ | | | |/ ___/ ___|
+  / _ \   \  / | | | | |  \| |_____ / _ \| | | | |  | |
+ / ___ \  /  \ | | |_| | |\  |_____/ ___ \ |_| | |__| |___
+/_/   \_\/_/\_\___\___/|_| \_|    /_/   \_\___/ \____\____|
+        """)
 
 def decode_vigenere(vigenere_msg, key):
     key_length = len(key)
@@ -25,23 +32,17 @@ def decode_vigenere(vigenere_msg, key):
 
 def vigenere_decoder():
     check_call(["clear"])
-    while (1):
-        print ("""
-    _    __  _____ ___  _   _         _   _   _  ____ ____
-   / \   \ \/ /_ _/ _ \| \ | |       / \ | | | |/ ___/ ___|
-  / _ \   \  / | | | | |  \| |_____ / _ \| | | | |  | |
- / ___ \  /  \ | | |_| | |\  |_____/ ___ \ |_| | |__| |___
-/_/   \_\/_/\_\___\___/|_| \_|    /_/   \_\___/ \____\____|
-        """)
-        succesprint("Bu bölümde şifreli vigenere mesajlarını decode edebilirsiniz.")
-        succesprint("Lütfen şifreli mesajı girin.")
-        warnprint("9-->Üst menüye dön.")
-        errprint("0-->Çık")
+    while True:
+        print (logo)
+        colorprint("info", "Bu bölümde şifreli vigenere mesajlarını decode edebilirsiniz.")
+        colorprint("info", "Lütfen şifreli mesajı girin.")
+        colorprint("warn", "9-->Üst menüye dön.")
+        colorprint("fatal", "0-->Çık")
 
         vigenere_msg = raw_input(
             "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/crypto/vigenere_decoder" + Style.RESET_ALL + ")-->")
 
-        succesprint("Lütfen anahtarı giriniz.")
+        colorprint("info", "Lütfen anahtarı giriniz.")
 
         key = raw_input(
             "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/crypto/vigenere_decoder" + Style.RESET_ALL + ")-->")
@@ -55,7 +56,7 @@ def vigenere_decoder():
             succesprint ("Mesajınız dönüştürüldü.")
             print ("Mesaj:\n--> %s" %text_msg)
 
-        succesprint("Başka bir mesaj dönüştürmek ister misiniz? E/H")
+        colorprint("info", "Başka bir mesaj dönüştürmek ister misiniz? E/H")
         choice = raw_input(
             "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/crypto/vigenere_decoder" + Style.RESET_ALL + ")-->")
 
