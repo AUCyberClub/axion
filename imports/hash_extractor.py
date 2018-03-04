@@ -4,16 +4,21 @@ import sys, progressbar, time
 from subprocess import Popen, PIPE, check_call
 from colorama import Fore, Style
 
-def errprint(text):
-    print(Style.BRIGHT + Fore.RED + text + Style.RESET_ALL)
+def colorprint(verbosity, text):
+    if verbosity == "fatal":
+        print(Style.BRIGHT + Fore.RED + text + Style.RESET_ALL)
+    if verbosity == "warn":
+        print(Fore.YELLOW + text + Style.RESET_ALL)
+    if verbosity == "info":
+        print(Style.BRIGHT + Fore.GREEN + text + Style.RESET_ALL)
 
-
-def succesprint(text):
-    print(Style.BRIGHT + Fore.GREEN + text + Style.RESET_ALL)
-
-
-def warnprint(text):
-    print(Fore.YELLOW + text + Style.RESET_ALL)
+logo = ("""
+    _    __  _____ ___  _   _         _   _   _  ____ ____
+   / \   \ \/ /_ _/ _ \| \ | |       / \ | | | |/ ___/ ___|
+  / _ \   \  / | | | | |  \| |_____ / _ \| | | | |  | |
+ / ___ \  /  \ | | |_| | |\  |_____/ ___ \ |_| | |__| |___
+/_/   \_\/_/\_\___\___/|_| \_|    /_/   \_\___/ \____\____|
+        """)
 
 
 def progress_bar(timer):
@@ -23,10 +28,10 @@ def progress_bar(timer):
 
 
 def rar2john():
-    succesprint("Rar dosyasından hash çıkartmak için lütfen dosya yolunu giriniz.")
+    colorprint("info", "Rar dosyasından hash çıkartmak için lütfen dosya yolunu giriniz.")
     rar_path = raw_input(
         "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/file_analysis/hash_extractor/rar2john" + Style.RESET_ALL + ")-->")
-    succesprint("Çıkartılacak olan dosya için lütfen dosya yolunu giriniz.")
+    colorprint("info", "Çıkartılacak olan dosya için lütfen dosya yolunu giriniz.")
     hashtxt_path = raw_input(
         "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/file_analysis/hash_extractor/rar2john" + Style.RESET_ALL + ")-->")
 
@@ -34,17 +39,17 @@ def rar2john():
         std = Popen(["rar2john", rar_path], stdout=out, stderr=PIPE)
         (out, err) = std.communicate()
     if err.find("No such file or directory") != -1:
-        errprint("Hata dosya bulunamadı!")
+        colorprint("fatal", "Hata dosya bulunamadı!")
     elif err:
-        errprint(err)
+        colorprint("fatal", err)
     progress_bar(0.05)
 
 
 def zip2john():
-    succesprint("Zip dosyasından hash çıkartmak için lütfen dosya yolunu giriniz.")
+    colorprint("info", "Zip dosyasından hash çıkartmak için lütfen dosya yolunu giriniz.")
     zip_path = raw_input(
         "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/file_analysis/hash_extractor/zip2john" + Style.RESET_ALL + ")-->")
-    succesprint("Çıkartılacak olan dosya için lütfen dosya yolunu giriniz.")
+    colorprint("info", "Çıkartılacak olan dosya için lütfen dosya yolunu giriniz.")
     hashtxt_path = raw_input(
         "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/file_analysis/hash_extractor/zip2john" + Style.RESET_ALL + ")-->")
 
@@ -52,17 +57,17 @@ def zip2john():
         std = Popen(["zip2john", zip_path], stdout=out, stderr=PIPE)
         (out, err) = std.communicate()
     if err.find("No such file or directory") != -1:
-        errprint("Hata dosya bulunamadı!")
+        colorprint("fatal", "Hata dosya bulunamadı!")
     elif err:
-        errprint(err)
+        colorprint("fatal", err)
     progress_bar(0.05)
 
 
 def truecrypt2john():
-    succesprint("TrueCrypt dosyasından hash çıkartmak için lütfen dosya yolunu giriniz.")
+    colorprint("info", "TrueCrypt dosyasından hash çıkartmak için lütfen dosya yolunu giriniz.")
     truecrypt_path = raw_input(
         "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/file_analysis/hash_extractor/truecrypt2john" + Style.RESET_ALL + ")-->")
-    succesprint("Çıkartılacak olan dosya için lütfen dosya yolunu giriniz.")
+    colorprint("info", "Çıkartılacak olan dosya için lütfen dosya yolunu giriniz.")
     hashtxt_path = raw_input(
         "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/file_analysis/hash_extractor/truecrypt2john" + Style.RESET_ALL + ")-->")
 
@@ -70,29 +75,23 @@ def truecrypt2john():
         std = Popen(["truecrypt2john", truecrypt_path], stdout=out, stderr=PIPE)
         (out, err) = std.communicate()
     if err.find("No such file or directory") != -1:
-        errprint("Hata dosya bulunamadı!")
+        colorprint("fatal", "Hata dosya bulunamadı!")
     elif err:
-        errprint(err)
+        colorprint("fatal", err)
     progress_bar(0.05)
 
 
 def hash_extractor():
     check_call(["clear"])
-    while (1):
-        print ("""
-    _    __  _____ ___  _   _         _   _   _  ____ ____
-   / \   \ \/ /_ _/ _ \| \ | |       / \ | | | |/ ___/ ___|
-  / _ \   \  / | | | | |  \| |_____ / _ \| | | | |  | |
- / ___ \  /  \ | | |_| | |\  |_____/ ___ \ |_| | |__| |___
-/_/   \_\/_/\_\___\___/|_| \_|    /_/   \_\___/ \____\____|
-        """)
-        succesprint("Bu bölümde rar, zip ve trueCrypt hashlerini dosyaların içerisinden çıkartabilirsiniz.")
-        succesprint("Bu iş için 'JohntheRipper' araçları kullanılacak.")
-        succesprint("1-->Rar dosyaları.")
-        succesprint("2-->Zip dosyaları.")
-        succesprint("3-->TrueCrypt dosyaları.")
-        warnprint("9-->Üst menüye dön.")
-        errprint("0-->Çık")
+    while True:
+        print (logo)
+        colorprint("info", "Bu bölümde rar, zip ve trueCrypt hashlerini dosyaların içerisinden çıkartabilirsiniz.")
+        colorprint("info", "Bu iş için 'JohntheRipper' araçları kullanılacak.")
+        colorprint("info", "1-->Rar dosyaları.")
+        colorprint("info", "2-->Zip dosyaları.")
+        colorprint("info", "3-->TrueCrypt dosyaları.")
+        colorprint("warn", "9-->Üst menüye dön.")
+        colorprint("fatal", "0-->Çık")
 
         choice = raw_input(
             "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/file_analysis/hash_extractor" + Style.RESET_ALL + ")-->")
@@ -108,7 +107,7 @@ def hash_extractor():
         elif choice == "3":
             truecrypt2john()
 
-        succesprint("Başka bir dosyadan hash çıkartmak ister misiniz? E/H")
+        colorprint("info", "Başka bir dosyadan hash çıkartmak ister misiniz? E/H")
         choice = raw_input(
             "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/file_analysis/hash_extractor" + Style.RESET_ALL + ")-->")
 

@@ -4,12 +4,21 @@ import sys,time,progressbar
 from subprocess import Popen,PIPE,check_call
 from colorama import Fore, Back, Style
 
-def errprint(text):
-    print(Style.BRIGHT + Fore.RED + text + Style.RESET_ALL)
-def succesprint(text):
-    print(Style.BRIGHT + Fore.GREEN + text + Style.RESET_ALL)
-def warnprint(text):
-    print(Fore.YELLOW + text + Style.RESET_ALL)
+def colorprint(verbosity, text):
+    if verbosity == "fatal":
+        print(Style.BRIGHT + Fore.RED + text + Style.RESET_ALL)
+    if verbosity == "warn":
+        print(Fore.YELLOW + text + Style.RESET_ALL)
+    if verbosity == "info":
+        print(Style.BRIGHT + Fore.GREEN + text + Style.RESET_ALL)
+
+logo = ("""
+    _    __  _____ ___  _   _         _   _   _  ____ ____
+   / \   \ \/ /_ _/ _ \| \ | |       / \ | | | |/ ___/ ___|
+  / _ \   \  / | | | | |  \| |_____ / _ \| | | | |  | |
+ / ___ \  /  \ | | |_| | |\  |_____/ ___ \ |_| | |__| |___
+/_/   \_\/_/\_\___\___/|_| \_|    /_/   \_\___/ \____\____|
+        """)
 
 def progress_bar(timer):
     bar = progressbar.ProgressBar()
@@ -40,26 +49,20 @@ def searcher(file_path):
     (e_out,err) = std.communicate()
 
     if s_out+e_out:
-        succesprint(s_out+e_out)
+        colorprint("info", s_out+e_out)
     else:
-        errprint("Keyword bulunamadı.")
+        colorprint("fatal", "Keyword bulunamadı.")
     progress_bar(0.025)
 
 def metadata_search():
 
     check_call(["clear"])
-    while (1):
-        print ("""
-    _    __  _____ ___  _   _         _   _   _  ____ ____ 
-   / \   \ \/ /_ _/ _ \| \ | |       / \ | | | |/ ___/ ___|
-  / _ \   \  / | | | | |  \| |_____ / _ \| | | | |  | |    
- / ___ \  /  \ | | |_| | |\  |_____/ ___ \ |_| | |__| |___ 
-/_/   \_\/_/\_\___\___/|_| \_|    /_/   \_\___/ \____\____|
-        """)
-        succesprint("MetaData taraması için 'exiftool' ve 'strings' kullanılacak.")
-        succesprint("Dosyanın yolunu girin lütfen...")
-        warnprint("9-->Üst menüye dön.")
-        errprint("0-->Çık")
+    while True:
+        print (logo)
+        colorprint("info", "MetaData taraması için 'exiftool' ve 'strings' kullanılacak.")
+        colorprint("info", "Dosyanın yolunu girin lütfen...")
+        colorprint("warn", "9-->Üst menüye dön.")
+        colorprint("fatal", "0-->Çık")
 
         file_path = raw_input("Axion TERMINAL("+Style.BRIGHT+Fore.CYAN+"/file_analysis/metadata_search"+Style.RESET_ALL+")-->")
 
@@ -68,15 +71,15 @@ def metadata_search():
         elif file_path == "0":
             sys.exit()
         else:
-            while(1):
+            while True:
                 std = Popen(["file",file_path], stdout=PIPE,stderr=PIPE)
                 (out,err) = std.communicate()
                 if out.find("No such file or directory") == -1:
-                    succesprint("1-->MetaData ve strings çıktısında berlirli bir keyword ile arama yap.")
-                    succesprint("2-->MetaData'yı göster.")
-                    succesprint("3-->Strings çıktısını göster.")
-                    warnprint("9-->Başka bir dosya yolu gir.")
-                    errprint("0-->Çık.")
+                    colorprint("info", "1-->MetaData ve strings çıktısında berlirli bir keyword ile arama yap.")
+                    colorprint("info", "2-->MetaData'yı göster.")
+                    colorprint("info", "3-->Strings çıktısını göster.")
+                    colorprint("warn", "9-->Başka bir dosya yolu gir.")
+                    colorprint("fatal", "0-->Çık.")
                     choose = input("Axion TERMINAL("+Style.BRIGHT+Fore.CYAN+"/file_analysis/metadata_search"+Style.RESET_ALL+")-->")
                     if choose == 1:
                         searcher(file_path)
@@ -92,11 +95,11 @@ def metadata_search():
                     elif choose == 0:
                         sys.exit()
                     else:
-                        errprint("Yanlış girdi.\nTekrar başlatılıyor...\n")  
+                        colorprint("fatal", "Yanlış girdi.\nTekrar başlatılıyor...\n")  
                         progress_bar(0.025)
                         check_call(["clear"])
                 else:
-                    errprint("Böyle bir dosya bulunamadı.\nTekrar başlatılıyor...\n")
+                    colorprint("fatal", "Böyle bir dosya bulunamadı.\nTekrar başlatılıyor...\n")
                     progress_bar(0.025)
                     check_call(["clear"])
                     break
