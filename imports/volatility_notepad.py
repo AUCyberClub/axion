@@ -11,8 +11,19 @@ def colorprint(verbosity, text):
     if verbosity == "info":
         print(Style.BRIGHT + Fore.GREEN + text + Style.RESET_ALL)
 
+
+logo = ("""
+    _    __  _____ ___  _   _         _   _   _  ____ ____
+   / \   \ \/ /_ _/ _ \| \ | |       / \ | | | |/ ___/ ___|
+  / _ \   \  / | | | | |  \| |_____ / _ \| | | | |  | |
+ / ___ \  /  \ | | |_| | |\  |_____/ ___ \ |_| | |__| |___
+/_/   \_\/_/\_\___\___/|_| \_|    /_/   \_\___/ \____\____|
+        """)
+
 def volatility_notepad():
 
+    os.system('clear')
+    print (logo)
     colorprint("info","RAM dump notdefteri okumak için 'volatility' tool'u kullanılacak")
     colorprint("info","Dosyanın yolunu girin lütfen...")
     colorprint("warn","9-->Üst menüye dön.")
