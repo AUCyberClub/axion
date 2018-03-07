@@ -3,29 +3,31 @@
 import sys,os
 from colorama import Fore, Back, Style
 
-def errprint(text):
-    print(Style.BRIGHT + Fore.RED + text + Style.RESET_ALL)
-def succesprint(text):
-    print(Style.BRIGHT + Fore.GREEN + text + Style.RESET_ALL)
-def warnprint(text):
-    print(Fore.YELLOW + text + Style.RESET_ALL)
+def colorprint(verbosity, text):
+    if verbosity == "fatal":
+        print(Style.BRIGHT + Fore.RED + text + Style.RESET_ALL)
+    if verbosity == "warn":
+        print(Fore.YELLOW + text + Style.RESET_ALL)
+    if verbosity == "info":
+        print(Style.BRIGHT + Fore.GREEN + text + Style.RESET_ALL)
+
+logo = ("""
+    _    __  _____ ___  _   _         _   _   _  ____ ____
+   / \   \ \/ /_ _/ _ \| \ | |       / \ | | | |/ ___/ ___|
+  / _ \   \  / | | | | |  \| |_____ / _ \| | | | |  | |
+ / ___ \  /  \ | | |_| | |\  |_____/ ___ \ |_| | |__| |___
+/_/   \_\/_/\_\___\___/|_| \_|    /_/   \_\___/ \____\____|
+        """)
 
 def find_file_ext():
 
     os.system('clear')
-    print ("""
-    _    __  _____ ___  _   _         _   _   _  ____ ____ 
-   / \   \ \/ /_ _/ _ \| \ | |       / \ | | | |/ ___/ ___|
-  / _ \   \  / | | | | |  \| |_____ / _ \| | | | |  | |    
- / ___ \  /  \ | | |_| | |\  |_____/ ___ \ |_| | |__| |___ 
-/_/   \_\/_/\_\___\___/|_| \_|    /_/   \_\___/ \____\____|
-
-    """)
-    succesprint("Dosyanın türünü bulmak için 'file' tool'u kullanılacak")
-    succesprint("Dosyanın yolunu girin lütfen...")
-    warnprint("9-->Üst menüye dön.")
-    errprint("0-->Çık")
-    while (1):
+    print (logo)
+    colorprint("info", "Dosyanın türünü bulmak için 'file' tool'u kullanılacak")
+    colorprint("info", "Dosyanın yolunu girin lütfen...")
+    colorprint("warn", "9-->Üst menüye dön.")
+    colorprint("fatal", "0-->Çık")
+    while True:
         file_path = raw_input("Axion TERMINAL("+Style.BRIGHT+Fore.CYAN+"/file_analysis/find_file_ext"+Style.RESET_ALL+")-->")
 
         if file_path == "9":
@@ -73,7 +75,7 @@ def find_file_ext():
         elif os.popen("file " + file_path + " | grep 'ASCII text' ").read():
             print("Bu bir metin belgesi.")
         else:
-            errprint("Ne dosyası olduğunu bulamadım")
+            colorprint("fatal", "Ne dosyası olduğunu bulamadım")
 
 if __name__ == "__main__":
     find_file_ext()
