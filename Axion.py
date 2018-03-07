@@ -16,8 +16,8 @@ from imports.volatility_pslist import volatility_pslist
 from imports.volatility_screenshot import volatility_screenshot
 from imports.volatility_cmdscan import volatility_cmdscan
 from imports.volatility_iehistory import volatility_iehistory
-
-from colorama import Fore, Back, Style
+import readline, glob
+from colorama import Fore, Style
 
 def colorprint(verbosity, text):
     if verbosity == "fatal":
@@ -27,6 +27,17 @@ def colorprint(verbosity, text):
     if verbosity == "info":
         print(Style.BRIGHT + Fore.GREEN + text + Style.RESET_ALL)
 
+class tab_completer(object):
+    def path_completer(self, text, state):
+        return [x for x in glob.glob(text + '*')][state]
+
+def auto_path_completer():
+    tc = tab_completer()
+
+    readline.set_completer_delims('\t')
+    readline.parse_and_bind("tab: complete")
+
+    readline.set_completer(tc.path_completer)
 
 logo = ("""
     _    __  _____ ___  _   _         _   _   _  ____ ____
@@ -186,6 +197,7 @@ def main_menu():
 
 if __name__ == "__main__":
     os.system('clear')
+    auto_path_completer()
     try:
         main_menu()
     except KeyboardInterrupt:
