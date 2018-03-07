@@ -10,6 +10,12 @@ from imports.hash_brute import hash_brute
 from imports.morse_decoder import morse_decoder
 from imports.morse_encoder import morse_encoder
 from imports.vigenere_decoder import vigenere_decoder
+from imports.volatility_info import volatility_info
+from imports.volatility_notepad import volatility_notepad
+from imports.volatility_pslist import volatility_pslist
+from imports.volatility_screenshot import volatility_screenshot
+from imports.volatility_cmdscan import volatility_cmdscan
+from imports.volatility_iehistory import volatility_iehistory
 
 from colorama import Fore, Back, Style
 
@@ -41,7 +47,7 @@ def file_analysis():
         colorprint("info", "3-->Dosya'nın MetaData'sında ve binary'sinde arama yap.")
         colorprint("info", "4-->Diğer işe yarar dosya tool'larına bak(pdftotext vs...)")
         colorprint("warn", "9-->Üst menüye dön.")
-        colorprint("fatal", "0-->Çıkmak istiyorum.")
+        colorprint("fatal","0-->Çıkmak istiyorum.")
 
         choice = input("Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/file_analysis" + Style.RESET_ALL + ")-->")
         if choice == 1:
@@ -102,8 +108,10 @@ def ram():
         print("Bir seçim yapınız...")
         colorprint("info", "1-->Ram dump işletim sistemi bulucu.")
         colorprint("info", "2-->Ram dump notdefteri okuyucu.")
-        colorprint("info", "3-->Ram dump paint okuyucu.")
+        colorprint("info", "3-->Ram dump process listeleyici.")
         colorprint("info", "4-->Ram dump screenshot çekici.")
+        colorprint("info", "5-->Ram dump CMD komut görüntüleyici.")
+        colorprint("info", "6-->Ram dump Internet Explorer geçmişi görüntüleyici.")
         colorprint("warn", "9-->Üst menüye dön.")
         colorprint("fatal", "0-->Çıkmak istiyorum.")
 
@@ -113,9 +121,13 @@ def ram():
         elif choice == 2:
             volatility_notepad()
         elif choice == 3:
-            volatility_paint()
+            volatility_pslist()
         elif choice == 4:
             volatility_screenshot()
+        elif choice == 5:
+        	volatility_cmdscan()
+        elif choice == 6:
+        	volatility_iehistory()
         elif choice == 9:
             main_menu()
         elif choice == 0:
@@ -151,10 +163,7 @@ def main_menu():
                   / _ \   \  / | | | | |  \| |_____ / _ \| | | | |  | |
                  / ___ \  /  \ | | |_| | |\  |_____/ ___ \ |_| | |__| |___
                 /_/   \_\/_/\_\___\___/|_| \_|    /_/   \_\___/ \____\____|
-
                 ██------->CTF Framework Tool Project Version 0.5<--------██
-
-
         """)
         print("Bir seçim yapınız...")
         colorprint("info", "1-->Dosya Analizi")
