@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-import sys,os
+import sys, os
 from imports.find_file_ext import find_file_ext
 from imports.binary_search import binary_search
 from imports.metadata_search import metadata_search
@@ -11,35 +11,45 @@ from imports.morse_decoder import morse_decoder
 from imports.morse_encoder import morse_encoder
 from imports.vigenere_decoder import vigenere_decoder
 from imports.volatility_info import volatility_info
+from imports.volatility_notepad import volatility_notepad
+from imports.volatility_pslist import volatility_pslist
+from imports.volatility_screenshot import volatility_screenshot
+from imports.volatility_cmdscan import volatility_cmdscan
+from imports.volatility_iehistory import volatility_iehistory
 
 from colorama import Fore, Back, Style
 
-def errprint(text):
-    print(Style.BRIGHT + Fore.RED + text + Style.RESET_ALL)
-def succesprint(text):
-    print(Style.BRIGHT + Fore.GREEN + text + Style.RESET_ALL)
-def warnprint(text):
-    print(Fore.YELLOW + text + Style.RESET_ALL)
+def colorprint(verbosity, text):
+    if verbosity == "fatal":
+        print(Style.BRIGHT + Fore.RED + text + Style.RESET_ALL)
+    if verbosity == "warn":
+        print(Fore.YELLOW + text + Style.RESET_ALL)
+    if verbosity == "info":
+        print(Style.BRIGHT + Fore.GREEN + text + Style.RESET_ALL)
 
-def file_analysis():
-    while (1):
-        os.system('clear')
-        print ("""
-    _    __  _____ ___  _   _         _   _   _  ____ ____ 
+
+logo = ("""
+    _    __  _____ ___  _   _         _   _   _  ____ ____
    / \   \ \/ /_ _/ _ \| \ | |       / \ | | | |/ ___/ ___|
-  / _ \   \  / | | | | |  \| |_____ / _ \| | | | |  | |    
- / ___ \  /  \ | | |_| | |\  |_____/ ___ \ |_| | |__| |___ 
+  / _ \   \  / | | | | |  \| |_____ / _ \| | | | |  | |
+ / ___ \  /  \ | | |_| | |\  |_____/ ___ \ |_| | |__| |___
 /_/   \_\/_/\_\___\___/|_| \_|    /_/   \_\___/ \____\____|
         """)
+
+
+def file_analysis():
+    while True:
+        os.system('clear')
+        print (logo)
         print("Bir seçim yapınız...")
-        succesprint("1-->Dosyanın türünü bul.")
-        succesprint("2-->Dosya'ya gizlenmiş başka bir dosya var mı ona bak.")
-        succesprint("3-->Dosya'nın MetaData'sında ve binary'sinde arama yap.")
-        succesprint("4-->Diğer işe yarar dosya tool'larına bak(pdftotext vs...)")
-        warnprint("9-->Üst menüye dön.")
-        errprint("0-->Çıkmak istiyorum.")
-    
-        choice = input("Axion TERMINAL("+Style.BRIGHT+Fore.CYAN+"/file_analysis"+Style.RESET_ALL+")-->")
+        colorprint("info", "1-->Dosyanın türünü bul.")
+        colorprint("info", "2-->Dosya'ya gizlenmiş başka bir dosya var mı ona bak.")
+        colorprint("info", "3-->Dosya'nın MetaData'sında ve binary'sinde arama yap.")
+        colorprint("info", "4-->Diğer işe yarar dosya tool'larına bak(pdftotext vs...)")
+        colorprint("warn", "9-->Üst menüye dön.")
+        colorprint("fatal","0-->Çıkmak istiyorum.")
+
+        choice = input("Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/file_analysis" + Style.RESET_ALL + ")-->")
         if choice == 1:
             find_file_ext()
         elif choice == 2:
@@ -53,30 +63,24 @@ def file_analysis():
         elif choice == 0:
             sys.exit()
         else:
-            errprint("Yanlış Girdi Tekrar deneyin...")  
+            colorprint("fatal", "Yanlış Girdi Tekrar deneyin...")
+
 
 def crypto():
-    while (1):
+    while True:
         os.system('clear')
-        print ("""
-    _    __  _____ ___  _   _         _   _   _  ____ ____ 
-   / \   \ \/ /_ _/ _ \| \ | |       / \ | | | |/ ___/ ___|
-  / _ \   \  / | | | | |  \| |_____ / _ \| | | | |  | |    
- / ___ \  /  \ | | |_| | |\  |_____/ ___ \ |_| | |__| |___ 
-/_/   \_\/_/\_\___\___/|_| \_|    /_/   \_\___/ \____\____|
-        """)
+        print (logo)
         print("Bir seçim yapınız...")
-        succesprint("1-->Elimde ki string hash olabilir mi türü nedir?")
-        succesprint("2-->Zip, Rar, TrueCrypt kaba kuvvet saldırısı.")
-        succesprint("3-->Hash kaba kuvvet saldırısı.")
-        succesprint("4-->Vigenere çözücü.")
-        succesprint("5-->Morse çözücü.")
-        succesprint("6-->Morse oluşturucu.")
-        warnprint("9-->Üst menüye dön.")
-        errprint("0-->Çıkmak istiyorum.")
+        colorprint("info", "1-->Elimde ki string hash olabilir mi türü nedir?")
+        colorprint("info", "2-->Zip, Rar, TrueCrypt kaba kuvvet saldırısı.")
+        colorprint("info", "3-->Hash kaba kuvvet saldırısı.")
+        colorprint("info", "4-->Vigenere çözücü.")
+        colorprint("info", "5-->Morse çözücü.")
+        colorprint("info", "6-->Morse oluşturucu.")
+        colorprint("warn", "9-->Üst menüye dön.")
+        colorprint("fatal", "0-->Çıkmak istiyorum.")
 
-
-        choice = input("Axion TERMINAL("+Style.BRIGHT+Fore.CYAN+"/crypto"+Style.RESET_ALL+")-->")
+        choice = input("Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/crypto" + Style.RESET_ALL + ")-->")
         if choice == 1:
             hash_ident()
         elif choice == 2:
@@ -94,58 +98,80 @@ def crypto():
         elif choice == 0:
             sys.exit()
         else:
-            errprint("Yanlış Girdi Tekrar deneyin...")  
+            colorprint("fatal", "Yanlış Girdi Tekrar deneyin...")
+
+
 def ram():
-    while (1):
+    while True:
         os.system('clear')
-        print ("""
-    _    __  _____ ___  _   _         _   _   _  ____ ____ 
-   / \   \ \/ /_ _/ _ \| \ | |       / \ | | | |/ ___/ ___|
-  / _ \   \  / | | | | |  \| |_____ / _ \| | | | |  | |    
- / ___ \  /  \ | | |_| | |\  |_____/ ___ \ |_| | |__| |___ 
-/_/   \_\/_/\_\___\___/|_| \_|    /_/   \_\___/ \____\____|
-        """)
+        print (logo)
         print("Bir seçim yapınız...")
-        succesprint("1-->Ram dump işletim sistemi bulucu.")
-        succesprint("2-->Ram dump notdefteri okuyucu.")
-        succesprint("3-->Ram dump paint okuyucu.")
-        succesprint("4-->Ram dump screenshot çekici.")
-        warnprint("9-->Üst menüye dön.")
-        errprint("0-->Çıkmak istiyorum.")
+        colorprint("info", "1-->Ram dump işletim sistemi bulucu.")
+        colorprint("info", "2-->Ram dump notdefteri okuyucu.")
+        colorprint("info", "3-->Ram dump process listeleyici.")
+        colorprint("info", "4-->Ram dump screenshot çekici.")
+        colorprint("info", "5-->Ram dump CMD komut görüntüleyici.")
+        colorprint("info", "6-->Ram dump Internet Explorer geçmişi görüntüleyici.")
+        colorprint("warn", "9-->Üst menüye dön.")
+        colorprint("fatal", "0-->Çıkmak istiyorum.")
 
-
-        choice = input("Axion TERMINAL("+Style.BRIGHT+Fore.CYAN+"/ram_analysis"+Style.RESET_ALL+")-->")
+        choice = input("Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/ram_analysis" + Style.RESET_ALL + ")-->")
         if choice == 1:
             volatility_info()
         elif choice == 2:
             volatility_notepad()
         elif choice == 3:
-            volatility_paint()
+            volatility_pslist()
         elif choice == 4:
             volatility_screenshot()
+        elif choice == 5:
+        	volatility_cmdscan()
+        elif choice == 6:
+        	volatility_iehistory()
         elif choice == 9:
             main_menu()
         elif choice == 0:
             sys.exit()
         else:
-            errprint("Yanlış Girdi Tekrar deneyin...")  
+            colorprint("fatal", "Yanlış Girdi Tekrar deneyin...")
+
+
 def main_menu():
-    while (1):
+    while True:
         os.system('clear')
         print ("""
-    _    __  _____ ___  _   _         _   _   _  ____ ____ 
-   / \   \ \/ /_ _/ _ \| \ | |       / \ | | | |/ ___/ ___|
-  / _ \   \  / | | | | |  \| |_____ / _ \| | | | |  | |    
- / ___ \  /  \ | | |_| | |\  |_____/ ___ \ |_| | |__| |___ 
-/_/   \_\/_/\_\___\___/|_| \_|    /_/   \_\___/ \____\____|
+                                               ░░▒█░░░░       ░░░░░░     ░░░▓█░░
+                                                ░░████░░░ ░░░░█████▓░░░░░████░░
+                                                ░░▓░░▒███▒███████████░▒███░░░▒
+                                                ░░▓░ ░░████░░░▓▓▓███████░░  ░▓░
+                                           ░░░░░░██░░░░▒███████████████▒░░░░▓▒
+                              ░░  ░░░░░░░░▒███▓░░░█░▓█████████████████████▓░█░░
+                   ░░░  ░  ░░░░░░░▒████▒░░░░░░░░░░█▒███████████████████████░█░
+               ░░░░░░░░▒▓████████████████████████████████████████████████████░
+               ░░░░░░░░░▓▓░░░░░░░░░░░░░░░░░░░  ░░░████▒████████████▒████▒████░░░
+              ░░███████░██▒░░██░███████░███████▓░██████░░░░░███████░░░░░██████░░
+              ░███░███████░░███▓██░░▓██▒██░░▒██░░████████████████████████▒▓███░░
+              ░████▓██▒██▓░░██▒██▓░░░░░███░░    ░░███████████▓░░░████████████░░
+            ░░▒██░░░██▒███████▒██▒▒▒▒░░██▒▒▒▒░░ ░░▓█████████████████████████▒░
+            ░░███░░▓█▓███████░▒███▓█▓█▒███▓░░░░ ░░░▒░█████████▒░▓█████████░░░░
+            ░░░░░░░▓██████▒░░▒▒▓▓▓▒██░█▓███████████████████████████████▒░░░░░
+                  ░░░░░██████░░░░░▒██▓▓░░ ░ ░░░ ░░░░░░░░░██▓███████▓██░░
+                        ░░▓██████████░░                  ░░░░█████░░░░
+                           ░░░░░░░░░░░░                     ░░▒█▓░░
+                    _    __  _____ ___  _   _         _   _   _  ____ ____
+                   / \   \ \/ /_ _/ _ \| \ | |       / \ | | | |/ ___/ ___|
+                  / _ \   \  / | | | | |  \| |_____ / _ \| | | | |  | |
+                 / ___ \  /  \ | | |_| | |\  |_____/ ___ \ |_| | |__| |___
+                /_/   \_\/_/\_\___\___/|_| \_|    /_/   \_\___/ \____\____|
+                ██------->CTF Framework Tool Project Version 0.5<--------██
         """)
         print("Bir seçim yapınız...")
-        succesprint("1-->Dosya Analizi")
-        succesprint("2-->Kripto ve Şifreleme")
-        succesprint("3-->RAM Dump Analizi")
-        errprint("0-->Çıkmak istiyorum.")
+        colorprint("info", "1-->Dosya Analizi")
+        colorprint("info", "2-->Kripto ve Şifreleme")
+        colorprint("info", "3-->RAM Dump Analizi")
+        colorprint("fatal", "0-->Çıkmak istiyorum.")
 
-        choice = input("Axion TERMINAL("+Style.BRIGHT+Fore.CYAN+"/"+Style.RESET_ALL+")-->")
+        choice = input("Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/" + Style.RESET_ALL + ")-->")
         if choice == 1:
             file_analysis()
         elif choice == 2:
@@ -155,13 +181,13 @@ def main_menu():
         elif choice == 0:
             sys.exit()
         else:
-            errprint("Yanlış Girdi Tekrar deneyin...")    
+            colorprint("fatal", "Yanlış Girdi Tekrar deneyin...")
+
 
 if __name__ == "__main__":
     os.system('clear')
     try:
         main_menu()
     except KeyboardInterrupt:
-        errprint ("\nProgram Kapanıyor..!")
+        colorprint("fatal", "\nProgram Kapanıyor..!")
         sys.exit()
-
