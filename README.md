@@ -7,8 +7,8 @@ AUCC AXION FRAMEWORK
 sudo apt-get install binwalk
 sudo apt-get install exiftool
 git clone https://github.com/AUCyberClub/axion.git
-sudo pip install -r requirements.txt
 cd axion
+sudo pip install -r requirements.txt
 python Axion.py
 ```
 ## Screenshots
