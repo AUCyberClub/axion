@@ -1,3 +1,4 @@
 colorama
 progressbar
 hashid
+pybase64
