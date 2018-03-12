@@ -12,6 +12,8 @@ from imports.morse_encoder import morse_encoder
 from imports.vigenere_decoder import vigenere_decoder
 from imports.xor_decoder import xor_decoder
 from imports.base64_decoder import base64_decoder
+from imports.bin_hex_dec_ascii import bin_hex_dec_ascii
+from imports.rot13_caesar import rot13_caesar
 from imports.volatility_info import volatility_info
 from imports.volatility_notepad import volatility_notepad
 from imports.volatility_pslist import volatility_pslist
@@ -101,6 +103,8 @@ def crypto():
         colorprint("info", _("6-->Morse encoder"))
         colorprint("info", "7-->Xor decoder")
         colorprint("info", "8-->Base64 decoder")
+        colorprint("info", "10-->Bin,Hex,Dec and Ascii transformations")
+        colorprint("info", "11-->Caesar and rot decrypter")
         colorprint("warn", _("9-->Back to top menu"))
         colorprint("fatal", _("0-->Exit"))
 
@@ -121,13 +125,16 @@ def crypto():
             xor_decoder()
         elif choice == 8:
             base64_decoder()
+        elif choice == 10:
+            bin_hex_dec_ascii()
+        elif choice == 11:
+            rot13_caesar()
         elif choice == 9:
             main_menu()
         elif choice == 0:
             sys.exit()
         else:
             colorprint("fatal", _("Wrong input, please try again..."))
-
 
 def ram():
     while True:
