@@ -72,15 +72,5 @@ def pdf_parser():
         if cho1 == 'H':
             return
 
-        '''elif choice == "H":
-            return
-        elif choice == "E" :
-
-            #succesprint("Yukarıda gördüğünüz /(Obje)'lerden içeriğini çıkarmak istersiniz lütfen girdi yapınız.")
-            #warnprint("Girdiniz lütfen sayi olsun.")
-            obj = raw_input("Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + Style.RESET_ALL + ")-->")
-            #ext_data = os.popen("./source_pdf_parser.py --object "+ obj + " --raw --filter " + file_path).read()
-            #print(ext_data)
-'''
 if __name__ == "__main__":
     find_file_ext()
