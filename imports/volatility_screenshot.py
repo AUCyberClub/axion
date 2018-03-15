@@ -9,6 +9,8 @@ def colorprint(verbosity, text):
     if verbosity == "warn":
         print(Fore.YELLOW + text + Style.RESET_ALL)
     if verbosity == "info":
+        print(Style.DIM + Fore.WHITE + text + Style.RESET_ALL)
+    if verbosity == "success":
         print(Style.BRIGHT + Fore.GREEN + text + Style.RESET_ALL)
 
 logo = ("""
@@ -28,7 +30,7 @@ def volatility_screenshot():
     colorprint("fatal","0-->Çıkmak istiyorum.")
 
     while True:
-        file_path = raw_input("Axion TERMINAL("+Style.BRIGHT+Fore.CYAN+"/ram_analysis/volatility_screenshot"+Style.RESET_ALL+")-->")
+        file_path = raw_input("Axion TERMINAL("+Style.BRIGHT+Fore.CYAN+"/ram_analysis/volatility_screenshot"+Style.RESET_ALL+")\n-->")
 
         if file_path == "9":
             return
@@ -40,8 +42,8 @@ def volatility_screenshot():
          # 
         if op_system != "":
             os.popen("mkdir screenshots").read()
-            colorprint("info",os.popen(command).read())
-            colorprint("info","Çekilen screenshotlar 'screenshots' dizinine kaydedilmiştir.")
+            colorprint("success",os.popen(command).read())
+            colorprint("warn","Çekilen screenshotlar 'screenshots' dizinine kaydedilmiştir.")
         else:
             colorprint("fatal","Böyle bir dosya yok.")
 

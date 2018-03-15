@@ -9,6 +9,8 @@ def colorprint(verbosity, text):
     if verbosity == "warn":
         print(Fore.YELLOW + text + Style.RESET_ALL)
     if verbosity == "info":
+        print(Style.DIM + Fore.WHITE + text + Style.RESET_ALL)
+    if verbosity == "success":
         print(Style.BRIGHT + Fore.GREEN + text + Style.RESET_ALL)
 
 
@@ -31,7 +33,7 @@ def volatility_info():
     colorprint("fatal","0-->Çıkmak istiyorum.")
 
     while True:
-        file_path = raw_input("Axion TERMINAL("+Style.BRIGHT+Fore.CYAN+"/ram_analysis/volatility_info"+Style.RESET_ALL+")-->")
+        file_path = raw_input("Axion TERMINAL("+Style.BRIGHT+Fore.CYAN+"/ram_analysis/volatility_info"+Style.RESET_ALL+")\n-->")
 
         if file_path == "9":
             return
@@ -41,7 +43,7 @@ def volatility_info():
         output = os.popen("volatility -f " + file_path + " imageinfo | grep Suggested | cut -d ',' -f1 | cut -d ':' -f2").read()
        
         if output != " ":
-        	colorprint("info","İmage işletim sistemi muhtemelen :" + output)
+            colorprint("success","İmage işletim sistemi muhtemelen :" + output)
         else:
             colorprint("fatal","Böyle bir dosya yok.")
 

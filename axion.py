@@ -41,6 +41,8 @@ def colorprint(verbosity, text):
     if verbosity == "warn":
         print(Fore.YELLOW + text + Style.RESET_ALL)
     if verbosity == "info":
+        print(Style.DIM + Fore.WHITE + text + Style.RESET_ALL)
+    if verbosity == "success":
         print(Style.BRIGHT + Fore.GREEN + text + Style.RESET_ALL)
 
 import readline, glob
@@ -75,7 +77,7 @@ def file_analysis():
         colorprint("warn", _("9-->Back to top menu"))
         colorprint("fatal", _("0-->Exit"))
 
-        choice = input("Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + _("/file_analysis") + Style.RESET_ALL + ")-->")
+        choice = input("Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + _("/file_analysis") + Style.RESET_ALL + ")\n-->")
         if choice == 1:
             find_file_ext()
         elif choice == 2:
@@ -99,7 +101,7 @@ def crypto():
         colorprint("info", _("2-->Brute force attack for Zip, Rar, TrueCrypt"))
         colorprint("info", _("3-->Brute force attack for raw hash"))
         colorprint("info", _("4-->Vigenere decrypter"))
-        colorprint("info", _("5-->Morse decrypter"))
+        colorprint("info", _("5-->Morse decoder"))
         colorprint("info", _("6-->Morse encoder"))
         colorprint("info", "7-->Xor decoder")
         colorprint("info", "8-->Base64 decoder")
@@ -108,7 +110,7 @@ def crypto():
         colorprint("warn", _("9-->Back to top menu"))
         colorprint("fatal", _("0-->Exit"))
 
-        choice = input("Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + _("/crypto") + Style.RESET_ALL + ")-->")
+        choice = input("Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + _("/crypto") + Style.RESET_ALL + ")\n-->")
         if choice == 1:
             hash_ident()
         elif choice == 2:
@@ -150,7 +152,7 @@ def ram():
         colorprint("warn", _("9-->Back top top menu"))
         colorprint("fatal", _("0-->Exit"))
 
-        choice = input("Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + _("/ram_analysis") + Style.RESET_ALL + ")-->")
+        choice = input("Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + _("/ram_analysis") + Style.RESET_ALL + ")\n-->")
         if choice == 1:
             volatility_info()
         elif choice == 2:
@@ -206,7 +208,7 @@ def main_menu():
         colorprint("info", _("3-->RAM dump analysis"))
         colorprint("fatal", _("0-->Exit"))
 
-        choice = input("Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/" + Style.RESET_ALL + ")-->")
+        choice = input("Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/" + Style.RESET_ALL + ")\n-->")
         if choice == 1:
             file_analysis()
         elif choice == 2:
