@@ -9,6 +9,7 @@ from imports.hash_extractor import hash_extractor
 from imports.hash_brute import hash_brute
 from imports.morse_decoder import morse_decoder
 from imports.morse_encoder import morse_encoder
+from imports.pdf_parser import pdf_parser
 from imports.vigenere_decoder import vigenere_decoder
 from imports.xor_decoder import xor_decoder
 from imports.base64_decoder import base64_decoder
