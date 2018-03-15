@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import sys,os
-from colorama import Fore, Back, Style
-from subprocess import Popen,PIPE,check_call
+from colorama import Fore, Style
+from subprocess import Popen,PIPE
 
 def colorprint(verbosity, text):
     if verbosity == "fatal":
@@ -10,6 +10,8 @@ def colorprint(verbosity, text):
     if verbosity == "warn":
         print(Fore.YELLOW + text + Style.RESET_ALL)
     if verbosity == "info":
+        print(Style.DIM + Fore.WHITE + text + Style.RESET_ALL)
+    if verbosity == "success":
         print(Style.BRIGHT + Fore.GREEN + text + Style.RESET_ALL)
 
 logo = ("""
@@ -73,4 +75,4 @@ def pdf_parser():
             return
 
 if __name__ == "__main__":
-    find_file_ext()
+    pdf_parser()

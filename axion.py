@@ -75,6 +75,7 @@ def file_analysis():
         colorprint("info", _("1-->Find file extension"))
         colorprint("info", _("2-->Find hidden files"))
         colorprint("info", _("3-->Search keyword in file's metadata and strings"))
+        colorprint("info", "4-->Parse and analyse a PDF file")
         colorprint("warn", _("9-->Back to top menu"))
         colorprint("fatal", _("0-->Exit"))
 
@@ -85,6 +86,8 @@ def file_analysis():
             binary_search()
         elif choice == 3:
             metadata_search()
+        elif choice == 4:
+            pdf_parser()
         elif choice == 9:
             main_menu()
         elif choice == 0:
