@@ -10,6 +10,8 @@ def colorprint(verbosity, text):
     if verbosity == "warn":
         print(Fore.YELLOW + text + Style.RESET_ALL)
     if verbosity == "info":
+        print(Style.DIM + Fore.WHITE + text + Style.RESET_ALL)
+    if verbosity == "success":
         print(Style.BRIGHT + Fore.GREEN + text + Style.RESET_ALL)
 
 logo = ("""
@@ -58,7 +60,7 @@ def bin_hex_dec_ascii():
         colorprint("fatal", "0-->Çık")
 
         choice = input(
-            "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/crypto/bin_hex_dec_ascii" + Style.RESET_ALL + ")-->")
+            "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/crypto/bin_hex_dec_ascii" + Style.RESET_ALL + ")\n-->")
 
         colorprint("info", "Lütfen sayıyı girin.")
         number = raw_input(
@@ -89,12 +91,12 @@ def bin_hex_dec_ascii():
             colorprint("fatal", "Yanlış girdi girdiniz")
             continue
 
-        colorprint("info", "Dönüşüm tamamlandı.")
+        colorprint("success", "Dönüşüm tamamlandı.")
         print ("Mesaj:\n--> %s" % return_msg)
 
         colorprint("info", "Başka bir mesaj dönüştürmek ister misiniz? E/H")
         choice = raw_input(
-            "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/crypto/bin_hex_dec_ascii" + Style.RESET_ALL + ")-->")
+            "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/crypto/bin_hex_dec_ascii" + Style.RESET_ALL + ")\n-->")
 
         if choice == 'H':
             return

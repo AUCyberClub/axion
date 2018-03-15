@@ -10,6 +10,8 @@ def colorprint(verbosity, text):
     if verbosity == "warn":
         print(Fore.YELLOW + text + Style.RESET_ALL)
     if verbosity == "info":
+        print(Style.DIM + Fore.WHITE + text + Style.RESET_ALL)
+    if verbosity == "success":
         print(Style.BRIGHT + Fore.GREEN + text + Style.RESET_ALL)
 
 logo = ("""
@@ -24,6 +26,7 @@ def hash_brute():
     check_call(["clear"])
     while True:
         print (logo)
+        colorprint("warn", "Bu özelliği kullanmak için John Jumbo paketine sahip olmalısınız(Kali dağıtımında mevcut)")
         colorprint("info", "Bu bölümde belirlediğiniz wordlistler ile hash kırabilirsiniz.")
         colorprint("info", "Bu iş için 'JohnTheRipper' kullanılacak.")
         colorprint("info", "Öncelikle hash'in bulunduğu metin belgesinin yolunu girin.")
@@ -49,18 +52,18 @@ def hash_brute():
         if err:
             colorprint("fatal", err)
         if out:
-            colorprint("info", out)
+            colorprint("success", out)
 
         std = Popen(["john", "--show", hash_path], stdout=PIPE, stderr=PIPE)
         (out, err) = std.communicate()
         if err:
             colorprint("fatal", err)
         if out:
-            colorprint("info", out)
+            colorprint("success", out)
 
         colorprint("info", "Başka bir hash kırmayı denemek ister misiniz? E/H")
         choice = raw_input(
-            "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/file_analysis/hash_brute" + Style.RESET_ALL + ")-->")
+            "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/file_analysis/hash_brute" + Style.RESET_ALL + ")\n-->")
 
         if choice == 'H':
             return

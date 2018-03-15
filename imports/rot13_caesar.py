@@ -12,6 +12,8 @@ def colorprint(verbosity, text):
     if verbosity == "warn":
         print(Fore.YELLOW + text + Style.RESET_ALL)
     if verbosity == "info":
+        print(Style.DIM + Fore.WHITE + text + Style.RESET_ALL)
+    if verbosity == "success":
         print(Style.BRIGHT + Fore.GREEN + text + Style.RESET_ALL)
 
 
@@ -53,21 +55,21 @@ def rot13_caesar():
         colorprint("fatal", "0-->Çık")
 
         caesar_msg = raw_input(
-            "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/crypto/base64_decoder" + Style.RESET_ALL + ")-->")
+            "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/crypto/base64_decoder" + Style.RESET_ALL + ")\n-->")
 
         if caesar_msg == "9":
             return
         elif caesar_msg == "0":
             sys.exit()
         else:
-            colorprint("info", "Tüm ihtimaller aşağıdadır.")
+            colorprint("success", "Tüm ihtimaller aşağıdadır.")
             for i in range(1,26):
                 rot_msg = rot_to_text(i,caesar_msg)
                 colorprint("info", "rot" + str(i) + ":  " + rot_msg)
 
         colorprint("info", "Başka bir mesaj dönüştürmek ister misiniz? E/H")
         choice = raw_input(
-            "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/crypto/base64_decoder" + Style.RESET_ALL + ")-->")
+            "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/crypto/base64_decoder" + Style.RESET_ALL + ")\n-->")
 
         if choice == 'H':
             return
