@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-import sys, progressbar, time
+import sys, time
 from subprocess import Popen, PIPE, check_call
 from colorama import Fore, Style
 
@@ -10,6 +10,8 @@ def colorprint(verbosity, text):
     if verbosity == "warn":
         print(Fore.YELLOW + text + Style.RESET_ALL)
     if verbosity == "info":
+        print(Style.DIM + Fore.WHITE + text + Style.RESET_ALL)
+    if verbosity == "success":
         print(Style.BRIGHT + Fore.GREEN + text + Style.RESET_ALL)
 
 logo = ("""
@@ -20,20 +22,13 @@ logo = ("""
 /_/   \_\/_/\_\___\___/|_| \_|    /_/   \_\___/ \____\____|
         """)
 
-
-def progress_bar(timer):
-    bar = progressbar.ProgressBar()
-    for i in bar(range(100)):
-        time.sleep(timer)
-
-
 def rar2john():
     colorprint("info", "Rar dosyasından hash çıkartmak için lütfen dosya yolunu giriniz.")
     rar_path = raw_input(
-        "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/file_analysis/hash_extractor/rar2john" + Style.RESET_ALL + ")-->")
+        "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/file_analysis/hash_extractor/rar2john" + Style.RESET_ALL + ")\n-->")
     colorprint("info", "Çıkartılacak olan dosya için lütfen dosya yolunu giriniz.")
     hashtxt_path = raw_input(
-        "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/file_analysis/hash_extractor/rar2john" + Style.RESET_ALL + ")-->")
+        "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/file_analysis/hash_extractor/rar2john" + Style.RESET_ALL + ")\n-->")
 
     with open(hashtxt_path, 'w') as out:
         std = Popen(["rar2john", rar_path], stdout=out, stderr=PIPE)
@@ -42,16 +37,15 @@ def rar2john():
         colorprint("fatal", "Hata dosya bulunamadı!")
     elif err:
         colorprint("fatal", err)
-    progress_bar(0.05)
 
 
 def zip2john():
     colorprint("info", "Zip dosyasından hash çıkartmak için lütfen dosya yolunu giriniz.")
     zip_path = raw_input(
-        "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/file_analysis/hash_extractor/zip2john" + Style.RESET_ALL + ")-->")
+        "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/file_analysis/hash_extractor/zip2john" + Style.RESET_ALL + ")\n-->")
     colorprint("info", "Çıkartılacak olan dosya için lütfen dosya yolunu giriniz.")
     hashtxt_path = raw_input(
-        "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/file_analysis/hash_extractor/zip2john" + Style.RESET_ALL + ")-->")
+        "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/file_analysis/hash_extractor/zip2john" + Style.RESET_ALL + ")\n-->")
 
     with open(hashtxt_path, 'w') as out:
         std = Popen(["zip2john", zip_path], stdout=out, stderr=PIPE)
@@ -60,16 +54,15 @@ def zip2john():
         colorprint("fatal", "Hata dosya bulunamadı!")
     elif err:
         colorprint("fatal", err)
-    progress_bar(0.05)
 
 
 def truecrypt2john():
     colorprint("info", "TrueCrypt dosyasından hash çıkartmak için lütfen dosya yolunu giriniz.")
     truecrypt_path = raw_input(
-        "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/file_analysis/hash_extractor/truecrypt2john" + Style.RESET_ALL + ")-->")
+        "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/file_analysis/hash_extractor/truecrypt2john" + Style.RESET_ALL + ")\n-->")
     colorprint("info", "Çıkartılacak olan dosya için lütfen dosya yolunu giriniz.")
     hashtxt_path = raw_input(
-        "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/file_analysis/hash_extractor/truecrypt2john" + Style.RESET_ALL + ")-->")
+        "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/file_analysis/hash_extractor/truecrypt2john" + Style.RESET_ALL + ")\n-->")
 
     with open(hashtxt_path, 'w') as out:
         std = Popen(["truecrypt2john", truecrypt_path], stdout=out, stderr=PIPE)
@@ -78,13 +71,13 @@ def truecrypt2john():
         colorprint("fatal", "Hata dosya bulunamadı!")
     elif err:
         colorprint("fatal", err)
-    progress_bar(0.05)
 
 
 def hash_extractor():
     check_call(["clear"])
     while True:
         print (logo)
+        colorprint("warn", "Bu özelliği kullanmak için John Jumbo paketine sahip olmalısınız(Kali dağıtımında mevcut)")
         colorprint("info", "Bu bölümde rar, zip ve trueCrypt hashlerini dosyaların içerisinden çıkartabilirsiniz.")
         colorprint("info", "Bu iş için 'JohntheRipper' araçları kullanılacak.")
         colorprint("info", "1-->Rar dosyaları.")
@@ -94,7 +87,7 @@ def hash_extractor():
         colorprint("fatal", "0-->Çık")
 
         choice = raw_input(
-            "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/file_analysis/hash_extractor" + Style.RESET_ALL + ")-->")
+            "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/file_analysis/hash_extractor" + Style.RESET_ALL + ")\n-->")
 
         if choice == "9":
             return
@@ -109,7 +102,7 @@ def hash_extractor():
 
         colorprint("info", "Başka bir dosyadan hash çıkartmak ister misiniz? E/H")
         choice = raw_input(
-            "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/file_analysis/hash_extractor" + Style.RESET_ALL + ")-->")
+            "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/file_analysis/hash_extractor" + Style.RESET_ALL + ")\n-->")
 
         if choice == 'H':
             return

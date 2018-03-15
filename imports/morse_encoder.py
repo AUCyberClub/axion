@@ -10,6 +10,8 @@ def colorprint(verbosity, text):
     if verbosity == "warn":
         print(Fore.YELLOW + text + Style.RESET_ALL)
     if verbosity == "info":
+        print(Style.DIM + Fore.WHITE + text + Style.RESET_ALL)
+    if verbosity == "success":
         print(Style.BRIGHT + Fore.GREEN + text + Style.RESET_ALL)
 
 logo = ("""
@@ -77,7 +79,7 @@ def morse_encoder():
         colorprint("fatal", "0-->Çık")
 
         text_msg = raw_input(
-            "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/crypto/morse_encoder" + Style.RESET_ALL + ")-->")
+            "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/crypto/morse_encoder" + Style.RESET_ALL + ")\n-->")
 
         if text_msg == "9":
             return
@@ -85,12 +87,12 @@ def morse_encoder():
             sys.exit()
         else:
             morse_msg = encode_morse(text_msg)
-            succesprint ("Mesajınız dönüştürüldü.")
-            print "Mesaj:\n--> ", morse_msg
+            colorprint("success", "Mesajınız dönüştürüldü.")
+            print ("Mesaj:\n--> ", morse_msg)
 
         colorprint("info", "Başka bir mesaj dönüştürmek ister misiniz? E/H")
         choice = raw_input(
-            "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/crypto/morse_encoder" + Style.RESET_ALL + ")-->")
+            "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/crypto/morse_encoder" + Style.RESET_ALL + ")\n-->")
 
         if choice == 'H':
             return
