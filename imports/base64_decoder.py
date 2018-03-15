@@ -10,6 +10,8 @@ def colorprint(verbosity, text):
     if verbosity == "warn":
         print(Fore.YELLOW + text + Style.RESET_ALL)
     if verbosity == "info":
+        print(Style.DIM + Fore.WHITE + text + Style.RESET_ALL)
+    if verbosity == "success":
         print(Style.BRIGHT + Fore.GREEN + text + Style.RESET_ALL)
 
 logo = ("""
@@ -37,7 +39,7 @@ def base64_decoder():
         colorprint("fatal", "0-->Çık")
 
         base64_msg = raw_input(
-            "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/crypto/base64_decoder" + Style.RESET_ALL + ")-->")
+            "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/crypto/base64_decoder" + Style.RESET_ALL + ")\n-->")
 
         if base64_msg == "9":
             return
@@ -45,12 +47,12 @@ def base64_decoder():
             sys.exit()
         else:
             text_msg = decode_base64(base64_msg)
-            colorprint("info","Mesajınız dönüştürüldü.")
+            colorprint("success","Mesajınız dönüştürüldü.")
             print ("Mesaj:\n--> %s" % text_msg)
 
         colorprint("info", "Başka bir mesaj dönüştürmek ister misiniz? E/H")
         choice = raw_input(
-            "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/crypto/base64_decoder" + Style.RESET_ALL + ")-->")
+            "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/crypto/base64_decoder" + Style.RESET_ALL + ")\n-->")
 
         if choice == 'H':
             return
