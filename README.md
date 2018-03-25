@@ -19,7 +19,7 @@ Supported python versions are 2.7.X
 
 ## ⚙ Installation
 
-- Download Installation.sh  
+Open the terminal and type the following command :arrow_heading_down:
 ```bash 
   bash <(curl https://raw.githubusercontent.com/AUCyberClub/axion/master/Installiation.sh)
 ```
