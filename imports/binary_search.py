@@ -47,6 +47,7 @@ def binary_search():
 
             if not err:
                 print(out)
+
                 print("Extract embedded files? Y/N")
                 extract_choice = raw_input("Axion TERMINAL("+Style.BRIGHT+Fore.CYAN+"/file_analysis/binary_search"+Style.RESET_ALL+")\n-->")
                 if(extract_choice == "Y"):
@@ -54,6 +55,7 @@ def binary_search():
                         print("Specify the output path:")
                         colorprint("warn", "Abort -> 9")
                         colorprint("fatal", "Quit -> 0")
+
                         path = raw_input("Axion TERMINAL("+Style.BRIGHT+Fore.CYAN+"/file_analysis/binary_search"+Style.RESET_ALL+")\n-->")
 
                         if path == "9":

@@ -58,6 +58,7 @@ def file_analysis():
     while True:
         os.system('clear')
         print (logo)
+
         print("Options:")
         colorprint("info", "1-->Find file extension")
         colorprint("info", "2-->Search for embedded files")
@@ -67,6 +68,7 @@ def file_analysis():
         colorprint("fatal", "0-->Quit")
 
         choice = input("Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/file_analysis" + Style.RESET_ALL + ")\n-->")
+
         if choice == 1:
             find_file_ext()
         elif choice == 2:
@@ -87,6 +89,7 @@ def crypto():
     while True:
         os.system('clear')
         print (logo)
+
         print("Options:")
         colorprint("info", "1-->Identify a hash")
         colorprint("info", "2-->Brute force attack for Zip, Rar, TrueCrypt")
@@ -102,6 +105,7 @@ def crypto():
         colorprint("fatal", "0-->Quit")
 
         choice = input("Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/crypto" + Style.RESET_ALL + ")\n-->")
+
         if choice == 1:
             hash_ident()
         elif choice == 2:
@@ -127,12 +131,14 @@ def crypto():
         elif choice == 0:
             sys.exit()
         else:
+
             colorprint("fatal", "Wrong input, please try again...")
 
 def ram():
     while True:
         os.system('clear')
         print (logo)
+
         print("Options:")
         colorprint("info", "1-->Extract OS info")
         colorprint("info", "2-->Read opened notepads")
@@ -144,6 +150,7 @@ def ram():
         colorprint("fatal", "0-->Quit")
 
         choice = input("Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/ram_analysis" + Style.RESET_ALL + ")\n-->")
+
         if choice == 1:
             volatility_info()
         elif choice == 2:

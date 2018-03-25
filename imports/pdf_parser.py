@@ -53,6 +53,7 @@ def pdf_parser():
     while (1):
         os.system('clear')
         print (logo)
+
         colorprint("info","Waiting for file path...")
         colorprint("warn" ,"9-->Go back to the top menu")
         colorprint("fatal" ,"0-->Quit")

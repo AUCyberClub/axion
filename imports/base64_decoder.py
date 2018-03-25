@@ -47,6 +47,7 @@ def base64_decoder():
             sys.exit()
         else:
             text_msg = decode_base64(base64_msg)
+
             colorprint("success","Your message decoded.")
             print ("Plaintext:\n--> %s" % text_msg)
 

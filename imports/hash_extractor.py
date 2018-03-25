@@ -26,6 +26,7 @@ def rar2john():
     colorprint("info", "Enter file path to get hashed password out of RAR file.")
     rar_path = raw_input(
         "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/file_analysis/hash_extractor/rar2john" + Style.RESET_ALL + ")\n-->")
+
     colorprint("info", "Waiting for output path...")
     hashtxt_path = raw_input(
         "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/file_analysis/hash_extractor/rar2john" + Style.RESET_ALL + ")\n-->")
@@ -43,6 +44,7 @@ def zip2john():
     colorprint("info", "Enter file path to get hashed password out of ZIP archive.")
     zip_path = raw_input(
         "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/file_analysis/hash_extractor/zip2john" + Style.RESET_ALL + ")\n-->")
+
     colorprint("info", "Waiting for output path...")
     hashtxt_path = raw_input(
         "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/file_analysis/hash_extractor/zip2john" + Style.RESET_ALL + ")\n-->")
@@ -60,6 +62,7 @@ def truecrypt2john():
     colorprint("info", "Enter file path to get hashed password out of TrueCrypt file.")
     truecrypt_path = raw_input(
         "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/file_analysis/hash_extractor/truecrypt2john" + Style.RESET_ALL + ")\n-->")
+
     colorprint("info", "Waiting for output path...")
     hashtxt_path = raw_input(
         "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/file_analysis/hash_extractor/truecrypt2john" + Style.RESET_ALL + ")\n-->")
@@ -77,6 +80,7 @@ def hash_extractor():
     check_call(["clear"])
     while True:
         print (logo)
+
         colorprint("warn", "To use this feature you must have the John Jumbo package (available in the Kali distribution).")
         colorprint("info", "In this section, you can get hashed passwords out of ZIP, RAR and TrueCrypt files.")
         colorprint("info", "'JohntheRipper' utilities will be used to do this.")
