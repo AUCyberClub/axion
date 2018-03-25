@@ -26,10 +26,10 @@ def volatility_iehistory():
 
     os.system('clear')
     print (logo)
-    colorprint("info","RAM dump Internet Explorer geçmişini görüntülemek için 'volatility' tool'u kullanılacak")
-    colorprint("info","Dosyanın yolunu girin lütfen...")
-    colorprint("warn","9-->Üst menüye dön.")
-    colorprint("fatal","0-->Çıkmak istiyorum.")
+    colorprint("info","'volatility' will be used to look for Internet Explorer history cache information.")
+    colorprint("info","Waiting for file location...")
+    colorprint("warn","9-->Go back to the top menu")
+    colorprint("fatal","0-->Quit")
 
     while True:
         file_path = raw_input("Axion TERMINAL("+Style.BRIGHT+Fore.CYAN+"/ram_analysis/volatility_iehistory"+Style.RESET_ALL+")\n-->")
@@ -46,7 +46,7 @@ def volatility_iehistory():
             colorprint("success",os.popen(command).read())
         
         else:
-            colorprint("fatal","Böyle bir dosya yok.")
+            colorprint("fatal","No such file :(")
 
 if __name__ == "__main__":
     volatility_iehistory()

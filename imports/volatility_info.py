@@ -27,10 +27,10 @@ def volatility_info():
 
     os.system('clear')
     print (logo)
-    colorprint("info","RAM dump işletim sistemini bulmak için 'volatility' tool'u kullanılacak")
-    colorprint("info","Dosyanın yolunu girin lütfen...")
-    colorprint("warn","9-->Üst menüye dön.")
-    colorprint("fatal","0-->Çıkmak istiyorum.")
+    colorprint("info","'volatility' will be used to determine profile(to model OS).")
+    colorprint("info","Waiting for file location...")
+    colorprint("warn","9-->Go back to the top menu")
+    colorprint("fatal","0-->Quit")
 
     while True:
         file_path = raw_input("Axion TERMINAL("+Style.BRIGHT+Fore.CYAN+"/ram_analysis/volatility_info"+Style.RESET_ALL+")\n-->")
@@ -43,9 +43,9 @@ def volatility_info():
         output = os.popen("volatility -f " + file_path + " imageinfo | grep Suggested | cut -d ',' -f1 | cut -d ':' -f2").read()
        
         if output != " ":
-            colorprint("success","İmage işletim sistemi muhtemelen :" + output)
+            colorprint("success","Suggested profile for image:" + output)
         else:
-            colorprint("fatal","Böyle bir dosya yok.")
+            colorprint("fatal","No such file :(")
 
 if __name__ == "__main__":
     volatility_info()

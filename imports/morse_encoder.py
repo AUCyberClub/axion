@@ -73,10 +73,10 @@ def morse_encoder():
     check_call(["clear"])
     while True:
         print (logo)
-        colorprint("info", "Bu bölümde metin mesajlarını morse alfabesi şeklinde encode edebilirsiniz.")
-        colorprint("info", "Lütfen metni girin.")
-        colorprint("warn", "9-->Üst menüye dön.")
-        colorprint("fatal", "0-->Çık")
+        colorprint("info", "In this section, you can convert messages to Morse code.")
+        colorprint("info", "Enter the message:")
+        colorprint("warn", "9-->Go back to the top menu")
+        colorprint("fatal", "0-->Quit")
 
         text_msg = raw_input(
             "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/crypto/morse_encoder" + Style.RESET_ALL + ")\n-->")
@@ -87,14 +87,14 @@ def morse_encoder():
             sys.exit()
         else:
             morse_msg = encode_morse(text_msg)
-            colorprint("success", "Mesajınız dönüştürüldü.")
-            print ("Mesaj:\n--> ", morse_msg)
+            colorprint("success", "Your message encoded.")
+            print ("Message:\n--> ", morse_msg)
 
-        colorprint("info", "Başka bir mesaj dönüştürmek ister misiniz? E/H")
+        colorprint("info", "Do you wanna decode another message? Y/N")
         choice = raw_input(
             "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/crypto/morse_encoder" + Style.RESET_ALL + ")\n-->")
 
-        if choice == 'H':
+        if choice == 'N':
             return
 
 if __name__ == "__main__":

@@ -26,10 +26,10 @@ def find_file_ext():
     while True:
         check_call(["clear"])
         print (logo)
-        colorprint("info", "Dosyanın türünü bulmak için 'file' tool'u kullanılacak")
-        colorprint("info", "Dosyanın yolunu girin lütfen...")
-        colorprint("warn", "9-->Üst menüye dön.")
-        colorprint("fatal", "0-->Çık")
+        colorprint("info", "The 'file' command will be used to determine file format.")
+        colorprint("info", "Waiting for path to file...")
+        colorprint("warn", "9-->Go back to the top menu")
+        colorprint("fatal", "0-->Quit")
 
         file_path = raw_input("Axion TERMINAL("+Style.BRIGHT+Fore.CYAN+"/file_analysis/find_file_ext"+Style.RESET_ALL+")\n-->")
 
@@ -45,11 +45,11 @@ def find_file_ext():
             else:
                 colorprint("fatal", out)
 
-        colorprint("info", "Başka bir dosyaya bakmak ister misiniz? E/H")
+        colorprint("info", "Try on another file? Y/N")
         choice = raw_input(
             "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/file_analysis/find_file_ext" + Style.RESET_ALL + ")\n-->")
 
-        if choice == 'H':
+        if choice == 'N':
             return
 
 if __name__ == "__main__":
