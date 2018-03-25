@@ -10,6 +10,8 @@ def colorprint(verbosity, text):
     if verbosity == "warn":
         print(Fore.YELLOW + text + Style.RESET_ALL)
     if verbosity == "info":
+        print(Style.DIM + Fore.WHITE + text + Style.RESET_ALL)
+    if verbosity == "success":
         print(Style.BRIGHT + Fore.GREEN + text + Style.RESET_ALL)
 
 logo = ("""
@@ -24,11 +26,12 @@ def hash_brute():
     check_call(["clear"])
     while True:
         print (logo)
-        colorprint("info", "Bu bölümde belirlediğiniz wordlistler ile hash kırabilirsiniz.")
-        colorprint("info", "Bu iş için 'JohnTheRipper' kullanılacak.")
-        colorprint("info", "Öncelikle hash'in bulunduğu metin belgesinin yolunu girin.")
-        colorprint("warn", "9-->Üst menüye dön.")
-        colorprint("fatal", "0-->Çık")
+        colorprint("warn", "To use this feature you must have the John Jumbo package (available in the Kali distribution).")
+        colorprint("info", "Here, you can try to crack hashes with the wordlists you want.")
+        colorprint("info", "'JohnTheRipper' will be used.")
+        colorprint("info", "First, specify path to the text file containing the hash.")
+        colorprint("warn", "9-->Go back to the top menu")
+        colorprint("fatal", "0-->Quit")
 
         hash_path = raw_input("Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/file_analysis/hash_brute" + Style.RESET_ALL + ")-->")
         if hash_path == "9":
@@ -36,8 +39,8 @@ def hash_brute():
         elif hash_path == "0":
             sys.exit()
 
-        colorprint("info", "Eğer özel bir wordlist'iniz varsa lütfen yolunu girin.")
-        colorprint("warn", "0-->JohnTheRipper'ın hazır wordlist'ini kullan.")
+        colorprint("info", "If you have a custom wordlist, please enter the path.")
+        colorprint("warn", "0-->Use default wordlist for JohnTheRipper")
 
         wordlist_path = raw_input("Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/file_analysis/hash_brute" + Style.RESET_ALL + ")-->")
         if wordlist_path == "0":
@@ -49,20 +52,20 @@ def hash_brute():
         if err:
             colorprint("fatal", err)
         if out:
-            colorprint("info", out)
+            colorprint("success", out)
 
         std = Popen(["john", "--show", hash_path], stdout=PIPE, stderr=PIPE)
         (out, err) = std.communicate()
         if err:
             colorprint("fatal", err)
         if out:
-            colorprint("info", out)
+            colorprint("success", out)
 
-        colorprint("info", "Başka bir hash kırmayı denemek ister misiniz? E/H")
+        colorprint("info", "One more? Y/N")
         choice = raw_input(
-            "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/file_analysis/hash_brute" + Style.RESET_ALL + ")-->")
+            "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/file_analysis/hash_brute" + Style.RESET_ALL + ")\n-->")
 
-        if choice == 'H':
+        if choice == 'N':
             return
 
 

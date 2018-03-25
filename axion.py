@@ -9,28 +9,18 @@ from imports.hash_extractor import hash_extractor
 from imports.hash_brute import hash_brute
 from imports.morse_decoder import morse_decoder
 from imports.morse_encoder import morse_encoder
+from imports.pdf_parser import pdf_parser
 from imports.vigenere_decoder import vigenere_decoder
 from imports.xor_decoder import xor_decoder
 from imports.base64_decoder import base64_decoder
+from imports.bin_hex_dec_ascii import bin_hex_dec_ascii
+from imports.rot13_caesar import rot13_caesar
 from imports.volatility_info import volatility_info
 from imports.volatility_notepad import volatility_notepad
 from imports.volatility_pslist import volatility_pslist
 from imports.volatility_screenshot import volatility_screenshot
 from imports.volatility_cmdscan import volatility_cmdscan
 from imports.volatility_iehistory import volatility_iehistory
-
-import gettext
-tr = gettext.translation('axion', localedir='locale', languages=['tr'])
-en = gettext.translation('axion', localedir='locale', languages=['en'])
-
-def language_choice():
-    print("1-->English")
-    print("2-->Turkish")
-    lang = raw_input("Please choose a language...")
-    if lang == "1":
-        en.install()
-    if lang == "2":
-        tr.install()
 
 from colorama import Fore, Style
 def colorprint(verbosity, text):
@@ -39,6 +29,8 @@ def colorprint(verbosity, text):
     if verbosity == "warn":
         print(Fore.YELLOW + text + Style.RESET_ALL)
     if verbosity == "info":
+        print(Style.DIM + Fore.WHITE + text + Style.RESET_ALL)
+    if verbosity == "success":
         print(Style.BRIGHT + Fore.GREEN + text + Style.RESET_ALL)
 
 import readline, glob
@@ -66,45 +58,50 @@ def file_analysis():
     while True:
         os.system('clear')
         print (logo)
-        print(_("Please make a choice"))
-        colorprint("info", _("1-->Find file extension"))
-        colorprint("info", _("2-->Find hidden files"))
-        colorprint("info", _("3-->Search keyword in file's metadata and strings"))
-        colorprint("warn", _("9-->Back to top menu"))
-        colorprint("fatal", _("0-->Exit"))
+        print("Options:")
+        colorprint("info", "1-->Find file extension")
+        colorprint("info", "2-->Search for embedded files")
+        colorprint("info", "3-->Search a specific string in file's meta-data and strings")
+        colorprint("info", "4-->Parse and analyze a PDF file")
+        colorprint("warn", "9-->Go back to the top menu")
+        colorprint("fatal", "0-->Quit")
 
-        choice = input("Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + _("/file_analysis") + Style.RESET_ALL + ")-->")
+        choice = input("Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/file_analysis" + Style.RESET_ALL + ")\n-->")
         if choice == 1:
             find_file_ext()
         elif choice == 2:
             binary_search()
         elif choice == 3:
             metadata_search()
+        elif choice == 4:
+            pdf_parser()
         elif choice == 9:
             main_menu()
         elif choice == 0:
             sys.exit()
         else:
-            colorprint("fatal", _("Wrong input, please try again..."))
+            colorprint("fatal", "Wrong input, please try again...")
 
 
 def crypto():
     while True:
         os.system('clear')
         print (logo)
-        print(_("Please make a choice"))
-        colorprint("info", _("1-->Ident a hash"))
-        colorprint("info", _("2-->Brute force attack for Zip, Rar, TrueCrypt"))
-        colorprint("info", _("3-->Brute force attack for raw hash"))
-        colorprint("info", _("4-->Vigenere decrypter"))
-        colorprint("info", _("5-->Morse decrypter"))
-        colorprint("info", _("6-->Morse encoder"))
-        colorprint("info", "7-->Xor decoder")
+        print("Options:")
+        colorprint("info", "1-->Identify a hash")
+        colorprint("info", "2-->Brute force attack for Zip, Rar, TrueCrypt")
+        colorprint("info", "3-->Brute force attack for raw hash")
+        colorprint("info", "4-->Vigenere decrypter")
+        colorprint("info", "5-->Morse decoder")
+        colorprint("info", "6-->Morse encoder")
+        colorprint("info", "7-->XOR decoder")
         colorprint("info", "8-->Base64 decoder")
-        colorprint("warn", _("9-->Back to top menu"))
-        colorprint("fatal", _("0-->Exit"))
+        colorprint("info", "10-->Bin,Hex,Dec and ASCII transformations")
+        colorprint("info", "11-->Caesar and ROT decrypter")
+        colorprint("warn", "9-->Go back to the top menu")
+        colorprint("fatal", "0-->Quit")
 
-        choice = input("Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + _("/crypto") + Style.RESET_ALL + ")-->")
+        choice = input("Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/crypto" + Style.RESET_ALL + ")\n-->")
         if choice == 1:
             hash_ident()
         elif choice == 2:
@@ -121,29 +118,32 @@ def crypto():
             xor_decoder()
         elif choice == 8:
             base64_decoder()
+        elif choice == 10:
+            bin_hex_dec_ascii()
+        elif choice == 11:
+            rot13_caesar()
         elif choice == 9:
             main_menu()
         elif choice == 0:
             sys.exit()
         else:
-            colorprint("fatal", _("Wrong input, please try again..."))
-
+            colorprint("fatal", "Wrong input, please try again...")
 
 def ram():
     while True:
         os.system('clear')
         print (logo)
-        print(_("Please make a choice"))
-        colorprint("info", _("1-->Extract OS info from RAM dump"))
-        colorprint("info", _("2-->Read opened notepad's in RAM dump"))
-        colorprint("info", _("3-->Show the procces list on RAM dump"))
-        colorprint("info", _("4-->Take screenshots on RAM dump"))
-        colorprint("info", _("5-->Read opened CMD's in RAM dump"))
-        colorprint("info", _("6-->Show Internet Explorer history in RAM dump"))
-        colorprint("warn", _("9-->Back top top menu"))
-        colorprint("fatal", _("0-->Exit"))
+        print("Options:")
+        colorprint("info", "1-->Extract OS info")
+        colorprint("info", "2-->Read opened notepads")
+        colorprint("info", "3-->Show the process list")
+        colorprint("info", "4-->Take screenshots")
+        colorprint("info", "5-->Read opened CMD's")
+        colorprint("info", "6-->Show Internet Explorer history")
+        colorprint("warn", "9-->Go back to the top menu")
+        colorprint("fatal", "0-->Quit")
 
-        choice = input("Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + _("/ram_analysis") + Style.RESET_ALL + ")-->")
+        choice = input("Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/ram_analysis" + Style.RESET_ALL + ")\n-->")
         if choice == 1:
             volatility_info()
         elif choice == 2:
@@ -161,7 +161,7 @@ def ram():
         elif choice == 0:
             sys.exit()
         else:
-            colorprint("fatal", _("Wrong input, please try again..."))
+            colorprint("fatal", "Wrong input, please try again...")
 
 
 def main_menu():
@@ -193,13 +193,13 @@ def main_menu():
                 /_/   \_\/_/\_\___\___/|_| \_|    /_/   \_\___/ \____\____|
                 ██------->CTF Framework Tool Project Version 0.5<--------██
         """)
-        print(_("Please make a choice"))
-        colorprint("info", _("1-->File Analysis"))
-        colorprint("info", _("2-->Crypto and Hashing"))
-        colorprint("info", _("3-->RAM dump analysis"))
-        colorprint("fatal", _("0-->Exit"))
+        print("Please make a choice:")
+        colorprint("info", "1-->File Analysis")
+        colorprint("info", "2-->Crypto and Hashing")
+        colorprint("info", "3-->RAM dump analysis")
+        colorprint("fatal", "0-->Quit")
 
-        choice = input("Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/" + Style.RESET_ALL + ")-->")
+        choice = input("Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/" + Style.RESET_ALL + ")\n-->")
         if choice == 1:
             file_analysis()
         elif choice == 2:
@@ -209,15 +209,14 @@ def main_menu():
         elif choice == 0:
             sys.exit()
         else:
-            colorprint("fatal", _("Wrong input, please try again..."))
+            colorprint("fatal", "Wrong input, please try again...")
 
 
 if __name__ == "__main__":
     os.system('clear')
     auto_path_completer()
-    language_choice()
     try:
         main_menu()
     except KeyboardInterrupt:
-        colorprint("fatal", _("\nProgram is closing..!"))
+        colorprint("fatal", "\nProgram is closing..!")
         sys.exit()
