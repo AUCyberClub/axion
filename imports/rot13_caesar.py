@@ -49,6 +49,7 @@ def rot13_caesar():
     check_call(["clear"])
     while True:
         print (logo)
+
         colorprint("info", "Here, you can decrypt Caesar and(!) ROT encrypted messages.")
         colorprint("info", "Enter ciphertext:")
         colorprint("warn", "9-->Go back to the top menu")

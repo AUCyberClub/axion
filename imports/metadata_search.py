@@ -71,6 +71,7 @@ def metadata_search():
                 std = Popen(["file",file_path], stdout=PIPE,stderr=PIPE)
                 (out,err) = std.communicate()
                 if out.find("No such file or directory") == -1:
+
                     colorprint("info", "1-->Search for a specific keyword in 'exiftool' and 'strings' output")
                     colorprint("info", "2-->Print meta-data information")
                     colorprint("info", "3-->Print 'strings' output")

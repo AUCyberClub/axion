@@ -47,6 +47,7 @@ def bin_hex_dec_ascii():
     check_call(["clear"])
     while True:
         print (logo)
+
         colorprint("info", "You can do convertion between decimal, hexadecimal, binary and ASCII in here.")
         colorprint("info", "1-->Hexadecimal to ASCII")
         colorprint("info", "2-->Binary to ASCII")
@@ -63,6 +64,7 @@ def bin_hex_dec_ascii():
             "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/crypto/bin_hex_dec_ascii" + Style.RESET_ALL + ")\n-->")
 
         colorprint("info", "Input:")
+
         number = raw_input(
             "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/crypto/bin_hex_dec_ascii" + Style.RESET_ALL + ")\n-->")
         number = number.replace(" ", "")
@@ -88,6 +90,7 @@ def bin_hex_dec_ascii():
         elif choice == 0:
             sys.exit()
         else:
+          
             colorprint("fatal", "Wrong input, please try again...")
             continue
 
@@ -99,6 +102,7 @@ def bin_hex_dec_ascii():
             "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/crypto/bin_hex_dec_ascii" + Style.RESET_ALL + ")\n-->")
 
         if choice == 'N':
+
             return
 
 if __name__ == "__main__":

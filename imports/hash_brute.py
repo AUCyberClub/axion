@@ -26,6 +26,7 @@ def hash_brute():
     check_call(["clear"])
     while True:
         print (logo)
+
         colorprint("warn", "To use this feature you must have the John Jumbo package (available in the Kali distribution).")
         colorprint("info", "Here, you can try to crack hashes with the wordlists you want.")
         colorprint("info", "'JohnTheRipper' will be used.")
