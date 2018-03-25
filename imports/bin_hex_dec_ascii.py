@@ -57,13 +57,18 @@ def bin_hex_dec_ascii():
         colorprint("info", "6-->Binary to Decimal")
         colorprint("info", "7-->Binary to Hexadecimal")
         colorprint("info", "8-->Decimal to Hexadecimal")
-        colorprint("info", "9-->Go back to the top menu")
+        colorprint("warn", "9-->Go back to the top menu")
         colorprint("fatal", "0-->Quit")
 
         choice = input(
             "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/crypto/bin_hex_dec_ascii" + Style.RESET_ALL + ")\n-->")
 
-        colorprint("info", "Input:")
+        if choice == 9:
+            return
+        elif choice == 0:
+            sys.exit()
+
+        colorprint("info", "Please enter the number.")
 
         number = raw_input(
             "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/crypto/bin_hex_dec_ascii" + Style.RESET_ALL + ")\n-->")
@@ -85,12 +90,7 @@ def bin_hex_dec_ascii():
             return_msg = bin_to_hex(number)
         elif choice == 8:
             return_msg = dec_to_hex(number)
-        elif choice == 9:
-            return
-        elif choice == 0:
-            sys.exit()
         else:
-          
             colorprint("fatal", "Wrong input, please try again...")
             continue
 
