@@ -19,25 +19,10 @@ Supported python versions are 2.7.X
 
 ## ⚙ Installation
 
-- Download Git, Binwalk, Exiftool, Volatility and Pip
-    ```bash
-      sudo apt-get install git binwalk exiftool volatility python-pip
-    ```
-
-- Clone the axion
-    ```bash
-      git clone https://github.com/AUCyberClub/axion.git
-    ```
-
-- Go inside the axion directory
-    ```bash
-      cd axion
-    ```
-
-- Install the required python libraries
-    ```bash
-      sudo pip install -r requirements.txt
-    ```
+Open the terminal and type the following command :arrow_heading_down:
+```bash 
+  bash <(curl https://raw.githubusercontent.com/AUCyberClub/axion/master/Installiation.sh)
+```
 
 ## :video_game: Usage
 
@@ -60,7 +45,6 @@ For detailed usage manual :arrow_right: [click here!](https://github.com/AUCyber
 ## :question: Questions and Contributing
 
 If you have any questions, ideas or whatsoever, please create new issues.
-
 
 
 
