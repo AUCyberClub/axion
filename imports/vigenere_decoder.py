@@ -55,10 +55,10 @@ def vigenere_decoder():
     check_call(["clear"])
     while True:
         print (logo)
-        colorprint("info", "Bu bölümde şifreli vigenere mesajlarını decode edebilirsiniz.")
-        colorprint("info", "Lütfen şifreli mesajı girin.")
-        colorprint("warn", "9-->Üst menüye dön.")
-        colorprint("fatal", "0-->Çık")
+        colorprint("info", "In here, you can decrypt messages encrypted with Vigenere.")
+        colorprint("info", "Enter the cipher:.")
+        colorprint("warn", "9-->Go back to the top menu")
+        colorprint("fatal", "0-->Quit")
 
         vigenere_msg = raw_input(
             "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/crypto/vigenere_decoder" + Style.RESET_ALL + ")\n-->")
@@ -68,30 +68,30 @@ def vigenere_decoder():
         elif vigenere_msg == "0":
             sys.exit()
         else:
-            colorprint("info", "Lütfen anahtarı giriniz.")
+            colorprint("info", "Type the key:")
             key = raw_input(
                 "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/crypto/vigenere_decoder" + Style.RESET_ALL + ")\n-->")
 
-            colorprint("info", "Alfabeyi belirlemek ister misiniz? E/H")
-            colorprint("warn", "Ön tanımlı olarak ABCDEFGHIJKLMNOPQRSTUVWXYZ kullanılacak.")
+            colorprint("info", "Do you wanna specify a charset? Y/N")
+            colorprint("warn", "'ABCDEFGHIJKLMNOPQRSTUVWXYZ' will be used as predefined charset.")
             choice = raw_input(
                 "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/crypto/vigenere_decoder" + Style.RESET_ALL + ")\n-->")
-            if choice == 'E':
-                colorprint("warn", "Kullanmak istediğiniz alfabeyi girin.")
+            if choice == 'Y':
+                colorprint("warn", "You can set a charset now:")
                 LETTERS = raw_input(
                     "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/crypto/vigenere_decoder" + Style.RESET_ALL + ")\n-->")
                 text_msg = decode_vigenere(vigenere_msg, key, LETTERS)
 
             else:
                 text_msg = decode_vigenere(vigenere_msg, key)
-            colorprint("success","Mesajınız dönüştürüldü.")
-            print ("Mesaj:\n--> %s" %text_msg)
+            colorprint("success","Your message decrypted.")
+            print ("Plaintext:\n--> %s" %text_msg)
 
-        colorprint("info", "Başka bir mesaj dönüştürmek ister misiniz? E/H")
+        colorprint("info", "Another operation? Y/N")
         choice = raw_input(
             "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/crypto/vigenere_decoder" + Style.RESET_ALL + ")\n-->")
 
-        if choice == 'H':
+        if choice == 'N':
             return
 
 if __name__ == "__main__":

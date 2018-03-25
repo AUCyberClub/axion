@@ -47,22 +47,24 @@ def bin_hex_dec_ascii():
     check_call(["clear"])
     while True:
         print (logo)
-        colorprint("info", "Bu bölümde decimal, hexadecimal, binary ve ascii'yi birbirlerine çevirebilirsiniz.")
-        colorprint("info", "1-->Hexadecimal'den Ascii'ye çevir.")
-        colorprint("info", "2-->Binary'den Ascii'ye çevir.")
-        colorprint("info", "3-->Decimal'den Ascii'ye çevir.")
-        colorprint("info", "4-->Hexadecimal'den Decimal'e çevir.")
-        colorprint("info", "5-->Decimal'den Binary'ye çevir.")
-        colorprint("info", "6-->Binary'den Decimal'e çevir.")
-        colorprint("info", "7-->Binary'den Hexadecimal'e çevir.")
-        colorprint("info", "8-->Decimal'den Hexadecimal'e çevir.")
-        colorprint("info", "9-->Üst menüye dön.")
-        colorprint("fatal", "0-->Çık")
+
+        colorprint("info", "You can do convertion between decimal, hexadecimal, binary and ASCII in here.")
+        colorprint("info", "1-->Hexadecimal to ASCII")
+        colorprint("info", "2-->Binary to ASCII")
+        colorprint("info", "3-->Decimal to ASCII")
+        colorprint("info", "4-->Hexadecimal to Decimal")
+        colorprint("info", "5-->Decimal to Binary")
+        colorprint("info", "6-->Binary to Decimal")
+        colorprint("info", "7-->Binary to Hexadecimal")
+        colorprint("info", "8-->Decimal to Hexadecimal")
+        colorprint("info", "9-->Go back to the top menu")
+        colorprint("fatal", "0-->Quit")
 
         choice = input(
             "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/crypto/bin_hex_dec_ascii" + Style.RESET_ALL + ")\n-->")
 
-        colorprint("info", "Lütfen sayıyı girin.")
+        colorprint("info", "Input:")
+
         number = raw_input(
             "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/crypto/bin_hex_dec_ascii" + Style.RESET_ALL + ")\n-->")
         number = number.replace(" ", "")
@@ -88,17 +90,19 @@ def bin_hex_dec_ascii():
         elif choice == 0:
             sys.exit()
         else:
-            colorprint("fatal", "Yanlış girdi girdiniz")
+          
+            colorprint("fatal", "Wrong input, please try again...")
             continue
 
-        colorprint("success", "Dönüşüm tamamlandı.")
-        print ("Mesaj:\n--> %s" % return_msg)
+        colorprint("success", "Conversion done.")
+        print ("Output:\n--> %s" % return_msg)
 
-        colorprint("info", "Başka bir mesaj dönüştürmek ister misiniz? E/H")
+        colorprint("info", "Would you like to do another conversion? Y/N")
         choice = raw_input(
             "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/crypto/bin_hex_dec_ascii" + Style.RESET_ALL + ")\n-->")
 
-        if choice == 'H':
+        if choice == 'N':
+
             return
 
 if __name__ == "__main__":

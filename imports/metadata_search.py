@@ -34,8 +34,8 @@ def exiftool_out(file_path):
 
 def searcher(file_path):
 
-    print("Aranacak flag'ın içerdiği bir keyword giriniz.")
-    print("Örnek : CTF_{flag_burda} gibi bir flag için 'CTF' ya da '_{' gibi keywordler uygundur.")
+    print("Enter a keyword which may be found in the flag.")
+    print("e.g : Strings/characters like 'CTF' or '_{' can be used to search for a 'CTF_{flag_is_here}' flag format.")
     
     flag_keyword = raw_input("Axion TERMINAL("+Style.BRIGHT+Fore.CYAN+"/file_analysis/metadata_search"+Style.RESET_ALL+")\n-->")
 
@@ -48,17 +48,17 @@ def searcher(file_path):
     if s_out+e_out:
         colorprint("success", s_out+e_out)
     else:
-        colorprint("fatal", "Keyword bulunamadı.")
+        colorprint("fatal", "It seems there is no word like that in meta-data or strings output :(")
 
 def metadata_search():
 
     check_call(["clear"])
     while True:
         print (logo)
-        colorprint("info", "MetaData taraması için 'exiftool' ve 'strings' kullanılacak.")
-        colorprint("info", "Dosyanın yolunu girin lütfen...")
-        colorprint("warn", "9-->Üst menüye dön.")
-        colorprint("fatal", "0-->Çık")
+        colorprint("info", "'exiftool' and 'strings' will be used to search for a string you specify.")
+        colorprint("info", "Waiting for file path...")
+        colorprint("warn", "9-->Go back to the top menu")
+        colorprint("fatal", "0-->Quit")
 
         file_path = raw_input("Axion TERMINAL("+Style.BRIGHT+Fore.CYAN+"/file_analysis/metadata_search"+Style.RESET_ALL+")\n-->")
 
@@ -71,11 +71,12 @@ def metadata_search():
                 std = Popen(["file",file_path], stdout=PIPE,stderr=PIPE)
                 (out,err) = std.communicate()
                 if out.find("No such file or directory") == -1:
-                    colorprint("info", "1-->MetaData ve strings çıktısında berlirli bir keyword ile arama yap.")
-                    colorprint("info", "2-->MetaData'yı göster.")
-                    colorprint("info", "3-->Strings çıktısını göster.")
-                    colorprint("warn", "9-->Başka bir dosya yolu gir.")
-                    colorprint("fatal", "0-->Çık.")
+
+                    colorprint("info", "1-->Search for a specific keyword in 'exiftool' and 'strings' output")
+                    colorprint("info", "2-->Print meta-data information")
+                    colorprint("info", "3-->Print 'strings' output")
+                    colorprint("warn", "9-->Specify another file path")
+                    colorprint("fatal", "0-->Quit")
                     choose = input("Axion TERMINAL("+Style.BRIGHT+Fore.CYAN+"/file_analysis/metadata_search"+Style.RESET_ALL+")\n-->")
                     if choose == 1:
                         searcher(file_path)
@@ -88,9 +89,9 @@ def metadata_search():
                     elif choose == 0:
                         sys.exit()
                     else:
-                        colorprint("fatal", "Yanlış girdi.\nTekrar başlatılıyor...\n")
+                        colorprint("fatal", "Wrong input.\nResetting...\n")
                 else:
-                    colorprint("fatal", "Böyle bir dosya bulunamadı.\nTekrar başlatılıyor...\n")
+                    colorprint("fatal", "There is no such file.\nRestarting...\n")
                     break
                  
 if __name__ == "__main__":
