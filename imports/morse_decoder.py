@@ -10,8 +10,9 @@ def colorprint(verbosity, text):
     if verbosity == "warn":
         print(Fore.YELLOW + text + Style.RESET_ALL)
     if verbosity == "info":
+        print(Style.DIM + Fore.WHITE + text + Style.RESET_ALL)
+    if verbosity == "success":
         print(Style.BRIGHT + Fore.GREEN + text + Style.RESET_ALL)
-
 logo = ("""
     _    __  _____ ___  _   _         _   _   _  ____ ____
    / \   \ \/ /_ _/ _ \| \ | |       / \ | | | |/ ___/ ___|
@@ -61,14 +62,14 @@ def morse_decoder():
     check_call(["clear"])
     while True:
         print (logo)
-        colorprint("info", "Bu bölümde şifreli morse mesajlarını decode edebilirsiniz.")
-        colorprint("info", "Lütfen şifreli mesajı girin.")
-        colorprint("warn", "Örnek mesaj formatı    .-- . / .-.. --- ...- . / .- ..- -.-. -.-.   ")
-        colorprint("warn", "9-->Üst menüye dön.")
-        colorprint("fatal", "0-->Çık")
+        colorprint("info", "In this section, you can decode Morse encoded messages.")
+        colorprint("info", "Enter the Morse code:")
+        colorprint("warn", "i.e -> .-- . / .-.. --- ...- . / .- ..- -.-. -.-.   ")
+        colorprint("warn", "9-->Go back to the top menu")
+        colorprint("fatal", "0-->Quit")
 
         morse_msg = raw_input(
-            "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/crypto/morse_decoder" + Style.RESET_ALL + ")-->")
+            "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/crypto/morse_decoder" + Style.RESET_ALL + ")\n-->")
 
         if morse_msg == "9":
             return
@@ -76,14 +77,14 @@ def morse_decoder():
             sys.exit()
         else:
             text_msg = decode_morse(morse_msg)
-            succesprint ("Mesajınız dönüştürüldü.")
-            print ("Mesaj:\n--> %s" %text_msg)
+            colorprint("success", "Your message decoded.")
+            print ("Message:\n--> %s" %text_msg)
 
-        colorprint("info", "Başka bir mesaj dönüştürmek ister misiniz? E/H")
+        colorprint("info", "Do you wanna decode another message? Y/N")
         choice = raw_input(
-            "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/crypto/morse_decoder" + Style.RESET_ALL + ")-->")
+            "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/crypto/morse_decoder" + Style.RESET_ALL + ")\n-->")
 
-        if choice == 'H':
+        if choice == 'N':
             return
 
 if __name__ == "__main__":
