@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-import sys, progressbar, time
+import sys
 from subprocess import Popen, PIPE, check_call
 from colorama import Fore, Style
 
@@ -10,6 +10,8 @@ def colorprint(verbosity, text):
     if verbosity == "warn":
         print(Fore.YELLOW + text + Style.RESET_ALL)
     if verbosity == "info":
+        print(Style.DIM + Fore.WHITE + text + Style.RESET_ALL)
+    if verbosity == "success":
         print(Style.BRIGHT + Fore.GREEN + text + Style.RESET_ALL)
 
 logo = ("""
@@ -20,21 +22,16 @@ logo = ("""
 /_/   \_\/_/\_\___\___/|_| \_|    /_/   \_\___/ \____\____|
         """)
 
-def progress_bar(timer):
-    bar = progressbar.ProgressBar()
-    for i in bar(range(100)):
-        time.sleep(timer)
-
 def hash_ident():
     check_call(["clear"])
     while True:
         print (logo)
-        colorprint("info", "Hash tanımlaması için 'hashid' kullanılacak")
-        colorprint("info", "Hash'i girin lütfen...")
-        colorprint("warn", "9-->Üst menüye dön.")
-        colorprint("fatal", "0-->Çık")
+        colorprint("info", "'hashid' will be used to identify hash.")
+        colorprint("info", "Waiting for hash value...")
+        colorprint("warn", "9-->Go back to the top menu")
+        colorprint("fatal", "0-->Quit")
 
-        raw_hash = raw_input("Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/file_analysis/hash_ident" + Style.RESET_ALL + ")-->")
+        raw_hash = raw_input("Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/file_analysis/hash_ident" + Style.RESET_ALL + ")\n-->")
 
         if raw_hash == "9":
             return
@@ -43,11 +40,17 @@ def hash_ident():
         else:
             std = Popen(["hashid", raw_hash], stdout=PIPE, stderr=PIPE)
             (out, err) = std.communicate()
-            if out:
-                colorprint("info", out)
-            if err:
-                colorprint("fatal", err)
-            progress_bar(0.05)
+            if out.find("Unknown") == -1:
+                colorprint("success", out)
+            else:
+                colorprint("fatal", out)
+
+        colorprint("info", "Do you have more? Y/N")
+        choice = raw_input(
+            "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/file_analysis/hash_ident" + Style.RESET_ALL + ")\n-->")
+
+        if choice == 'N':
+            return
 
 if __name__ == "__main__":
     hash_ident()
