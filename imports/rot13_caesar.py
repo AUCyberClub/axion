@@ -50,13 +50,13 @@ def rot13_caesar():
     while True:
         print (logo)
 
-        colorprint("info", "Here, you can decrypt Caesar and(!) ROT encrypted messages.")
+        colorprint("info", "Here, you can decrypt Caesar and ROT13 encrypted messages.")
         colorprint("info", "Enter ciphertext:")
         colorprint("warn", "9-->Go back to the top menu")
         colorprint("fatal", "0-->Quit")
 
         caesar_msg = raw_input(
-            "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/crypto/base64_decoder" + Style.RESET_ALL + ")\n-->")
+            "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/crypto/rot13_caesar" + Style.RESET_ALL + ")\n-->")
 
         if caesar_msg == "9":
             return
@@ -70,7 +70,7 @@ def rot13_caesar():
 
         colorprint("info", "Do you wanna decrypt another one? Y/N")
         choice = raw_input(
-            "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/crypto/base64_decoder" + Style.RESET_ALL + ")\n-->")
+            "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/crypto/rot13_caesar" + Style.RESET_ALL + ")\n-->")
 
         if choice == 'N':
             return
