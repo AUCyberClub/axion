@@ -26,7 +26,12 @@ Open the terminal and type the following command :arrow_heading_down:
 
 ## :video_game: Usage
 
-Open the terminal and type the following command :arrow_heading_down:
+* If you installed with script, open the terminal and type the following command :arrow_heading_down:
+
+```bash
+  axion
+```
+* If you installed manually, open the terminal and type the following command :arrow_heading_down:
 
 ```bash
   python2 axion.py
