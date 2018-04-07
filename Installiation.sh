@@ -4,3 +4,8 @@ sudo apt-get install git binwalk exiftool volatility python-pip
 git clone https://github.com/AUCyberClub/axion.git
 cd axion
 sudo pip install -r requirements.txt
+path=$(pwd | grep axion)
+echo "#!/bin/bash" >>axion
+echo "python $path/axion.py" >> axion
+sudo chmod +x axion
+sudo mv axion /usr/bin
