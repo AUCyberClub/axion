@@ -21,6 +21,8 @@ from imports.volatility_pslist import volatility_pslist
 from imports.volatility_screenshot import volatility_screenshot
 from imports.volatility_cmdscan import volatility_cmdscan
 from imports.volatility_iehistory import volatility_iehistory
+from imports.handbook import handbook
+
 
 from colorama import Fore, Style
 def colorprint(verbosity, text):
@@ -198,12 +200,13 @@ def main_menu():
                   / _ \   \  / | | | | |  \| |_____ / _ \| | | | |  | |
                  / ___ \  /  \ | | |_| | |\  |_____/ ___ \ |_| | |__| |___
                 /_/   \_\/_/\_\___\___/|_| \_|    /_/   \_\___/ \____\____|
-                ██------->CTF Framework Tool Project Version 0.5<--------██
+                          ██------->CTF Toolkit Project<--------██
         """)
         print("Please make a choice:")
         colorprint("info", "1-->File Analysis")
         colorprint("info", "2-->Crypto and Hashing")
         colorprint("info", "3-->RAM dump analysis")
+        colorprint("info", "4-->Handbook")
         colorprint("fatal", "0-->Quit")
 
         choice = input("Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/" + Style.RESET_ALL + ")\n-->")
@@ -213,6 +216,8 @@ def main_menu():
             crypto()
         elif choice == 3:
             ram()
+        elif choice == 4:
+            handbook()
         elif choice == 0:
             sys.exit()
         else:

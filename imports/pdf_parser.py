@@ -26,6 +26,7 @@ def func(file_path):
     while(1):
         os.system('clear')
         print (logo)
+        colorprint("warn", "To use this feature you must have the John Jumbo package (available in the Kali distribution).")
         colorprint("info", "1-->Information about PDF content")
         colorprint("info", "2-->Look for embedded file info")
         colorprint("warn", "9-->Go back to the top menu")
