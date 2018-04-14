@@ -1,8 +1,8 @@
-#AXION REHBER BOLUM 1
+# AXION REHBER BOLUM 1
 
-##Reverse Engineering Nedir?
+## Reverse Engineering Nedir?
 
-###Giriş
+### Giriş
 
 Reverse Engineering (RE) , Türkçe'ye "Tersine Mühendislik" olarak çevirebileceğimiz,
 yazılımsal ve donanımsal farklı teknolojilerin nasıl çalıştığının keşfedilmesi işlemidir.
@@ -14,7 +14,7 @@ Normal şartlarda örneğin C, C++ gibi programlama dilleriyle yazılan yazılı
 Disassembler denilen ve kodu makine dili olan Assembler'a çeviren araçlar ile kırılmaktadır.
 Bu işleme Reverse Code Engineering (RCE) denmektedir.
 
-###CTF'ler ile alakası ne?
+### CTF'ler ile alakası ne?
 
 CTF'lerde önemli bir alt soru grubu olarak karşımıza çıkan Rev sorularını çözmek
 için genelde özel araçlar kullanılarak derlenmiş kodu
@@ -28,12 +28,12 @@ ulaşabiliriz.
 * [PEDA](https://github.com/longld/peda) - GDB eklentisi. GDB'ye yeni özellikler getiriyor.
 * [LiveOverflow](http://liveoverflow.com/binary_hacking/reverse_engineering.html) - Reverse Engineering eğitim serisi (İngilizce)
 
-##Örnek Soru Çözümleri
+## Örnek Soru Çözümleri
 
 Reverse Engineering soruları çeşit bakımından çok fazla ama burda bir iki örnek
 yardımıyla anlatmaya çalışacağız.
 
-###CanYouPwnME CTF REV100
+### CanYouPwnME CTF REV100
 
 Dosyanın çalıştırılabilir olduğunu gördükten sonra çalıştırmak için önce
 
