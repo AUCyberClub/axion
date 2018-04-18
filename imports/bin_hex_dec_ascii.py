@@ -98,13 +98,7 @@ def bin_hex_dec_ascii():
         colorprint("success", "Conversion done.")
         print ("Output:\n--> %s" % return_msg)
 
-        colorprint("info", "Would you like to do another conversion? Y/N")
-        choice = raw_input(
-            "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/crypto/bin_hex_dec_ascii" + Style.RESET_ALL + ")\n-->")
-
-        if choice == 'N':
-
-            return
+        raw_input(Style.DIM + Fore.WHITE + "Press Enter to continue..." + Style.RESET_ALL)
 
 if __name__ == "__main__":
     bin_hex_dec_ascii()
