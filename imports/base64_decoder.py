@@ -24,7 +24,6 @@ logo = ("""
 
 
 def decode_base64(base64_msg):
-    text_msg = ""
     text_msg = base64.b64decode(base64_msg)
     return text_msg
 
@@ -46,6 +45,7 @@ def base64_decoder():
         elif base64_msg == "0":
             sys.exit()
         else:
+            base64_msg = base64_msg.replace(" ", "")
             text_msg = decode_base64(base64_msg)
 
             colorprint("success","Your message decoded.")

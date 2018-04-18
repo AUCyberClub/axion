@@ -45,7 +45,7 @@ def handbook():
             sys.exit()
         elif choice == "1":
             std = Popen(["markdown_edit", "-w", "./handbook_files/reverse/reverse.md"], stdout=PIPE, stdin=PIPE, stderr=PIPE)
-            time.sleep(1)
+            time.sleep(2)
             std.communicate(input="q\n")
 
         raw_input(Style.DIM + Fore.WHITE + "Press Enter to continue..." + Style.RESET_ALL)

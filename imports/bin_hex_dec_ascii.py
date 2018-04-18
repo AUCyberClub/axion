@@ -43,6 +43,7 @@ def bin_to_hex(number):
 def dec_to_hex(number):
     return hex(int(number))
 
+
 def bin_hex_dec_ascii():
     check_call(["clear"])
     while True:
