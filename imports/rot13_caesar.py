@@ -68,13 +68,7 @@ def rot13_caesar():
                 rot_msg = rot_to_text(i,caesar_msg)
                 colorprint("info", "ROT" + str(i) + ":  " + rot_msg)
 
-        colorprint("info", "Do you wanna decrypt another one? Y/N")
-        choice = raw_input(
-            "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/crypto/rot13_caesar" + Style.RESET_ALL + ")\n-->")
-
-        if choice == 'N':
-            return
-
+        raw_input(Style.DIM + Fore.WHITE + "Press Enter to continue..." + Style.RESET_ALL)
 
 if __name__ == "__main__":
     rot13_caesar()

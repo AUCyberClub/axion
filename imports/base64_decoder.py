@@ -51,12 +51,7 @@ def base64_decoder():
             colorprint("success","Your message decoded.")
             print ("Plaintext:\n--> %s" % text_msg)
 
-        colorprint("info", "Would you like to decode another one? Y/N")
-        choice = raw_input(
-            "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/crypto/base64_decoder" + Style.RESET_ALL + ")\n-->")
-
-        if choice == 'N':
-            return
+        raw_input(Style.DIM + Fore.WHITE + "Press Enter to continue..." + Style.RESET_ALL)
 
 if __name__ == "__main__":
     base64_decoder()
