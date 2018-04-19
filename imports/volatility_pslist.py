@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-import sys,os
-from colorama import Fore, Back, Style
+import sys
+from subprocess import Popen,PIPE,check_call
+from colorama import Fore, Style
 
 def colorprint(verbosity, text):
     if verbosity == "fatal":
@@ -24,29 +25,44 @@ logo = ("""
 
 def volatility_pslist():
 
-    os.system('clear')
-    print (logo)
-    colorprint("info","'volatility' will be used to list processes.")
-    colorprint("info","Waiting for file location...")
-    colorprint("warn","9-->Go back to the top menu")
-    colorprint("fatal","0-->Quit")
-
     while True:
+
+        check_call(["clear"])
+        print (logo)
+        colorprint("info","'volatility' will be used to list processes.")
+        colorprint("info","Waiting for file location...")
+        colorprint("warn","9-->Go back to the top menu")
+        colorprint("fatal","0-->Quit")
+
         file_path = raw_input("Axion TERMINAL("+Style.BRIGHT+Fore.CYAN+"/ram_analysis/volatility_pslist"+Style.RESET_ALL+")\n-->")
 
         if file_path == "9":
             return
         elif file_path == "0":
             sys.exit()
-        
-        op_system = os.popen("volatility -f " + file_path + " imageinfo | grep Suggested | cut -d ',' -f1 | cut -d ':' -f2").read()
-        command = "volatility -f " + file_path + " --profile" + op_system.rstrip() + " pslist"
-        
-        if op_system != "":
-            colorprint("success",os.popen(command).read())
-        
+
+        colorprint("warn", "Please wait...")
+
+        std = Popen("volatility -f " + file_path + " imageinfo | grep Suggested | cut -d ',' -f1 | cut -d ':' -f2", shell=True, stdout=PIPE,stderr=PIPE)
+        (out, err) = std.communicate()
+
+        if err.find("The requested file doesn't exist") != -1:
+            colorprint("fatal" ,err)
+
         else:
-            colorprint("fatal","No such file :(")
+            out = out.rstrip()
+
+            if out.find("No") != -1:
+                colorprint("warn", out)
+                colorprint("fatal", "This file is not a RAM Dump file Restarting...")
+
+            else:
+                std = Popen("volatility -f " + file_path + " --profile" + out + " pslist", shell=True, stdout=PIPE,stderr=PIPE)
+                (out, err) = std.communicate()
+
+                colorprint("success", out)
+
+        raw_input(Style.DIM + Fore.WHITE + "Press Enter to continue..." + Style.RESET_ALL)
 
 if __name__ == "__main__":
     volatility_pslist()
