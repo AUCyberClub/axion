@@ -71,8 +71,10 @@ def binary_search():
                             break
                         else:
                             colorprint("fatal", "The file already exists in the output path you specify, try another one.")
+                            raw_input(Style.DIM + Fore.WHITE + "Press Enter to continue..." + Style.RESET_ALL)
             else:
                 colorprint("fatal", "No such file was found.\nResetting...\n")
+                raw_input(Style.DIM + Fore.WHITE + "Press Enter to continue..." + Style.RESET_ALL)
                     
 if __name__ == "__main__":
     binary_search()

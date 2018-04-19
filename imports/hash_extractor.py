@@ -104,12 +104,7 @@ def hash_extractor():
         elif choice == "3":
             truecrypt2john()
 
-        colorprint("info", "Get hash out from another file? Y/N")
-        choice = raw_input(
-            "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/file_analysis/hash_extractor" + Style.RESET_ALL + ")\n-->")
-
-        if choice == 'N':
-            return
+        raw_input(Style.DIM + Fore.WHITE + "Press Enter to continue..." + Style.RESET_ALL)
 
 
 if __name__ == "__main__":

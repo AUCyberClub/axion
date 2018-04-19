@@ -62,12 +62,7 @@ def hash_brute():
         if out:
             colorprint("success", out)
 
-        colorprint("info", "One more? Y/N")
-        choice = raw_input(
-            "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/file_analysis/hash_brute" + Style.RESET_ALL + ")\n-->")
-
-        if choice == 'N':
-            return
+        raw_input(Style.DIM + Fore.WHITE + "Press Enter to continue..." + Style.RESET_ALL)
 
 
 if __name__ == "__main__":

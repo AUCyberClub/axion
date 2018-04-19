@@ -27,13 +27,19 @@ logo = ("""
 def handbook():
     while True:
 
-        check_call(["cp", "-r", "./handbook_files/reverse/images", "/tmp/images"])
+        std = Popen(["ls", "/tmp/images"], stdout=PIPE, stderr=PIPE)
+        (out, err) = std.communicate()
+
+        if err.find("No such file or directory") != -1:
+            check_call(["mkdir", "/tmp/images"])
+            check_call("cp -r ./handbook_files/*/images/* /tmp/images", shell=True)
 
         check_call(["clear"])
         print (logo)
         colorprint("info", "You can find lot of information about CTFs here.")
         colorprint("info", "Please select a topic.")
-        colorprint("info", "1-->Reverse Engineering (.exe .elf)")
+        colorprint("info", "1-->Reverse Engineering")
+        colorprint("info", "2-->Cryptography")
         colorprint("warn", "9-->Go back to the top menu")
         colorprint("fatal", "0-->Quit")
 
@@ -45,6 +51,10 @@ def handbook():
             sys.exit()
         elif choice == "1":
             std = Popen(["markdown_edit", "-w", "./handbook_files/reverse/reverse.md"], stdout=PIPE, stdin=PIPE, stderr=PIPE)
+            time.sleep(1)
+            std.communicate(input="q\n")
+        elif choice == "2":
+            std = Popen(["markdown_edit", "-w", "./handbook_files/crypto/crypto.md"], stdout=PIPE, stdin=PIPE, stderr=PIPE)
             time.sleep(1)
             std.communicate(input="q\n")
 

@@ -24,7 +24,6 @@ logo = ("""
 
 
 def decode_base64(base64_msg):
-    text_msg = ""
     text_msg = base64.b64decode(base64_msg)
     return text_msg
 
@@ -46,17 +45,13 @@ def base64_decoder():
         elif base64_msg == "0":
             sys.exit()
         else:
+            base64_msg = base64_msg.replace(" ", "")
             text_msg = decode_base64(base64_msg)
 
             colorprint("success","Your message decoded.")
             print ("Plaintext:\n--> %s" % text_msg)
 
-        colorprint("info", "Would you like to decode another one? Y/N")
-        choice = raw_input(
-            "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/crypto/base64_decoder" + Style.RESET_ALL + ")\n-->")
-
-        if choice == 'N':
-            return
+        raw_input(Style.DIM + Fore.WHITE + "Press Enter to continue..." + Style.RESET_ALL)
 
 if __name__ == "__main__":
     base64_decoder()
