@@ -6,6 +6,7 @@ cd axion
 sudo pip install -r requirements.txt
 path=$(pwd | grep axion)
 echo "#!/bin/bash" >>axion
+echo "cd $path"
 echo "python $path/axion.py" >> axion
 sudo chmod +x axion
 sudo mv axion /usr/bin
