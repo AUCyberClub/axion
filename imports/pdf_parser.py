@@ -71,10 +71,7 @@ def pdf_parser():
             else:
                 colorprint("fatal", "There is no such file.\nRestarting...\n")
 
-        colorprint("info","Try another PDF file? Y/N")
-        cho1 = raw_input("Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/axion" + Style.RESET_ALL + ")-->")
-        if cho1 == 'N':
-            return
+        raw_input(Style.DIM + Fore.WHITE + "Press Enter to continue..." + Style.RESET_ALL)
 
 if __name__ == "__main__":
     pdf_parser()

@@ -90,8 +90,10 @@ def metadata_search():
                         sys.exit()
                     else:
                         colorprint("fatal", "Wrong input.\nResetting...\n")
+                        raw_input(Style.DIM + Fore.WHITE + "Press Enter to continue..." + Style.RESET_ALL)
                 else:
                     colorprint("fatal", "There is no such file.\nRestarting...\n")
+                    raw_input(Style.DIM + Fore.WHITE + "Press Enter to continue..." + Style.RESET_ALL)
                     break
                  
 if __name__ == "__main__":

@@ -50,12 +50,7 @@ def xor_decoder():
             colorprint("success","Your message decrypted.")
             print ("Plaintext:\n--> %s" % text_msg)
 
-        colorprint("info", "Another operation? Y/N")
-        choice = raw_input(
-            "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/crypto/xor_decoder" + Style.RESET_ALL + ")\n-->")
-
-        if choice == 'N':
-            return
+        raw_input(Style.DIM + Fore.WHITE + "Press Enter to continue..." + Style.RESET_ALL)
 
 if __name__ == "__main__":
     xor_decoder()
