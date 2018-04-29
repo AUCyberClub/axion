@@ -3,6 +3,7 @@
 import sys,os
 from colorama import Fore, Style
 from subprocess import Popen,PIPE
+from ini_edit import config_get, config_set
 
 def colorprint(verbosity, text):
     if verbosity == "fatal":
@@ -22,56 +23,83 @@ logo = ("""
 /_/   \_\/_/\_\___\___/|_| \_|    /_/   \_\___/ \____\____|
         """)
 
-def func(file_path):
-    while(1):
+def func(path):
+    while True:
         os.system('clear')
         print (logo)
+
         colorprint("warn", "To use this feature you must have the John Jumbo package (available in the Kali distribution).")
         colorprint("info", "1-->Information about PDF content")
         colorprint("info", "2-->Look for embedded file info")
         colorprint("warn", "9-->Go back to the top menu")
         colorprint("fatal","0-->Quit")
-        choice = raw_input("Axion TERMINAL("+Style.BRIGHT+Fore.CYAN+"/axion"+Style.RESET_ALL+")-->")
+
+        choice = raw_input("Axion TERMINAL("+Style.BRIGHT+Fore.CYAN+"/file_analysis/pdf_parser"+Style.RESET_ALL+")-->")
+        
         if choice == "9":
             return
         elif choice == "0":
             sys.exit()
         elif choice == "1":
-            term = os.popen("pdf-parser " + file_path + " | grep /ProcSet ").read()
-            print(term)
+            std = Popen(["pdf-parser "+path+" | grep /ProcSet"], stdout=PIPE,stderr=PIPE,shell=True)
+            (s_out,err) = std.communicate()
+            if s_out:
+                colorprint("success", s_out)
+            if err:
+                colorprint("fatal", err)
+
+            raw_input(Style.DIM + Fore.WHITE + "Press Enter to continue..." + Style.RESET_ALL)
+
         elif choice == "2":
-            if os.popen("pdf-parser -s Embeddedfile --raw --filter " + file_path + " | grep 'PDF' ").read():
-                emb_file = os.popen("pdf-parser -s Embeddedfile --raw --filter " + file_path).read()
-                print(emb_file)
-            else :
-                colorprint("warn", "Embedded file not found.")
-        colorprint("info","Do you wanna do something else? Y/N")
-        cho1 = raw_input("Axion TERMINAL("+Style.BRIGHT+Fore.CYAN+"/axion"+Style.RESET_ALL+")-->")
-        if cho1 == 'N':
-            return
+            std = Popen(["pdf-parser -s Embeddedfile --raw --filter "+path+" | grep PDF"], stdout=PIPE,stderr=PIPE,shell=True)
+            (s_out,err) = std.communicate()
+            if s_out:
+                colorprint("success", s_out)
+            if err:
+                colorprint("fatal", err)
+            else:
+                colorprint("warn", "\n\tEmbedded file not found.\n")
+
+            raw_input(Style.DIM + Fore.WHITE + "Press Enter to continue..." + Style.RESET_ALL)
 
 def pdf_parser():
-    while (1):
+    while True:
         os.system('clear')
         print (logo)
 
-        colorprint("info","Waiting for file path...")
-        colorprint("warn" ,"9-->Go back to the top menu")
-        colorprint("fatal" ,"0-->Quit")
-        file_path = raw_input("Axion TERMINAL("+Style.BRIGHT+Fore.CYAN+"/axion"+Style.RESET_ALL+")-->")
-        if file_path == "9":
-            return
-        elif file_path == "0":
-            sys.exit()
-        else:
-            std = Popen(["pdf-parser",file_path], stdout=PIPE,stderr=PIPE)
-            (out,err) = std.communicate()
-            if out.find("No such file or directory") == -1:
-                func(file_path)
-            else:
-                colorprint("fatal", "There is no such file.\nRestarting...\n")
+        path = config_get('paths', 'path')
+        if path == '':
+            colorprint("fatal", "\n\tOh, it seems there is no path stored before :(")
+            colorprint("fatal","\n\tPlease specify one to continue:\n")
+            
+            path = raw_input("Axion TERMINAL("+Style.BRIGHT+Fore.CYAN+"/file_analysis/find_file_ext"+Style.RESET_ALL+")\n-->")
 
-        raw_input(Style.DIM + Fore.WHITE + "Press Enter to continue..." + Style.RESET_ALL)
+            config_set('paths', 'path', path)
+            colorprint("info", "\nWell, we'll store this path for next operations...\n")
+
+        colorprint("success", "\n[*] Using "+path+"\n")
+        
+        colorprint("warn", "9-->Go back to the top menu")
+        colorprint("fatal","0-->Quit")
+
+        choice = raw_input(Style.DIM + Fore.WHITE + "Press Enter to continue or 'p' to new path..." + Style.RESET_ALL).lower()
+
+        if choice == "9":
+            return
+        elif choice == "0":
+            sys.exit()
+        if choice == 'p':
+            path = raw_input("Axion TERMINAL("+Style.BRIGHT+Fore.CYAN+"/file_analysis/hash_brute"+Style.RESET_ALL+")\n--> New path: ")
+            config_set('paths', 'path', path)
+            colorprint("success", "\n[*] Using "+path+"\n")
+
+        std = Popen(["pdf-parser",path], stdout=PIPE,stderr=PIPE)
+        (out,err) = std.communicate()
+
+        if out.find("No such file or directory") == -1:
+            func(path)
+        else:
+            colorprint("fatal", "There is no such file.\nRestarting...\n")
 
 if __name__ == "__main__":
     pdf_parser()

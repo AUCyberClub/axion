@@ -3,6 +3,7 @@
 import sys
 from subprocess import Popen, PIPE, check_call
 from colorama import Fore, Style
+from ini_edit import config_get, config_set
 
 def colorprint(verbosity, text):
     if verbosity == "fatal":
@@ -30,40 +31,57 @@ def hash_brute():
         colorprint("warn", "To use this feature you must have the John Jumbo package (available in the Kali distribution).")
         colorprint("info", "Here, you can try to crack hashes with the wordlists you want.")
         colorprint("info", "'JohnTheRipper' will be used.")
-        colorprint("info", "First, specify path to the text file containing the hash.")
-        colorprint("warn", "9-->Go back to the top menu")
-        colorprint("fatal", "0-->Quit")
+        colorprint("info", "Also specified path will be used as text file containing the hash.")
+        
+        path = config_get('paths', 'path')
+        if path == '':
+            colorprint("fatal", "\n\tOh, it seems there is no path stored before :(")
+            colorprint("fatal","\n\tPlease specify one to continue:\n")
+            
+            path = raw_input("Axion TERMINAL("+Style.BRIGHT+Fore.CYAN+"/file_analysis/hash_brute"+Style.RESET_ALL+")\n-->")
 
-        hash_path = raw_input("Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/file_analysis/hash_brute" + Style.RESET_ALL + ")-->")
-        if hash_path == "9":
-            return
-        elif hash_path == "0":
-            sys.exit()
+            config_set('paths', 'path', path)
+            colorprint("info", "\nWell, we'll store this path for next operations...\n")
+
+        colorprint("success", "\n[*] Using "+path+"\n")
+        choice = raw_input(Style.DIM + Fore.WHITE + "Press Enter to continue or 'p' to new path..." + Style.RESET_ALL).lower()
+
+        if choice == 'p':
+            path = raw_input("Axion TERMINAL("+Style.BRIGHT+Fore.CYAN+"/file_analysis/hash_brute"+Style.RESET_ALL+")\n--> New path: ")
+            config_set('paths', 'path', path)
+            colorprint("success", "\n[*] Using "+path+"\n")
 
         colorprint("info", "If you have a custom wordlist, please enter the path.")
         colorprint("warn", "0-->Use default wordlist for JohnTheRipper")
 
         wordlist_path = raw_input("Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/file_analysis/hash_brute" + Style.RESET_ALL + ")-->")
         if wordlist_path == "0":
-            std = Popen(["john", hash_path], stdout=PIPE, stderr=PIPE)
+            std = Popen(["john", path], stdout=PIPE, stderr=PIPE)
             (out, err) = std.communicate()
         else:
-            std = Popen(["john", "--wordlist="+wordlist_path, hash_path], stdout=PIPE, stderr=PIPE)
+            std = Popen(["john", "--wordlist="+wordlist_path, path], stdout=PIPE, stderr=PIPE)
             (out, err) = std.communicate()
         if err:
             colorprint("fatal", err)
         if out:
             colorprint("success", out)
 
-        std = Popen(["john", "--show", hash_path], stdout=PIPE, stderr=PIPE)
+        std = Popen(["john", "--show", path], stdout=PIPE, stderr=PIPE)
         (out, err) = std.communicate()
         if err:
             colorprint("fatal", err)
         if out:
             colorprint("success", out)
 
-        raw_input(Style.DIM + Fore.WHITE + "Press Enter to continue..." + Style.RESET_ALL)
+        colorprint("warn", "9-->Go back to the top menu")
+        colorprint("fatal", "0-->Quit")
+        
+        choice = raw_input(Style.DIM + Fore.WHITE + "Press Enter to continue..." + Style.RESET_ALL)
 
+        if choice == "9":
+            return
+        elif choice == "0":
+            sys.exit()
 
 if __name__ == "__main__":
     hash_brute()
