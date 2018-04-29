@@ -21,6 +21,7 @@ from imports.volatility_pslist import volatility_pslist
 from imports.volatility_screenshot import volatility_screenshot
 from imports.volatility_cmdscan import volatility_cmdscan
 from imports.volatility_iehistory import volatility_iehistory
+from imports.ini_edit import config_get, config_set
 from imports.handbook import handbook
 
 
@@ -227,6 +228,15 @@ def main_menu():
 if __name__ == "__main__":
     os.system('clear')
     auto_path_completer()
+
+    config_set('paths', 'path', '')
+    colorprint("info", "\nIf the operations are to be performed on a file, please specify a path to the file, otherwise just press 'c'.")
+    choice = raw_input("\nAxion TERMINAL("+Style.BRIGHT+Fore.CYAN+"/"+Style.RESET_ALL+")\n-->")
+
+    if choice is not 'c':
+        config_set('paths', 'path', choice)
+        colorprint("info", "Well, we'll store this path for next operations...\n")
+        
     try:
         main_menu()
     except KeyboardInterrupt:
