@@ -2,4 +2,3 @@ setuptools
 colorama
 hashid
 pybase64
-markdown-editor

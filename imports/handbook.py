@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-import sys
+import os,sys,time
 from subprocess import Popen,PIPE,check_call
 from colorama import Fore, Style
-import time
+import webbrowser
 
 def colorprint(verbosity, text):
     if verbosity == "fatal":
@@ -27,13 +27,6 @@ logo = ("""
 def handbook():
     while True:
 
-        std = Popen(["ls", "/tmp/images"], stdout=PIPE, stderr=PIPE)
-        (out, err) = std.communicate()
-
-        if err.find("No such file or directory") != -1:
-            check_call(["mkdir", "/tmp/images"])
-            check_call("cp -r ./handbook_files/*/images/* /tmp/images", shell=True)
-
         check_call(["clear"])
         print (logo)
         colorprint("info", "You can find lot of information about CTFs here.")
@@ -47,16 +40,31 @@ def handbook():
 
         if choice == "9":
             return
+
         elif choice == "0":
             sys.exit()
+
         elif choice == "1":
-            std = Popen(["markdown_edit", "-w", "./handbook_files/reverse/reverse.md"], stdout=PIPE, stdin=PIPE, stderr=PIPE)
-            time.sleep(1)
-            std.communicate(input="q\n")
+            page = os.path.realpath(__file__) + "/../../handbook_files/reverse/reverse.html"
+            savout = os.dup(1)
+            os.close(1)
+            os.open(os.devnull, os.O_RDWR)
+            try:
+                webbrowser.open('file:///{}'.format(page))
+                time.sleep(1)
+            finally:
+                os.dup2(savout, 1)
+
         elif choice == "2":
-            std = Popen(["markdown_edit", "-w", "./handbook_files/crypto/crypto.md"], stdout=PIPE, stdin=PIPE, stderr=PIPE)
-            time.sleep(1)
-            std.communicate(input="q\n")
+            page = os.path.realpath(__file__) + "/../../handbook_files/crypto/crypto.html"
+            savout = os.dup(1)
+            os.close(1)
+            os.open(os.devnull, os.O_RDWR)
+            try:
+                webbrowser.open('file:///{}'.format(page))
+                time.sleep(1)
+            finally:
+                os.dup2(savout, 1)
 
         raw_input(Style.DIM + Fore.WHITE + "Press Enter to continue..." + Style.RESET_ALL)
 
