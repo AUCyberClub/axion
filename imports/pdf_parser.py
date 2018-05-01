@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import sys,os
+import subprocess
 from colorama import Fore, Style
 from subprocess import Popen,PIPE
 from ini_edit import config_get, config_set
@@ -41,7 +42,7 @@ def func(path):
         elif choice == "0":
             sys.exit()
         elif choice == "1":
-            std = Popen(["pdf-parser "+path+" | grep /ProcSet"], stdout=PIPE,stderr=PIPE,shell=True)
+            std = Popen(["pdf-parser "+path+" | grep /ProcSet"], stdout=subprocess.PIPE,stderr=PIPE,shell=True)
             (s_out,err) = std.communicate()
             if s_out:
                 colorprint("success", s_out)
@@ -51,11 +52,11 @@ def func(path):
             raw_input(Style.DIM + Fore.WHITE + "Press Enter to continue..." + Style.RESET_ALL)
 
         elif choice == "2":
-            std = Popen(["pdf-parser -s Embeddedfile --raw --filter "+path+" | grep PDF"], stdout=PIPE,stderr=PIPE,shell=True)
+            std = Popen(["pdf-parser -s Embeddedfile --raw --filter "+path], stdout=PIPE,stderr=PIPE,shell=True)
             (s_out,err) = std.communicate()
             if s_out:
                 colorprint("success", s_out)
-            if err:
+            elif err:
                 colorprint("fatal", err)
             else:
                 colorprint("warn", "\n\tEmbedded file not found.\n")
