@@ -56,7 +56,7 @@ def func(path):
             (s_out,err) = std.communicate()
             if s_out:
                 colorprint("success", s_out)
-            if err:
+            elif err:
                 colorprint("fatal", err)
             else:
                 colorprint("warn", "\n\tEmbedded file not found.\n")
