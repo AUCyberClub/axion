@@ -33,6 +33,7 @@ def handbook():
         colorprint("info", "Please select a topic.")
         colorprint("info", "1-->Reverse Engineering")
         colorprint("info", "2-->Cryptography")
+        colorprint("info", "3-->PDF Analyze")
         colorprint("warn", "9-->Go back to the top menu")
         colorprint("fatal", "0-->Quit")
 
@@ -65,7 +66,18 @@ def handbook():
                 time.sleep(1)
             finally:
                 os.dup2(savout, 1)
-
+        
+        elif choice == "3":
+            page = os.path.realpath(__file__) + "/../../handbook_files/pdf_analyze/pdf.html"
+            savout = os.dup(1)
+            os.close(1)
+            os.open(os.devnull, os.O_RDWR)
+            try:
+                webbrowser.open('file:///{}'.format(page))
+                time.sleep(1)
+            finally:
+                os.dup2(savout, 1)
+                
         raw_input(Style.DIM + Fore.WHITE + "Press Enter to continue..." + Style.RESET_ALL)
 
 if __name__ == "__main__":
