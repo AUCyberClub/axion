@@ -1,540 +1,191 @@
 <!DOCTYPE html>
-<html><head>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-        <meta charset="utf-8">
-        <style type="text/css">
-        .markdown-body{
-font-family: sans-serif;
-font-size:15px;
-line-height:1.7;
-overflow:hidden;
-word-wrap:break-word
-}
+<html>
 
-.markdown-body>*:first-child{
-margin-top:0 !important
-}
-
-.markdown-body>*:last-child{
-margin-bottom:0 !important
-}
-
-.markdown-body a.absent{
-color:#c00
-}
-
-.markdown-body a.anchor{
-display:block;
-padding-right:6px;
-padding-left:30px;
-margin-left:-30px;
-cursor:pointer;
-position:absolute;
-top:0;
-left:0;
-bottom:0
-}
-
-.markdown-body a.anchor:focus{
-outline:none
-}
-
-.markdown-body tt, .markdown-body code, .markdown-body pre {
-font-family: Consolas, "Liberation Mono", Courier, monospace;
-font-size: 12px;
-}
-            
-.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{
-margin:1em 0 15px;
-padding:0;
-font-weight:bold;
-line-height:1.7;
-cursor:text;
-position:relative
-}
-
-.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{
-display:none;
-color:#000
-}
-
-.markdown-body h1:hover a.anchor,.markdown-body h2:hover a.anchor,.markdown-body h3:hover a.anchor,.markdown-body h4:hover a.anchor,.markdown-body h5:hover a.anchor,.markdown-body h6:hover a.anchor{
-text-decoration:none;
-line-height:1;
-padding-left:8px;
-margin-left:-30px;
-top:15%
-}
-
-.markdown-body h1:hover a.anchor .octicon-link,.markdown-body h2:hover a.anchor .octicon-link,.markdown-body h3:hover a.anchor .octicon-link,.markdown-body h4:hover a.anchor .octicon-link,.markdown-body h5:hover a.anchor .octicon-link,.markdown-body h6:hover a.anchor .octicon-link{
-display:inline-block
-}
-
-.markdown-body h1 tt,.markdown-body h1 code,.markdown-body h2 tt,.markdown-body h2 code,.markdown-body h3 tt,.markdown-body h3 code,.markdown-body h4 tt,.markdown-body h4 code,.markdown-body h5 tt,.markdown-body h5 code,.markdown-body h6 tt,.markdown-body h6 code{
-font-size:inherit
-}
-
-.markdown-body h1{
-font-size:2.5em;
-border-bottom:1px solid #ddd
-}
-
-.markdown-body h2{
-font-size:2em;
-border-bottom:1px solid #eee
-}
-
-.markdown-body h3{
-font-size:1.5em
-}
-
-.markdown-body h4{
-font-size:1.2em
-}
-
-.markdown-body h5{
-font-size:1em
-}
-
-.markdown-body h6{
-color:#777;
-font-size:1em
-}
-
-.markdown-body p,.markdown-body blockquote,.markdown-body ul,.markdown-body ol,.markdown-body dl,.markdown-body table,.markdown-body pre{
-margin:15px 0
-}
-
-.markdown-body hr {
-background: rgba(216, 216, 216, 1);
-border: 0 none;
-color: #ccc;
-height: 2px;
-padding: 0;
-margin: 15px 0;
-}
-
-.markdown-body ul,.markdown-body ol{
-padding-left:30px
-}
-
-.markdown-body ul.no-list,.markdown-body ul.task-list,.markdown-body ol.no-list,.markdown-body ol.task-list{
-list-style-type:none;
-padding:0
-}
-
-.markdown-body ul ul,.markdown-body ul ol,.markdown-body ol ol,.markdown-body ol ul{
-margin-top:0;
-margin-bottom:0
-}
-
-.markdown-body dl{
-padding:0
-}
-
-.markdown-body dl dt{
-font-size:14px;
-font-weight:bold;
-font-style:italic;
-padding:0;
-margin-top:15px
-}
-
-.markdown-body dl dd{
-margin-bottom:15px;
-padding:0 15px
-}
-
-.markdown-body blockquote{
-border-left:4px solid #DDD;
-padding:0 15px;
-color:#777
-}
-
-.markdown-body blockquote>:first-child{
-margin-top:0px
-}
-
-.markdown-body blockquote>:last-child{
-margin-bottom:0px
-}
-
-.markdown-body table{
-/* width:100%; */
-border-collapse: collapse;
-border-spacing: 0;
-overflow:auto;
-display:block
-}
-
-.markdown-body table th{
-font-weight:bold
-}
-
-.markdown-body table th,.markdown-body table td{
-border:1px solid #ddd;
-padding:6px 13px
-}
-
-.markdown-body table tr{
-border-top:1px solid #ccc;
-background-color:#fff
-}
-
-.markdown-body table tr:nth-child(2n){
-background-color:#f8f8f8
-}
-
-.markdown-body img{
-max-width:100%;
--moz-box-sizing:border-box;
-box-sizing:border-box
-}
-
-.markdown-body span.frame{
-display:block;
-overflow:hidden
-}
-
-.markdown-body span.frame>span{
-border:1px solid #ddd;
-display:block;
-float:left;
-overflow:hidden;
-margin:13px 0 0;
-padding:7px;
-width:auto
-}
-
-.markdown-body span.frame span img{
-display:block;
-float:left
-}
-
-.markdown-body span.frame span span{
-clear:both;
-color:#333;
-display:block;
-padding:5px 0 0
-}
-
-.markdown-body span.align-center{
-display:block;
-overflow:hidden;
-clear:both
-}
-
-.markdown-body span.align-center>span{
-display:block;
-overflow:hidden;
-margin:13px auto 0;
-text-align:center
-}
-
-.markdown-body span.align-center span img{
-margin:0 auto;
-text-align:center
-}
-
-.markdown-body span.align-right{
-display:block;
-overflow:hidden;
-clear:both
-}
-
-.markdown-body span.align-right>span{
-display:block;
-overflow:hidden;
-margin:13px 0 0;
-text-align:right
-}
-
-.markdown-body span.align-right span img{
-margin:0;
-text-align:right
-}
-
-.markdown-body span.float-left{
-display:block;
-margin-right:13px;
-overflow:hidden;
-float:left
-}
-
-.markdown-body span.float-left span{
-margin:13px 0 0
-}
-
-.markdown-body span.float-right{
-display:block;
-margin-left:13px;
-overflow:hidden;
-float:right
-}
-
-.markdown-body span.float-right>span{
-display:block;
-overflow:hidden;
-margin:13px auto 0;
-text-align:right
-}
-
-.markdown-body code,.markdown-body tt{
-margin:0;
-border:1px solid #ddd;
-background-color:#f8f8f8;
-border-radius:3px;
-max-width:100%;
-display:inline-block;
-overflow:auto;
-vertical-align:middle;
-line-height:1.3;
-padding:0
-}
-
-.markdown-body code:before,.markdown-body code:after,.markdown-body tt:before,.markdown-body tt:after{
-content:"\00a0"
-}
-
-.markdown-body code{
-white-space:nowrap
-}
-
-.markdown-body pre>code{
-margin:0;
-padding:0;
-white-space:pre;
-border:none;
-background:transparent
-}
-
-.markdown-body .highlight pre,.markdown-body pre{
-background-color:#f8f8f8;
-border:1px solid #ddd;
-font-size:13px;
-line-height:19px;
-overflow:auto;
-padding:6px 10px;
-border-radius:3px
-}
-
-.markdown-body pre{
-word-wrap:normal
-}
-
-.markdown-body pre code,.markdown-body pre tt{
-margin:0;
-padding:0;
-background-color:transparent;
-border:none;
-word-wrap:normal;
-max-width:initial;
-display:inline;
-overflow:initial;
-line-height:inherit
-}
-
-.markdown-body pre code:before,.markdown-body pre code:after,.markdown-body pre tt:before,.markdown-body pre tt:after{
-content:normal
-}
-
-pre .hll { background-color: #ffffcc }
-pre .c { color: #999988; font-style: italic } /* Comment */
-pre .err { color: #a61717; background-color: #e3d2d2 } /* Error */
-pre .k { color: #000000; font-weight: bold } /* Keyword */
-pre .o { color: #000000; font-weight: bold } /* Operator */
-pre .cm { color: #999988; font-style: italic } /* Comment.Multiline */
-pre .cp { color: #999999; font-weight: bold; font-style: italic } /* Comment.Preproc */
-pre .c1 { color: #999988; font-style: italic } /* Comment.Single */
-pre .cs { color: #999999; font-weight: bold; font-style: italic } /* Comment.Special */
-pre .gd { color: #000000; background-color: #ffdddd } /* Generic.Deleted */
-pre .ge { color: #000000; font-style: italic } /* Generic.Emph */
-pre .gr { color: #aa0000 } /* Generic.Error */
-pre .gh { color: #999999 } /* Generic.Heading */
-pre .gi { color: #000000; background-color: #ddffdd } /* Generic.Inserted */
-pre .go { color: #888888 } /* Generic.Output */
-pre .gp { color: #555555 } /* Generic.Prompt */
-pre .gs { font-weight: bold } /* Generic.Strong */
-pre .gu { color: #aaaaaa } /* Generic.Subheading */
-pre .gt { color: #aa0000 } /* Generic.Traceback */
-pre .kc { color: #000000; font-weight: bold } /* Keyword.Constant */
-pre .kd { color: #000000; font-weight: bold } /* Keyword.Declaration */
-pre .kn { color: #000000; font-weight: bold } /* Keyword.Namespace */
-pre .kp { color: #000000; font-weight: bold } /* Keyword.Pseudo */
-pre .kr { color: #000000; font-weight: bold } /* Keyword.Reserved */
-pre .kt { color: #445588; font-weight: bold } /* Keyword.Type */
-pre .m { color: #009999 } /* Literal.Number */
-pre .s { color: #d01040 } /* Literal.String */
-pre .na { color: #008080 } /* Name.Attribute */
-pre .nb { color: #0086B3 } /* Name.Builtin */
-pre .nc { color: #445588; font-weight: bold } /* Name.Class */
-pre .no { color: #008080 } /* Name.Constant */
-pre .nd { color: #3c5d5d; font-weight: bold } /* Name.Decorator */
-pre .ni { color: #800080 } /* Name.Entity */
-pre .ne { color: #990000; font-weight: bold } /* Name.Exception */
-pre .nf { color: #990000; font-weight: bold } /* Name.Function */
-pre .nl { color: #990000; font-weight: bold } /* Name.Label */
-pre .nn { color: #555555 } /* Name.Namespace */
-pre .nt { color: #000080 } /* Name.Tag */
-pre .nv { color: #008080 } /* Name.Variable */
-pre .ow { color: #000000; font-weight: bold } /* Operator.Word */
-pre .w { color: #bbbbbb } /* Text.Whitespace */
-pre .mf { color: #009999 } /* Literal.Number.Float */
-pre .mh { color: #009999 } /* Literal.Number.Hex */
-pre .mi { color: #009999 } /* Literal.Number.Integer */
-pre .mo { color: #009999 } /* Literal.Number.Oct */
-pre .sb { color: #d01040 } /* Literal.String.Backtick */
-pre .sc { color: #d01040 } /* Literal.String.Char */
-pre .sd { color: #d01040 } /* Literal.String.Doc */
-pre .s2 { color: #d01040 } /* Literal.String.Double */
-pre .se { color: #d01040 } /* Literal.String.Escape */
-pre .sh { color: #d01040 } /* Literal.String.Heredoc */
-pre .si { color: #d01040 } /* Literal.String.Interpol */
-pre .sx { color: #d01040 } /* Literal.String.Other */
-pre .sr { color: #009926 } /* Literal.String.Regex */
-pre .s1 { color: #d01040 } /* Literal.String.Single */
-pre .ss { color: #990073 } /* Literal.String.Symbol */
-pre .bp { color: #999999 } /* Name.Builtin.Pseudo */
-pre .vc { color: #008080 } /* Name.Variable.Class */
-pre .vg { color: #008080 } /* Name.Variable.Global */
-pre .vi { color: #008080 } /* Name.Variable.Instance */
-pre .il { color: #009999 } /* Literal.Number.Integer.Long */
-
-
-        </style>
-        </head>
-        <body>
-        <div class="markdown-body">
-        <h1>AXION REHBER BOLUM 2</h1>
-<h2>Cryptography Nedir?</h2>
-<h3>Giriş</h3>
-<p>En basit tanımıyla var olan bir verinin, okunabilirliğini kısıtlamak 
-amacıyla kullanılan algoritmalar bütünüdür. Verinin okunabilirliğini 
-kısıtlayarak veri güvenliğini sağlar.</p>
-<p>Genelde veriyi bozmadan verinin formu değiştirilir. Böylece hem veri güvenliği sağlanır hem de veri kaybı yaşanmaz.</p>
-<h3>CTF'ler ile alakası ne?</h3>
-<p>CTF'lerde kendine ait geniş bir kategoriye sahiptir ve <em>Crypto</em> soruları olarak geçer. Bu sorularda amacımız genelde formu değiştirilmiş verileri okunabilir formlarına geri çevirerek <em>FLAG'i</em> elde etmektir. 4 küçük alt kategoriye ayrılır.</p>
-<h4>Encoding</h4>
-<p><em>Encoding'in</em> amacı verinin formunu kayıpsız bir şekilde başka bir forma çevirmektir. Kendini <em>Encrypt'den</em> farkı bu işlemi yaparken <strong>key (anahtar)</strong> kullanmamasıdır. <em>Encode</em> eyleminin tersi <em>Decode'dur</em> ve <em>Decode</em> işlemi için gereken tek şey <em>Encode</em> için kullanılan algoritmanın bilinmesidir herhangi özel bir anahtar ya da şifreye ihtiyaç yoktur.</p>
-<p>En çok karşılaşılan türleri:</p>
-<ul>
-<li>Base64</li>
-<li>Unicode</li>
-<li>ASCII</li>
-<li>Taban Dönüşümleri</li>
-</ul>
-<h4>Encrypting</h4>
-<p><em>Encoding</em> ile aynı amaca sahiptir ancak <em>Encrypt</em> işleminde özel bir <strong>key (anahtar)</strong> kullanılır. Bu sayede <em>Decrypt</em> işlemi için algoritma ile beraber bu özel anahtarın bilinmesi gereklidir. Özel anahtar olmadan şifreyi çözmenin tek yöntemi <em>Brute Force (Kaba Kuvvet)</em> saldırısı yapmaktır basitçe mümkün olduğunca her kelimeyi anahtar olarak denemektir :D</p>
-<p>Alt türleri olarak açık anahtarlı şifreleme ve gizli anahtarlı şifreleme adında iki türü bulunur.</p>
-<p>Gizli anahtarlı şifrelemede sadece tek bir anahtar vardır. Veri 
-iletimi yapılırken veri bu anahtar ile şifrelenir ve veriyi alan kişi 
-yine bu anahtar ile şifreyi çözer. Temel sorun ise iletimin başında 
-veriyi şifreleyen kişinin kullandığı anahtarı kimseye göstermeden nasıl 
-karşı tarafa göndereceğidir.</p>
-<p>Açık anahtarlı şifrelemede iki anahtar vardır ve biri herkese dağıtılır (<em>public</em>) öbürü ise sadece kişiye özeldir (<em>private</em>). Ayrıca <em>public</em> anahtar, private anahtardan türetilir sonra kişi <em>public</em>
- anahtarını herkesin görebileceği bir biçimde yayımlar. Bir kişi başka 
-bir kişiye güvenli veri iletmek istediğinde iletmek istediği veriyi 
-göndereceği kişinin <em>public</em> anahtarı ile şifreler. Sonra veriyi iletir. <em>Public</em> anahtar ile şifrelenmiş veri sadece <em>private</em> anahtar ile çözülebilir. <em>Public</em> anahtardan <em>private</em>
- anahtar elde edilemez. Gizli anahtarlı şifrelemeye göre çok daha 
-yavaştır ancak gizli anahtarlı şifrelemede bir sorun olan anahtar 
-iletimi sorununa bir çözüm getirmektedir.</p>
-<p>Bu iki yöntem genelde Hibrit kullanılır.</p>
-<p>Gizli anahtarlı şifreleme türleri:</p>
-<ul>
-<li>DES</li>
-<li>AES</li>
-<li>Vigenere</li>
-<li>Blowfish</li>
-</ul>
-<p>Açık anahtarlı şifreleme türleri:</p>
-<ul>
-<li>RSA</li>
-<li>DSA</li>
-<li>TLS</li>
-</ul>
-<h4>Hashing</h4>
-<p><em>Hashing</em> (Özetleme) algoritmalarının amacı veriyi geri döndürülemez bir biçimde şifrelemektir. <em>Hashing</em>
- algoritmaları tek yönlü çalışır ve anahtara ihtiyaç duymaz. Önemli bir 
-nokta ise çıktının yani elde edilen şifrelerin uzunluğunun girdi yani 
-şifrelenmemiş verinin uzunluğundan bağımsız olarak hep aynı olmasıdır. 
-Örneğin <em>MD5</em> algoritması hep 32 karakter uzunluğunda şifreler oluşturur.</p>
-<p>Bir çok farklı alanda kullanılır. Bu alanlardan biri işletim sistemleridir. Örneğin <em>Linux'ta</em> kullanıcı kimlik doğrulama işlemi için hashing kullanılır yani kullanıcı parolaları hashlenmiş halde tutulur.</p>
-<p>Kırmak için <em>Brute Force (Kaba Kuvvet)</em> saldırısı kullanılır. 
-Amaç kelime listesinde ki tüm kelimeleri tek tek aynı hash 
-algoritmasından geçirmek ve elde edilen şifrelerin kırılmak istenen 
-şifreye eşit olup olmadığına bakmaktır.</p>
-<p>En çok karşılaşılan türleri:</p>
-<ul>
-<li>MD5</li>
-<li>SHA-1</li>
-<li>SHA-512</li>
-</ul>
-<h4><strong>Obfuscation</strong></h4>
-<p>Obfuscation (Karıştırma) adından da anlaşılacağı veri güvenliğini 
-sağlamak için karıştırma yapar. Temel olarak Encoding'e benzer ancak 
-daha basit halidir. Örnek olarak programların kaynak kodlarının herkesin
- anlayamaması ve hırsızlıkların önüne geçilebilmesi için Obfuscation 
-işlemine tabii tutulması örnek olarak gösterilebilir.</p>
-<p>En çok karşılaşılan türleri:</p>
-<ul>
-<li>Ook!</li>
-<li>Brainfuck</li>
-<li>JS Obfuscator</li>
-</ul>
-<h3>Faydalı Linkler ve Kaynaklar</h3>
-<ul>
-<li><a href="https://www.dcode.fr/">dcode.fr</a> - Bir çok crypto algoritmasını ve çözücüsünü içeren bir site.</li>
-<li><a href="https://ctfs.github.io/resources/topics/cryptography/README.html">CTF Resources</a> - Konu ile ilgili bilgiler içeren bir kaynak.</li>
-<li><a href="https://cryptopals.com/">Cryptopals</a> - Konu ile ilgili bilgiler ve sorular içeren bir site.</li>
-</ul>
-<h2>Örnek Soru Çözümleri</h2>
-<p>Cryptography soruları çeşit bakımından çok fazla ama burada bir iki örnek yardımıyla anlatmaya çalışacağız.</p>
-<h3>CanYouPwnME CTF CRYPTO25</h3>
-<p><strong>Soru:</strong> PCYvKDEAJCdvLSVvLThvLyI= </p>
-<p>Stringin sonunda <strong>=</strong> işareti olmasından ötürü her 
-nekadar Base64 gibi görünsede aslında Base64 ile Encode edilmemiş. XOR 
-ile Encode edilmiş bir şifre olduğunu deneme yanılmalar ile buluyoruz:</p>
-<p><img alt="ss" src="crypto_files/cry1.png"></p>
-<p>FLAH = <strong>cypwn_{x0rz0rg0p}</strong></p>
-<h3>CanYouPwnME CTF CRYPTO50</h3>
-<p><strong>Soru:</strong> <em>Text: cfxdigthdppymtdbqyz</em>  </p>
-<p>​          <em>Key: TBCXRL</em></p>
-<p>Şifrelenmiş metin <em>key</em> ile birlikte verildiğiden <strong>Encrypt</strong> edildiği anlaşılıyor. <strong>Vigenere</strong> olduğunu varsayarak devam ediyoruz:</p>
-<p><img alt="" src="crypto_files/cry2.png"></p>
-<p><code>Jevgrvagbsyntsbezng</code> sonucuna ulaşıyoruz. Bu çıktının üzerinde ise <strong>Rot13</strong> rotasyonu yaptığımızda ise <em>flag</em>'i buluyoruz:</p>
-<p><img alt="" src="crypto_files/cry3.png"></p>
-<p>FLAG = <strong>cypwn_{Writeintoflagformat}</strong></p>
-<h3>CanYouPwnME CTF CRYPTO50-2</h3>
-<p><strong>Soru:</strong> Vm0wd2VHUXhTWGhXV0doV1YwZDRWbFl3WkRSV01WbDNXa1J
-TVjAxV2JETlhhMUpUVm14S2MyTkliRmhoTVhCUVZqSjRZV1JIVmtsalJt
-UnBWa1ZhU1ZkV1pEUlRNbEpYVW01T2FGSnRVbkJXYTFaaFUxWmtW
-MXBJY0d4U2EzQllWakkxUzJGV1NuUmhSemxWVm14YU0xUnNXbUZX
-YkdSeVYyeENWMkV3Y0ZSV1ZWcFNaREZDVWxCVU1EMD0</p>
-<p>Sadece şifre verildiği için <strong>Encode</strong> edilmiş olabileceğini düşünerek <em>Base64</em> ile <em>Decode</em> etmeye başlıyoruz. ard arda 9 defa <em>Decode</em> ettikten sonra flag'e ulaşıyoruz :</p>
-<p><img alt="" src="crypto_files/cry4.png"></p>
-<p>FLAG = <strong>cypwn{babyFl4g}</strong></p>
-<h3>CanYouPwnME CTF CRYPTO50-3</h3>
-<p><strong>Soru:</strong> <em>Hold Your Breath and Count to 27395</em></p>
-<p>​          <em>6e13409111b425a434d1cd9a80743669ec7385f9</em></p>
-<p>Yine elimizde bir <em>key</em> yok ancak bu sefer <em>Decode</em> yöntemleri çalışmıyor ve doğal olarak <em>Hashing</em>'e yöneliyoruz. Önce hangi algoritma ile hashlendiğini bulmak için axion'u kullanıyoruz:</p>
-<p><img alt="" src="crypto_files/cry5.png"></p>
-<p><strong>SHA-1</strong> olduğunu gördükten sonra Brute-Force denemeden önce daha önce kırılmış olabileceğini düşünerek internette arama yapıyoruz:</p>
-<p><img alt="" src="crypto_files/cry6.png"></p>
-<p>FLAG = <strong>26595</strong></p>
-<h3>CanYouPwnME CTF CRYPTO50-4</h3>
-<p><strong>Soru:</strong> <em>Keep Calm and Discard Powers of 2</em>  </p>
-<p>​          <em>100256105256100256121256111256117256109256105256115256115256109256101</em></p>
-<p>Verilen soruda ASCII değerleri seçilebilmekte. Ortalığı karıştıran 
-mevzu ise “256” değerleri. ASCII tablosu 0- 255 arasındaki sayılardan 
-oluştuğundan ötürü doğrudan dönüşüm yapmamızı engellemek adına aralara 
-256’lar serpiştirildğini düşünerek 256’ları temizliyoruz. Ve altta ki 
-sonucu elde ediyoruz:</p>
-<p><code>100 105 100 121 111 117 109 105 115 115 109 101</code></p>
-<p>Son olarak bu sayıları ASCII tablosuna göre harflere çevirdiğimizde:</p>
-<p><img alt="" src="crypto_files/cry7.png"></p>
-<p>FLAG = <strong>didyoumissme</strong></p>
-<p>Üsteki soruların çözümlerinde <a href="https://www.aucyberclub.org/cozumler/2017/02/17/cypmctfcozumleri.html">buradan</a> yararlanılmıştır.</p>
-        </div>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <style>
+        body {
+            font-family: "Lato", sans-serif;
+            border: solid thin;
+            border-color: brown;
+            border-radius: 10px;
+            margin-top: 30px;
+            margin-bottom: 50px;
+            margin-right: 80px;
+            margin-left: 80px;
+        }
         
+        p {
+            margin-top: 15px;
+            margin-bottom: 15px;
+            margin-right: 30px;
+            margin-left: 50px;
+        }
         
-        </body></html>
+        h1 {
+            margin-top: 30px;
+            margin-bottom: 30px;
+            margin-right: 20px;
+            margin-left: 20px;
+            text-align: center;
+        }
+        
+        h2 {
+            margin-top: 15px;
+            margin-bottom: 5px;
+            margin-right: 10px;
+            margin-left: 20px;
+            padding: 15px;
+        }
+        
+        h3 {
+            margin-top: 5px;
+            margin-bottom: 5px;
+            margin-right: 10px;
+            margin-left: 20px;
+            padding: 15px;
+        }
+        
+        h4 {
+            margin-top: 5px;
+            margin-bottom: 5px;
+            margin-right: 10px;
+            margin-left: 20px;
+            padding: 10px;
+        }
+        
+        img {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            border-radius: 2px;
+        }
+        
+        li {
+            margin-top: 5px;
+            margin-bottom: 5px;
+            margin-right: 10px;
+            margin-left: 50px;
+        }
+        
+        .highlight {
+            font-size: 13px;
+            margin-right: 30px;
+            margin-left: 50px;
+            line-height: 19px;
+            border-radius: 3px
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <h1>AXION KILAVUZ</h1>
+        <h2>Cryptography Nedir?</h2>
+        <h3>Giriş</h3>
+        <p>En basit tanımıyla var olan bir verinin, okunabilirliğini kısıtlamak amacıyla kullanılan algoritmalar bütünüdür. Verinin okunabilirliğini kısıtlayarak veri güvenliğini sağlar.
+        </p>
+        <p>Genelde veriyi bozmadan verinin formu değiştirilir. Böylece hem veri güvenliği sağlanır hem de veri kaybı yaşanmaz.</p>
+        <h3>CTF'ler ile alakası ne?</h3>
+        <p>CTF'lerde kendine ait geniş bir kategoriye sahiptir ve <em>Crypto</em> soruları olarak geçer. Bu sorularda amacımız genelde formu değiştirilmiş verileri okunabilir formlarına geri çevirerek <em>FLAG'i</em> elde etmektir. 4 küçük alt kategoriye ayrılır.</p>
+        <h4>Encoding</h4>
+        <p><em>Encoding'in</em> amacı verinin formunu kayıpsız bir şekilde başka bir forma çevirmektir. Kendini <em>Encrypt'den</em> farkı bu işlemi yaparken <strong>key (anahtar)</strong> kullanmamasıdır. <em>Encode</em> eyleminin tersi <em>Decode'dur</em> ve <em>Decode</em> işlemi için gereken tek şey <em>Encode</em> için kullanılan algoritmanın bilinmesidir herhangi özel bir anahtar ya da şifreye ihtiyaç yoktur.</p>
+        <p>En çok karşılaşılan türleri:</p>
+        <ul>
+            <li>Base64</li>
+            <li>Unicode</li>
+            <li>ASCII</li>
+            <li>Taban Dönüşümleri</li>
+        </ul>
+        <h4>Encrypting</h4>
+        <p><em>Encoding</em> ile aynı amaca sahiptir ancak <em>Encrypt</em> işleminde özel bir <strong>key (anahtar)</strong> kullanılır. Bu sayede <em>Decrypt</em> işlemi için algoritma ile beraber bu özel anahtarın bilinmesi gereklidir. Özel anahtar olmadan şifreyi çözmenin tek yöntemi <em>Brute Force (Kaba Kuvvet)</em> saldırısı yapmaktır basitçe mümkün olduğunca her kelimeyi anahtar olarak denemektir :D</p>
+        <p>Alt türleri olarak açık anahtarlı şifreleme ve gizli anahtarlı şifreleme adında iki türü bulunur.</p>
+        <p>Gizli anahtarlı şifrelemede sadece tek bir anahtar vardır. Veri iletimi yapılırken veri bu anahtar ile şifrelenir ve veriyi alan kişi yine bu anahtar ile şifreyi çözer. Temel sorun ise iletimin başında veriyi şifreleyen kişinin kullandığı anahtarı kimseye göstermeden nasıl karşı tarafa göndereceğidir.
+        </p>
+        <p>Açık anahtarlı şifrelemede iki anahtar vardır ve biri herkese dağıtılır (<em>public</em>) öbürü ise sadece kişiye özeldir (<em>private</em>). Ayrıca <em>public</em> anahtar, private anahtardan türetilir sonra kişi <em>public</em> anahtarını herkesin görebileceği bir biçimde yayımlar. Bir kişi başka bir kişiye güvenli veri iletmek istediğinde iletmek istediği veriyi göndereceği kişinin <em>public</em> anahtarı ile şifreler. Sonra veriyi iletir. <em>Public</em> anahtar ile şifrelenmiş veri sadece <em>private</em> anahtar ile çözülebilir. <em>Public</em> anahtardan <em>private</em> anahtar elde edilemez. Gizli anahtarlı şifrelemeye göre çok daha yavaştır ancak gizli anahtarlı şifrelemede bir sorun olan anahtar iletimi sorununa bir çözüm getirmektedir.
+        </p>
+        <p>Bu iki yöntem genelde Hibrit kullanılır.</p>
+        <p>Gizli anahtarlı şifreleme türleri:</p>
+        <ul>
+            <li>DES</li>
+            <li>AES</li>
+            <li>Vigenere</li>
+            <li>Blowfish</li>
+        </ul>
+        <p>Açık anahtarlı şifreleme türleri:</p>
+        <ul>
+            <li>RSA</li>
+            <li>DSA</li>
+            <li>TLS</li>
+        </ul>
+        <h4>Hashing</h4>
+        <p><em>Hashing</em> (Özetleme) algoritmalarının amacı veriyi geri döndürülemez bir biçimde şifrelemektir. <em>Hashing</em> algoritmaları tek yönlü çalışır ve anahtara ihtiyaç duymaz. Önemli bir nokta ise çıktının yani elde edilen şifrelerin uzunluğunun girdi yani şifrelenmemiş verinin uzunluğundan bağımsız olarak hep aynı olmasıdır. Örneğin <em>MD5</em> algoritması hep 32 karakter uzunluğunda şifreler oluşturur.
+        </p>
+        <p>Bir çok farklı alanda kullanılır. Bu alanlardan biri işletim sistemleridir. Örneğin <em>Linux'ta</em> kullanıcı kimlik doğrulama işlemi için hashing kullanılır yani kullanıcı parolaları hashlenmiş halde tutulur.</p>
+        <p>Kırmak için <em>Brute Force (Kaba Kuvvet)</em> saldırısı kullanılır. Amaç kelime listesinde ki tüm kelimeleri tek tek aynı hash algoritmasından geçirmek ve elde edilen şifrelerin kırılmak istenen şifreye eşit olup olmadığına bakmaktır.
+        </p>
+        <p>En çok karşılaşılan türleri:</p>
+        <ul>
+            <li>MD5</li>
+            <li>SHA-1</li>
+            <li>SHA-512</li>
+        </ul>
+        <h4><strong>Obfuscation</strong></h4>
+        <p>Obfuscation (Karıştırma) adından da anlaşılacağı veri güvenliğini sağlamak için karıştırma yapar. Temel olarak Encoding'e benzer ancak daha basit halidir. Örnek olarak programların kaynak kodlarının herkesin anlayamaması ve hırsızlıkların önüne geçilebilmesi için Obfuscation işlemine tabii tutulması örnek olarak gösterilebilir.
+        </p>
+        <p>En çok karşılaşılan türleri:</p>
+        <ul>
+            <li>Ook!</li>
+            <li>Brainfuck</li>
+            <li>JS Obfuscator</li>
+        </ul>
+        <h3>Faydalı Linkler ve Kaynaklar</h3>
+        <ul>
+            <li><a href="https://www.dcode.fr/">dcode.fr</a> - Bir çok crypto algoritmasını ve çözücüsünü içeren bir site.</li>
+            <li><a href="https://ctfs.github.io/resources/topics/cryptography/README.html">CTF Resources</a> - Konu ile ilgili bilgiler içeren bir kaynak.</li>
+            <li><a href="https://cryptopals.com/">Cryptopals</a> - Konu ile ilgili bilgiler ve sorular içeren bir site.</li>
+        </ul>
+        <h2>Örnek Soru Çözümleri</h2>
+        <p>Cryptography soruları çeşit bakımından çok fazla ama burada bir iki örnek yardımıyla anlatmaya çalışacağız.</p>
+        <h3>CanYouPwnME CTF CRYPTO25</h3>
+        <p><strong>Soru:</strong> PCYvKDEAJCdvLSVvLThvLyI= </p>
+        <p>Stringin sonunda <strong>=</strong> işareti olmasından ötürü her nekadar Base64 gibi görünsede aslında Base64 ile Encode edilmemiş. XOR ile Encode edilmiş bir şifre olduğunu deneme yanılmalar ile buluyoruz:
+        </p>
+        <p><img src="crypto_files/cry1.png"></p>
+        <p>FLAH = <strong>cypwn_{x0rz0rg0p}</strong></p>
+        <h3>CanYouPwnME CTF CRYPTO50</h3>
+        <p><strong>Soru:</strong> <em>Text: cfxdigthdppymtdbqyz</em> </p>
+        <p>​ <em>Key: TBCXRL</em></p>
+        <p>Şifrelenmiş metin <em>key</em> ile birlikte verildiğiden <strong>Encrypt</strong> edildiği anlaşılıyor. <strong>Vigenere</strong> olduğunu varsayarak devam ediyoruz:</p>
+        <p><img src="crypto_files/cry2.png"></p>
+        <p><code>Jevgrvagbsyntsbezng</code> sonucuna ulaşıyoruz. Bu çıktının üzerinde ise <strong>Rot13</strong> rotasyonu yaptığımızda ise <em>flag</em>'i buluyoruz:</p>
+        <p><img src="crypto_files/cry3.png"></p>
+        <p>FLAG = <strong>cypwn_{Writeintoflagformat}</strong></p>
+        <h3>CanYouPwnME CTF CRYPTO50-2</h3>
+        <p><strong>Soru:</strong> Vm0wd2VHUXhTWGhXV0doV1YwZDRWbFl3WkRSV01WbDNXa1J TVjAxV2JETlhhMUpUVm14S2MyTkliRmhoTVhCUVZqSjRZV1JIVmtsalJt UnBWa1ZhU1ZkV1pEUlRNbEpYVW01T2FGSnRVbkJXYTFaaFUxWmtW MXBJY0d4U2EzQllWakkxUzJGV1NuUmhSemxWVm14YU0xUnNXbUZX YkdSeVYyeENWMkV3Y0ZSV1ZWcFNaREZDVWxCVU1EMD0
+        </p>
+        <p>Sadece şifre verildiği için <strong>Encode</strong> edilmiş olabileceğini düşünerek <em>Base64</em> ile <em>Decode</em> etmeye başlıyoruz. ard arda 9 defa <em>Decode</em> ettikten sonra flag'e ulaşıyoruz :</p>
+        <p><img src="crypto_files/cry4.png"></p>
+        <p>FLAG = <strong>cypwn{babyFl4g}</strong></p>
+        <h3>CanYouPwnME CTF CRYPTO50-3</h3>
+        <p><strong>Soru:</strong> <em>Hold Your Breath and Count to 27395</em></p>
+        <p>​ <em>6e13409111b425a434d1cd9a80743669ec7385f9</em></p>
+        <p>Yine elimizde bir <em>key</em> yok ancak bu sefer <em>Decode</em> yöntemleri çalışmıyor ve doğal olarak <em>Hashing</em>'e yöneliyoruz. Önce hangi algoritma ile hashlendiğini bulmak için axion'u kullanıyoruz:</p>
+        <p><img src="crypto_files/cry5.png"></p>
+        <p><strong>SHA-1</strong> olduğunu gördükten sonra Brute-Force denemeden önce daha önce kırılmış olabileceğini düşünerek internette arama yapıyoruz:</p>
+        <p><img src="crypto_files/cry6.png"></p>
+        <p>FLAG = <strong>26595</strong></p>
+        <h3>CanYouPwnME CTF CRYPTO50-4</h3>
+        <p><strong>Soru:</strong> <em>Keep Calm and Discard Powers of 2</em> </p>
+        <p>​ <em>100256105256100256121256111256117256109256105256115256115256109256101</em></p>
+        <p>Verilen soruda ASCII değerleri seçilebilmekte. Ortalığı karıştıran mevzu ise “256” değerleri. ASCII tablosu 0- 255 arasındaki sayılardan oluştuğundan ötürü doğrudan dönüşüm yapmamızı engellemek adına aralara 256’lar serpiştirildğini düşünerek 256’ları temizliyoruz. Ve altta ki sonucu elde ediyoruz:
+        </p>
+        <p><code>100 105 100 121 111 117 109 105 115 115 109 101</code></p>
+        <p>Son olarak bu sayıları ASCII tablosuna göre harflere çevirdiğimizde:</p>
+        <p><img src="crypto_files/cry7.png"></p>
+        <p>FLAG = <strong>didyoumissme</strong></p>
+        <p>Üsteki soruların çözümlerinde <a href="https://www.aucyberclub.org/cozumler/2017/02/17/cypmctfcozumleri.html">buradan</a> yararlanılmıştır.</p>
+    </div>
+</body>
+
+</html>
