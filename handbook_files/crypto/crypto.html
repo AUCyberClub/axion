@@ -80,112 +80,107 @@
 
 <body>
     <div>
-        <h1>AXION KILAVUZ</h1>
-        <h2>Cryptography Nedir?</h2>
-        <h3>Giriş</h3>
-        <p>En basit tanımıyla var olan bir verinin, okunabilirliğini kısıtlamak amacıyla kullanılan algoritmalar bütünüdür. Verinin okunabilirliğini kısıtlayarak veri güvenliğini sağlar.
-        </p>
-        <p>Genelde veriyi bozmadan verinin formu değiştirilir. Böylece hem veri güvenliği sağlanır hem de veri kaybı yaşanmaz.</p>
-        <h3>CTF'ler ile alakası ne?</h3>
-        <p>CTF'lerde kendine ait geniş bir kategoriye sahiptir ve <em>Crypto</em> soruları olarak geçer. Bu sorularda amacımız genelde formu değiştirilmiş verileri okunabilir formlarına geri çevirerek <em>FLAG'i</em> elde etmektir. 4 küçük alt kategoriye ayrılır.</p>
+        <h1>CTF GUIDE</h1>
+        <h2>What Is Cryptography?</h2>
+        <h3>Introduction</h3>
+        <p>The simplest definition is the whole set of algorithms used to limit the legibility of an existing data. It provides data security by restricting the readability of the data.</p>
+        <p>Generally, the form of the data is changed without corrupting the data. So, it ensures data security and prevents data loss.</p>
+        <h3>What Is The Relation With CTFs?</h3>
+        <p>It has its own category on CTFs and is asked as <em>Crypto</em> questions. In these questions, our goal is usually to capture <em>FLAG</em> by returning the modified data to readable forms. 4 subcategories are allocated.</p>
         <h4>Encoding</h4>
-        <p><em>Encoding'in</em> amacı verinin formunu kayıpsız bir şekilde başka bir forma çevirmektir. Kendini <em>Encrypt'den</em> farkı bu işlemi yaparken <strong>key (anahtar)</strong> kullanmamasıdır. <em>Encode</em> eyleminin tersi <em>Decode'dur</em> ve <em>Decode</em> işlemi için gereken tek şey <em>Encode</em> için kullanılan algoritmanın bilinmesidir herhangi özel bir anahtar ya da şifreye ihtiyaç yoktur.</p>
-        <p>En çok karşılaşılan türleri:</p>
+        <p>The aim of <em>Encoding</em> is to convert the form of the data to another form without any data loss. The difference between <em>Encryption</em> and <em>Encoding</em> is that <em>Encoding</em> doesn't use <strong>key</strong> when doing the operation. The opposite of <em>Encode</em> operation is <em>Decode</em>. Only thing is needed to <em>Decoding</em> operation is the algorithm used for <em>Encoding</em>. There is no need any special key or password.</p>
+        <p>Most common types:</p>
         <ul>
             <li>Base64</li>
             <li>Unicode</li>
             <li>ASCII</li>
-            <li>Taban Dönüşümleri</li>
+            <li>Base Converter</li>
         </ul>
         <h4>Encrypting</h4>
-        <p><em>Encoding</em> ile aynı amaca sahiptir ancak <em>Encrypt</em> işleminde özel bir <strong>key (anahtar)</strong> kullanılır. Bu sayede <em>Decrypt</em> işlemi için algoritma ile beraber bu özel anahtarın bilinmesi gereklidir. Özel anahtar olmadan şifreyi çözmenin tek yöntemi <em>Brute Force (Kaba Kuvvet)</em> saldırısı yapmaktır basitçe mümkün olduğunca her kelimeyi anahtar olarak denemektir :D</p>
-        <p>Alt türleri olarak açık anahtarlı şifreleme ve gizli anahtarlı şifreleme adında iki türü bulunur.</p>
-        <p>Gizli anahtarlı şifrelemede sadece tek bir anahtar vardır. Veri iletimi yapılırken veri bu anahtar ile şifrelenir ve veriyi alan kişi yine bu anahtar ile şifreyi çözer. Temel sorun ise iletimin başında veriyi şifreleyen kişinin kullandığı anahtarı kimseye göstermeden nasıl karşı tarafa göndereceğidir.
+        <p>It has the same goal as <em>Encoding</em> but uses a special <strong>key</strong> in the * Encrypt* operation. So, it is necessary to know this special key along with the algorithm for <em>Decrypt</em> operation. The only way to decrypt a password without a private key is to use <em>Brute Force</em> attack, every word as much as possible should be tried as a key :D</p>
+        <p>There are two types of subtypes, public key cryptography and private key cryptography.</p>
+        <p>There is only one key in private key cryptography. When data is transmitted, the data is encrypted with this key, and the recipient decrypts it with this key again. The main problem is that at the beginning of the transmission, sending the key which is used to encryt to another person without showing it to anyone.</p>
+        <p>There are two keys in public key cryptography and one is distributed (<em>public</em>) and the other is <em>private</em>. Also, the <em>public</em> key is derived from the private key, and then the person releases the <em>public</em> key in a format that anyone can see. When someone wants to transmit secure data to another person, s/he decrypts it with the * public * key of the person to whom s/he wants to send the data. Then transmit the data. Data encrypted with <em>public</em> key can be decrypted with <em>private</em> key only. <em>Private</em> key can not be obtained using <em>public</em> key. It is much slower than private key cryptography, but this solves the key transmission problem, which is a problem with private key cryptography.
         </p>
-        <p>Açık anahtarlı şifrelemede iki anahtar vardır ve biri herkese dağıtılır (<em>public</em>) öbürü ise sadece kişiye özeldir (<em>private</em>). Ayrıca <em>public</em> anahtar, private anahtardan türetilir sonra kişi <em>public</em> anahtarını herkesin görebileceği bir biçimde yayımlar. Bir kişi başka bir kişiye güvenli veri iletmek istediğinde iletmek istediği veriyi göndereceği kişinin <em>public</em> anahtarı ile şifreler. Sonra veriyi iletir. <em>Public</em> anahtar ile şifrelenmiş veri sadece <em>private</em> anahtar ile çözülebilir. <em>Public</em> anahtardan <em>private</em> anahtar elde edilemez. Gizli anahtarlı şifrelemeye göre çok daha yavaştır ancak gizli anahtarlı şifrelemede bir sorun olan anahtar iletimi sorununa bir çözüm getirmektedir.
-        </p>
-        <p>Bu iki yöntem genelde Hibrit kullanılır.</p>
-        <p>Gizli anahtarlı şifreleme türleri:</p>
+        <p>These two methods are usually used hybrid.</p>
+        <p>Types of private key ciphers:</p>
         <ul>
             <li>DES</li>
             <li>AES</li>
             <li>Vigenere</li>
             <li>Blowfish</li>
         </ul>
-        <p>Açık anahtarlı şifreleme türleri:</p>
+        <p>Types of public key ciphers::</p>
         <ul>
             <li>RSA</li>
             <li>DSA</li>
             <li>TLS</li>
         </ul>
         <h4>Hashing</h4>
-        <p><em>Hashing</em> (Özetleme) algoritmalarının amacı veriyi geri döndürülemez bir biçimde şifrelemektir. <em>Hashing</em> algoritmaları tek yönlü çalışır ve anahtara ihtiyaç duymaz. Önemli bir nokta ise çıktının yani elde edilen şifrelerin uzunluğunun girdi yani şifrelenmemiş verinin uzunluğundan bağımsız olarak hep aynı olmasıdır. Örneğin <em>MD5</em> algoritması hep 32 karakter uzunluğunda şifreler oluşturur.
-        </p>
-        <p>Bir çok farklı alanda kullanılır. Bu alanlardan biri işletim sistemleridir. Örneğin <em>Linux'ta</em> kullanıcı kimlik doğrulama işlemi için hashing kullanılır yani kullanıcı parolaları hashlenmiş halde tutulur.</p>
-        <p>Kırmak için <em>Brute Force (Kaba Kuvvet)</em> saldırısı kullanılır. Amaç kelime listesinde ki tüm kelimeleri tek tek aynı hash algoritmasından geçirmek ve elde edilen şifrelerin kırılmak istenen şifreye eşit olup olmadığına bakmaktır.
-        </p>
-        <p>En çok karşılaşılan türleri:</p>
+        <p>The purpose of Hashing * algorithms is to encrypt the data in an irreversible manner. <em>Hashing</em> algorithms work one way and do not require a key. An important point is that length of the output (obtained passwords) is always the same regardless of the length of the unencrypted data. For example, the * MD5 * algorithm always generates passwords that are 32 characters long.</p>
+        <p>It is used in many different areas. One of these areas is operating systems. For example on <em>Linux</em> hashing is used for user authentication, meaning user passwords are kept as hashed.</p>
+        <p><em>Brute Force</em> attack is used to crack. The aim is to pass all the words in the word list one by one through the same hash algorithm and to check whether the obtained passwords are equal to the desired password to be cracked.</p>
+        <p>Most common types:</p>
         <ul>
             <li>MD5</li>
             <li>SHA-1</li>
             <li>SHA-512</li>
         </ul>
         <h4><strong>Obfuscation</strong></h4>
-        <p>Obfuscation (Karıştırma) adından da anlaşılacağı veri güvenliğini sağlamak için karıştırma yapar. Temel olarak Encoding'e benzer ancak daha basit halidir. Örnek olarak programların kaynak kodlarının herkesin anlayamaması ve hırsızlıkların önüne geçilebilmesi için Obfuscation işlemine tabii tutulması örnek olarak gösterilebilir.
+        <p>Obfuscation, like its name implies, blends to ensure data security. Basically similar to Encoding but simpler. As an example, it can be shown as an example that Obfuscation process is performed so that source codes of programs can not be understood by everyone and thefts can be prevented.
         </p>
-        <p>En çok karşılaşılan türleri:</p>
+        <p>Most common types:</p>
         <ul>
             <li>Ook!</li>
             <li>Brainfuck</li>
             <li>JS Obfuscator</li>
         </ul>
-        <h3>Faydalı Linkler ve Kaynaklar</h3>
+        <h3>Useful Links and Resources</h3>
         <ul>
-            <li><a href="https://www.dcode.fr/">dcode.fr</a> - Bir çok crypto algoritmasını ve çözücüsünü içeren bir site.</li>
-            <li><a href="https://ctfs.github.io/resources/topics/cryptography/README.html">CTF Resources</a> - Konu ile ilgili bilgiler içeren bir kaynak.</li>
-            <li><a href="https://cryptopals.com/">Cryptopals</a> - Konu ile ilgili bilgiler ve sorular içeren bir site.</li>
+            <li><a href="https://www.dcode.fr/">dcode.fr</a> - A site that contains many crypto algorithms and solvers.</li>
+            <li><a href="https://ctfs.github.io/resources/topics/cryptography/README.html">CTF Resources</a> - A resource containing information about the subject.</li>
+            <li><a href="https://cryptopals.com/">Cryptopals</a> - A site that contains information and questions about the subject.</li>
         </ul>
-        <h2>Örnek Soru Çözümleri</h2>
-        <p>Cryptography soruları çeşit bakımından çok fazla ama burada bir iki örnek yardımıyla anlatmaya çalışacağız.</p>
+        <h2>Sample Questions with Solutions</h2>
+        <p>There are many different kind of Cryptography questions; however, we'll try to explain with a few examples.</p>
         <h3>CanYouPwnME CTF CRYPTO25</h3>
-        <p><strong>Soru:</strong> PCYvKDEAJCdvLSVvLThvLyI= </p>
-        <p>Stringin sonunda <strong>=</strong> işareti olmasından ötürü her nekadar Base64 gibi görünsede aslında Base64 ile Encode edilmemiş. XOR ile Encode edilmiş bir şifre olduğunu deneme yanılmalar ile buluyoruz:
-        </p>
+        <p><strong>Question:</strong> PCYvKDEAJCdvLSVvLThvLyI= </p>
+        <p>It looks like Base64 because of the <strong><em>"="</em></strong> sign at the end of the string, in fact it is not Encoded with Base64. We find by trial and error that the code is Encoded with XOR :</p>
         <p><img src="crypto_files/cry1.png"></p>
-        <p>FLAH = <strong>cypwn_{x0rz0rg0p}</strong></p>
+        <p>FLAG = <strong>cypwn_{x0rz0rg0p}</strong></p>
         <h3>CanYouPwnME CTF CRYPTO50</h3>
-        <p><strong>Soru:</strong> <em>Text: cfxdigthdppymtdbqyz</em> </p>
+        <p><strong>Question:</strong> <em>Text: cfxdigthdppymtdbqyz</em> </p>
         <p>​ <em>Key: TBCXRL</em></p>
-        <p>Şifrelenmiş metin <em>key</em> ile birlikte verildiğiden <strong>Encrypt</strong> edildiği anlaşılıyor. <strong>Vigenere</strong> olduğunu varsayarak devam ediyoruz:</p>
+        <p>Ciphertext appears to be <strong>Encrypted</strong> as it comes with <em>key</em>. We assume it is <strong>Vigenere</strong>:</p>
         <p><img src="crypto_files/cry2.png"></p>
-        <p><code>Jevgrvagbsyntsbezng</code> sonucuna ulaşıyoruz. Bu çıktının üzerinde ise <strong>Rot13</strong> rotasyonu yaptığımızda ise <em>flag</em>'i buluyoruz:</p>
+        <p>We reach the result of <code>Jevgrvagbsyntsbezng</code>. On this output we find <em>flag</em> if we rotate <strong>Rot13</strong>:</p>
         <p><img src="crypto_files/cry3.png"></p>
         <p>FLAG = <strong>cypwn_{Writeintoflagformat}</strong></p>
         <h3>CanYouPwnME CTF CRYPTO50-2</h3>
-        <p><strong>Soru:</strong> Vm0wd2VHUXhTWGhXV0doV1YwZDRWbFl3WkRSV01WbDNXa1J TVjAxV2JETlhhMUpUVm14S2MyTkliRmhoTVhCUVZqSjRZV1JIVmtsalJt UnBWa1ZhU1ZkV1pEUlRNbEpYVW01T2FGSnRVbkJXYTFaaFUxWmtW MXBJY0d4U2EzQllWakkxUzJGV1NuUmhSemxWVm14YU0xUnNXbUZX YkdSeVYyeENWMkV3Y0ZSV1ZWcFNaREZDVWxCVU1EMD0
+        <p><strong>Question:</strong> Vm0wd2VHUXhTWGhXV0doV1YwZDRWbFl3WkRSV01WbDNXa1J TVjAxV2JETlhhMUpUVm14S2MyTkliRmhoTVhCUVZqSjRZV1JIVmtsalJt UnBWa1ZhU1ZkV1pEUlRNbEpYVW01T2FGSnRVbkJXYTFaaFUxWmtW MXBJY0d4U2EzQllWakkxUzJGV1NuUmhSemxWVm14YU0xUnNXbUZX YkdSeVYyeENWMkV3Y0ZSV1ZWcFNaREZDVWxCVU1EMD0
         </p>
-        <p>Sadece şifre verildiği için <strong>Encode</strong> edilmiş olabileceğini düşünerek <em>Base64</em> ile <em>Decode</em> etmeye başlıyoruz. ard arda 9 defa <em>Decode</em> ettikten sonra flag'e ulaşıyoruz :</p>
+        <p>We start to decode with <em>Base64</em>, because of the only password is given, we think that its <strong>Encoded</strong>. After 9 times <em>Decoding</em>, we reach the flag:</p>
         <p><img src="crypto_files/cry4.png"></p>
         <p>FLAG = <strong>cypwn{babyFl4g}</strong></p>
         <h3>CanYouPwnME CTF CRYPTO50-3</h3>
-        <p><strong>Soru:</strong> <em>Hold Your Breath and Count to 27395</em></p>
+        <p><strong>Question:</strong> <em>Hold Your Breath and Count to 27395</em></p>
         <p>​ <em>6e13409111b425a434d1cd9a80743669ec7385f9</em></p>
-        <p>Yine elimizde bir <em>key</em> yok ancak bu sefer <em>Decode</em> yöntemleri çalışmıyor ve doğal olarak <em>Hashing</em>'e yöneliyoruz. Önce hangi algoritma ile hashlendiğini bulmak için axion'u kullanıyoruz:</p>
+        <p>Again, we do not have a <em>key</em> but this time the <em>Decode</em> methods do not work and we naturally go to <em>Hashing</em>. First we use axion to find out which algorithm is used to hash:</p>
         <p><img src="crypto_files/cry5.png"></p>
-        <p><strong>SHA-1</strong> olduğunu gördükten sonra Brute-Force denemeden önce daha önce kırılmış olabileceğini düşünerek internette arama yapıyoruz:</p>
+        <p>After seeing that it is <strong>SHA-1</strong> algorithm, then we search the internet thinking that it might have been cracked before we try the Brute-Force.</p>
         <p><img src="crypto_files/cry6.png"></p>
         <p>FLAG = <strong>26595</strong></p>
         <h3>CanYouPwnME CTF CRYPTO50-4</h3>
-        <p><strong>Soru:</strong> <em>Keep Calm and Discard Powers of 2</em> </p>
+        <p><strong>Question:</strong> <em>Keep Calm and Discard Powers of 2</em> </p>
         <p>​ <em>100256105256100256121256111256117256109256105256115256115256109256101</em></p>
-        <p>Verilen soruda ASCII değerleri seçilebilmekte. Ortalığı karıştıran mevzu ise “256” değerleri. ASCII tablosu 0- 255 arasındaki sayılardan oluştuğundan ötürü doğrudan dönüşüm yapmamızı engellemek adına aralara 256’lar serpiştirildğini düşünerek 256’ları temizliyoruz. Ve altta ki sonucu elde ediyoruz:
-        </p>
+        <p>ASCII values can be selected in the given question. The thing that mixes up is "256" values. Because the ASCII table is composed of numbers from 0 to 255, we are clearing the 256s interspersed in order to prevent our direct conversion. And we get the result at the bottom:</p>
         <p><code>100 105 100 121 111 117 109 105 115 115 109 101</code></p>
-        <p>Son olarak bu sayıları ASCII tablosuna göre harflere çevirdiğimizde:</p>
+        <p>Finally, when we translate these numbers into letters according to the ASCII table:</p>
         <p><img src="crypto_files/cry7.png"></p>
         <p>FLAG = <strong>didyoumissme</strong></p>
-        <p>Üsteki soruların çözümlerinde <a href="https://www.aucyberclub.org/cozumler/2017/02/17/cypmctfcozumleri.html">buradan</a> yararlanılmıştır.</p>
+        <p>The solutions of the above questions are benefited from <a href="https://www.aucyberclub.org/cozumler/2017/02/17/cypmctfcozumleri.html">buradan</a></p>
     </div>
+
 </body>
 
 </html>

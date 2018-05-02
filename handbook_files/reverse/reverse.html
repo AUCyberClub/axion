@@ -51,7 +51,8 @@
             margin-top: 5px;
             margin-bottom: 5px;
             margin-right: 10px;
-            margin-left: 10px;
+            margin-left: 20px;
+            padding: 10px;
         }
         
         img {
@@ -79,48 +80,46 @@
 
 <body>
     <div>
-        <h1>AXION KILAVUZ</h1>
-        <h2>Reverse Engineering Nedir?</h2>
-        <h3>Giriş</h3>
-        <p>Reverse Engineering (RE) , Türkçe'ye "Tersine Mühendislik" olarak çevirebileceğimiz, yazılımsal ve donanımsal farklı teknolojilerin nasıl çalıştığının keşfedilmesi işlemidir.
-            <br>
-            <br> Yine günümüzde bilgisayar yazılımları ve oyunlar da Reverse Engineering araçlarıyla kırılmaktadır.</p>
-        <p>Normal şartlarda örneğin C, C++ gibi programlama dilleriyle yazılan yazılımlar, Disassembler denilen ve kodu makine dili olan Assembler'a çeviren araçlar ile kırılmaktadır. Bu işleme Reverse Code Engineering (RCE) denmektedir.</p>
-        <h3>CTF'ler ile alakası ne?</h3>
-        <p>CTF'lerde önemli bir alt soru grubu olarak karşımıza çıkan Rev sorularını çözmek için genelde özel araçlar kullanılarak derlenmiş kodu derlenmemiş hale getirmek gerekir. Böylece içlerine gizlenmiş Flag'lere ulaşabiliriz.
-        </p>
-        <h3>Faydalı Linkler ve Kaynaklar</h3>
+        <h1>CTF GUIDE</h1>
+        <h2>What Is Reverse Engineering?</h2>
+        <h3>Introduction</h3>
+        <p>Reverse Engineering (RE) is the process of discovering how different software and hardware technologies work.</p>
+        <p>Nowadays, computer software and games are also cracked by Reverse Engineering tools.</p>
+        <p>Under normal circumstances, software written in programming languages such as C, C ++ is cracked by tools called Disassembler. Disassembler translates the code into Assembler which is machine language. This process is called Reverse Code Engineering (RCE).</p>
+        <h3>What Is The Relation With CTFs?</h3>
+        <p>In order to solve the Rev questions which are asked as an important sub-question group in the CTFs, generally it is necessary to make the compiled code to source code using special tools. So we can find the Flags hidden in them.</p>
+        <h3>Useful Links and Resources</h3>
         <ul>
-            <li><a href="https://www.hex-rays.com/products/ida/">IDA pro</a> - En çok kullanılan ve bir çok özellik barındıran <em>Disassembler</em></li>
+            <li><a href="https://www.hex-rays.com/products/ida/">IDA pro</a> - <em>Disassembler</em> which is the most used and which has many features</li>
             <li><a href="https://www.gnu.org/software/gdb/">GDB</a> - GNU Debugger</li>
-            <li><a href="https://github.com/longld/peda">PEDA</a> - GDB eklentisi. GDB'ye yeni özellikler getiriyor.</li>
-            <li><a href="http://liveoverflow.com/binary_hacking/reverse_engineering.html">LiveOverflow</a> - Reverse Engineering eğitim serisi (İngilizce)</li>
+            <li><a href="https://github.com/longld/peda">PEDA</a> - GDB plugin. It adds new features to GDB.</li>
+            <li><a href="http://liveoverflow.com/binary_hacking/reverse_engineering.html">LiveOverflow</a> - Reverse Engineering training </li>
         </ul>
-        <h2>Örnek Soru Çözümleri</h2>
-        <p>Reverse Engineering soruları çeşit bakımından çok fazla ama burda bir iki örnek yardımıyla anlatmaya çalışacağız.</p>
+        <h2>Sample Questions with Solutions</h2>
+        <p>There are many different kind of Reverse Engineering questions; however, we'll try to explain with a few examples.</p>
         <h3>CanYouPwnME CTF REV100</h3>
-        <p>Dosyanın çalıştırılabilir olduğunu gördükten sonra çalıştırmak için önce</p>
+        <p>After seeing that the file is an executable file, using this command</p>
         <div class="highlight"><pre><span></span>chmod +x rev100
 </pre></div>
 
-        <p>komutu ile çalıştırma izni veriyor ardından çalıştırıyoruz.</p>
+        <p>we set permission to run and run it.</p>
         <p><img src="reverse_files/rev1.png"></p>
-        <p>Bizden parola bilgisi istiyor. <em>Axion'u</em> kullanarak <em>Metadata'sını</em> görüntülüyoruz ve <em>strings</em> çıktısına bakıyoruz.</p>
+        <p>It wants password information from us. Using <em>Axion</em>, we display its <em>Metadata</em> and examine <em>strings</em> output.</p>
         <p><img src="reverse_files/rev2.png"></p>
         <p>FLAG = <strong>BATLAMYUS</strong></p>
         <h3>CanYouPwnME CTF REV200</h3>
-        <p>Axion ile dosyanın türüne bakıyoruz,</p>
+        <p>Using Axion, we determine file's format,</p>
         <p><img src="reverse_files/rev3.png"></p>
-        <p>Sonrasında çalıştırıp baktığımızda program bizden bir girdi bekliyor ve doğruluğuna göre sonuç veriyor.</p>
+        <p>After that we run it and we find out that the program expects an input from us and it gives results according to its correctness.</p>
         <p><img src="reverse_files/rev4.png"></p>
-        <p>Programımızı şuana kadar yüzeysel olarak analiz ettik ve elimizde şunlar var; program bizden bir pincode istiyor ve bunu bir değerle karşılaştırıp doğruluğunu test ediyor. <em>GDB</em> kullanarak programın biraz daha derinlerine girelim. Programımızı gdb <em>rev200</em> komutu ile çalıştırıp main fonksiyonuna breakpoint koyduk.</p>
+        <p>So far we have analyzed our program superficially and we have the following; the program wants a pincode from us and compares it to a value and tests the validity. Using <em>GDB</em>, we get a little deeper into the program. We run our program with the gdb <em>rev200</em> command and put a breakpoint on the main function.</p>
         <p><img src="reverse_files/rev5.png"></p>
-        <p>Sonra <em>run</em> komutu ile çalıştırdık. Bizim programdan beklentimiz bizden girdi aldıktan sonra bir karşılaştırma yapmasıdır. Girdiyi alacağı kısımda <em>scanf</em> fonksiyonu çağırıyor olacak ve hemen sonrasında bizden aldığı girdiyi olması gereken değerle <em>cmp</em> ile karşılaştırıyor olacak. Çalıştırdıktan sonra <em>next</em> komutu kullanarak tek tek ilerliyoruz ve scanf fonksiyonun çağrıldığı kısıma geldik.</p>
+        <p>Then, we run it with the <em>run</em> command. Our expectation from our program is to make a comparison after it receives input from us. It calls the <em>scanf</em> function in the input section and compares the input with the correct value with <em>cmp</em>. After running it, we use the <em>next</em> command to examine one by one and get to the point where the scanf function is called.</p>
         <p><img src="reverse_files/rev6.png"></p>
-        <p><em>Scanf’in</em> çağrılmasının ardından <em>cmp eax, 0x58f'in</em> geldiğini görmekteyiz. Burda bizden istediği değerin <em>0x58f</em> olduğunu bulduk, ancak bu <em>hexadecimal(16lık tabanda)</em> halinde, bunun <em>decimal(10luk tabanda)</em> halinde ki değeri bizi sonuca ulaştıracaktır <em>0x58f -&gt; 1423</em> .</p>
+        <p>After <em>scanf</em> is called, we see <em>cmp eax, 0x58f *. Here we see that the value it wants from us is *0x58f</em>, but it is <em>hexadecimal</em>. Converting hexadecimal to <em>decimal</em> reaches us the end <strong><em>0x58f -&gt; 1423.</em></strong></p>
         <p><img src="reverse_files/rev8.png"></p>
         <p>FLAG = <strong>1423</strong></p>
-        <p>Üsteki soruların çözümlerinde <a href="https://www.aucyberclub.org/cozumler/2017/02/17/cypmctfcozumleri.html">buradan</a> yararlanılmıştır.</p>
+        <p>The solutions of the above questions are benefited from <a href="https://www.aucyberclub.org/cozumler/2017/02/17/cypmctfcozumleri.html">buradan</a></p>
     </div>
 
 </body>
