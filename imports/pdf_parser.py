@@ -28,7 +28,6 @@ def func(path):
         os.system('clear')
         print (logo)
 
-        colorprint("warn", "To use this feature you must have the PdfParser package (available in the Kali distribution).")
         colorprint("info", "1-->Information about PDF content")
         colorprint("info", "2-->Look for embedded file info")
         colorprint("warn", "9-->Go back to the top menu")
@@ -41,7 +40,7 @@ def func(path):
         elif choice == "0":
             sys.exit()
         elif choice == "1":
-            std = Popen(["pdf-parser "+path+" | grep /ProcSet"], stdout=PIPE,stderr=PIPE,shell=True)
+            std = Popen(["python imports/pdf-parser.py "+path+" | grep /ProcSet"], stdout=PIPE,stderr=PIPE,shell=True)
             (s_out,err) = std.communicate()
             if s_out:
                 colorprint("success", s_out)
@@ -51,7 +50,7 @@ def func(path):
             raw_input(Style.DIM + Fore.WHITE + "Press Enter to continue..." + Style.RESET_ALL)
 
         elif choice == "2":
-            std = Popen(["pdf-parser -s Embeddedfile --raw --filter "+path+" | grep PDF"], stdout=PIPE,stderr=PIPE,shell=True)
+            std = Popen(["python imports/pdf-parser.py -s Embeddedfile --raw --filter "+path+" | grep PDF"], stdout=PIPE,stderr=PIPE,shell=True)
             (s_out,err) = std.communicate()
             if s_out:
                 colorprint("success", s_out)
@@ -93,7 +92,7 @@ def pdf_parser():
             config_set('paths', 'path', path)
             colorprint("success", "\n[*] Using "+path+"\n")
 
-        std = Popen(["pdf-parser",path], stdout=PIPE,stderr=PIPE)
+        std = Popen(["python", "imports/pdf-parser.py", path], stdout=PIPE,stderr=PIPE)
         (out,err) = std.communicate()
 
         if out.find("No such file or directory") == -1:
