@@ -30,7 +30,7 @@ def rar2john(rar_path):
         "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/file_analysis/hash_extractor/rar2john" + Style.RESET_ALL + ")\n-->")
 
     with open(hashtxt_path, 'w') as out:
-        std = Popen(["rar2john", rar_path], stdout=out, stderr=PIPE)
+        std = Popen(["./john_files/rar2john", rar_path], stdout=out, stderr=PIPE)
         (out, err) = std.communicate()
     if err.find("No such file or directory") != -1:
         colorprint("fatal", "No such file or directory!")
@@ -47,7 +47,7 @@ def zip2john(zip_path):
         "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/file_analysis/hash_extractor/zip2john" + Style.RESET_ALL + ")\n-->")
 
     with open(hashtxt_path, 'w') as out:
-        std = Popen(["zip2john", zip_path], stdout=out, stderr=PIPE)
+        std = Popen(["./john_files/zip2john", zip_path], stdout=out, stderr=PIPE)
         (out, err) = std.communicate()
     if err.find("No such file or directory") != -1:
         colorprint("fatal", "No such file or directory!")
@@ -64,7 +64,7 @@ def truecrypt2john(truecrypt_path):
         "Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/file_analysis/hash_extractor/truecrypt2john" + Style.RESET_ALL + ")\n-->")
 
     with open(hashtxt_path, 'w') as out:
-        std = Popen(["truecrypt2john", truecrypt_path], stdout=out, stderr=PIPE)
+        std = Popen(["./john_files/truecrypt2john", truecrypt_path], stdout=out, stderr=PIPE)
         (out, err) = std.communicate()
     if err.find("No such file or directory") != -1:
         colorprint("fatal", "No such file or directory!")
@@ -78,7 +78,6 @@ def hash_extractor():
     while True:
         print (logo)
 
-        colorprint("warn", "To use this feature you must have the John Jumbo package (available in the Kali distribution).")
         colorprint("info", "In this section, you can get hashed passwords out of ZIP, RAR and TrueCrypt files.")
         colorprint("info", "'JohntheRipper' utilities will be used to do this.")
 
