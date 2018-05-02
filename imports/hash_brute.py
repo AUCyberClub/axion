@@ -25,23 +25,39 @@ logo = ("""
 /_/   \_\/_/\_\___\___/|_| \_|    /_/   \_\___/ \____\____|
         """)
 
+format_list = ("""
+  des/bsdi/md5/bf/afs/lm/
+  dynamic_n/bfegg/dmd5/dominosec/epi/hdaa/ipb2/krb4/
+  krb5/mschapv2/mysql-fast/mysql/netlm/netlmv2/netntlm/
+  netntlmv2/nethalflm/md5ns/nt/phps/po/xsha/crc32/
+  hmac-md5/lotus5/md4-gen/mediawiki/mscash/mscash2/
+  mskrb5/mssql/mssql05/mysql-sha1/nsldap/nt2/oracle11/
+  oracle/phpass-md5/pix-md5/pkzip/raw-md4/raw-md5thick/
+  raw-md5/raw-sha1/raw-sha/raw-md5u/salted-sha1/sapb/
+  sapg/sha1-gen/raw-sha224/raw-sha256/raw-sha384/
+  raw-sha512/xsha512/hmailserver/sybasease/crypt/trip/
+  ssh/pdf/rar/zip/dummy
+               """)
+
 def run_john(cmd):
     child = pexpect.spawn(str(cmd))
-    try:
-        child.expect('Press .*')
-    except:
-        colorprint("fatal",child.before)
+    child.expect('.+')
+
+    if child.after.find("No pass") != -1:
+        colorprint("fatal", child.after)
         return
-    print(child.before)
+    if child.after.find("No such") != -1:
+        colorprint("fatal", child.after)
+        return
+
     child.sendline('a')
     while True:
-        try:
-            child.expect('.+g .*')
-        except:
+        child.expect('.+')
+        child.sendline('a')
+        if child.after.find("DONE") != -1:
             return
-        child.sendcontrol('a')
-        time.sleep(1)
-        colorprint("warn",child.after)
+        else:
+            colorprint("warn",child.after)
 
 
 def hash_brute():
@@ -49,8 +65,6 @@ def hash_brute():
     while True:
         print (logo)
 
-        colorprint("warn", "This feature work better with John Jumbo package (available in the Kali distribution).")
-        colorprint("warn", "Still standart John will work with well-known hashes.")
         colorprint("info", "Here, you can try to crack hashes with the wordlists you want.")
         colorprint("info", "'JohnTheRipper' will be used.")
         colorprint("info", "Also specified path will be used as text file containing the hash.")
@@ -80,24 +94,30 @@ def hash_brute():
         wordlist_path = raw_input("Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/file_analysis/hash_brute" + Style.RESET_ALL + ")-->")
 
         colorprint("info", "Do you want to enter a format parameter?")
+        colorprint("warn", "1          -->List all formats for hashes.")
         colorprint("warn", "Leave Empty-->Use default format detected by John.")
 
         format = raw_input("Axion TERMINAL(" + Style.BRIGHT + Fore.CYAN + "/file_analysis/hash_brute" + Style.RESET_ALL + ")-->")
 
+        if format == "1":
+            colorprint("warn",format_list)
+            raw_input(Style.DIM + Fore.WHITE + "Press Enter to continue..." + Style.RESET_ALL)
+            continue
+
         if wordlist_path == "":
             if format == "":
-                cmd = "john " + path
+                cmd = "./john_files/john " + path
             else:
-                cmd = "john " + path + " --format=" + format
+                cmd = "./john_files/john " + path + " --format=" + format
         else:
             if format == "":
-                cmd = "john " + path + " --wordlist=" + wordlist_path
+                cmd = "./john_files/john " + path + " --wordlist=" + wordlist_path
             else:
-                cmd = "john " + path + " --wordlist=" + wordlist_path + " --format=" + format
+                cmd = "./john_files/john " + path + " --wordlist=" + wordlist_path + " --format=" + format
 
         run_john(cmd)
 
-        std = Popen(["john", "--show", path], stdout=PIPE, stderr=PIPE)
+        std = Popen(["./john_files/john", "--show", path], stdout=PIPE, stderr=PIPE)
         (out, err) = std.communicate()
         if err:
             colorprint("fatal", err)
