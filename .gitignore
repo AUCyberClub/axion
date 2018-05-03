@@ -163,3 +163,4 @@ venv.bak/
 
 
 # End of https://www.gitignore.io/api/python,pycharm+all
+imports/globals.ini
