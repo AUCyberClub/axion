@@ -36,7 +36,7 @@ def volatility_screenshot():
             colorprint("fatal", "\n\tOh, it seems there is no path stored before :(")
             colorprint("fatal","\n\tPlease specify one to continue:\n")
             
-            path = raw_input("Axion TERMINAL("+Style.BRIGHT+Fore.CYAN+"/ram_analysis/volatility_cmdscan"+Style.RESET_ALL+")\n-->")
+            path = raw_input("Axion TERMINAL("+Style.BRIGHT+Fore.CYAN+"/ram_analysis/volatility_screenshot"+Style.RESET_ALL+")\n-->")
 
             config_set('paths', 'path', path)
             colorprint("info", "\nWell, we'll store this path for next operations...\n")
@@ -53,7 +53,7 @@ def volatility_screenshot():
         elif choice == "0":
             sys.exit()
         if choice == 'p':
-            path = raw_input("Axion TERMINAL("+Style.BRIGHT+Fore.CYAN+"/file_analysis/find_file_ext"+Style.RESET_ALL+")\n--> New path: ")
+            path = raw_input("Axion TERMINAL("+Style.BRIGHT+Fore.CYAN+"/ram_analysis/volatility_screenshot"+Style.RESET_ALL+")\n--> New path: ")
             config_set('paths', 'path', path)
             colorprint("success", "\n[*] Using "+path+"\n")
 
