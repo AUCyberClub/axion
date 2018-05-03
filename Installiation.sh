@@ -34,7 +34,7 @@ read lang
 if [ "$lang" = "E" ]; then
     git clone https://github.com/AUCyberClub/axion.git
 elif [ "$lang" = "T" ]; then
-    git clone https://github.com/AUCyberClub/axion-tr
+    git clone https://github.com/AUCyberClub/axion-tr axion
 else
     echo "Wrong input !!"
     exit 1
