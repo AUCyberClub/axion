@@ -15,6 +15,7 @@ from imports.xor_decoder import xor_decoder
 from imports.base64_decoder import base64_decoder
 from imports.bin_hex_dec_ascii import bin_hex_dec_ascii
 from imports.rot13_caesar import rot13_caesar
+from imports.qr_decoder import qr_decoder
 from imports.volatility_info import volatility_info
 from imports.volatility_notepad import volatility_notepad
 from imports.volatility_pslist import volatility_pslist
@@ -104,6 +105,7 @@ def crypto():
         colorprint("info", "8-->Base64 decoder")
         colorprint("info", "10-->Bin,Hex,Dec and ASCII transformations")
         colorprint("info", "11-->Caesar and ROT decrypter")
+        colorprint("info", "12-->QRCode Decoder")
         colorprint("warn", "9-->Go back to the top menu")
         colorprint("fatal", "0-->Quit")
 
@@ -129,6 +131,8 @@ def crypto():
             bin_hex_dec_ascii()
         elif choice == 11:
             rot13_caesar()
+        elif choice == 12:
+            qr_decoder()
         elif choice == 9:
             main_menu()
         elif choice == 0:
