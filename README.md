@@ -3,7 +3,7 @@
 ![Python 2.7](https://img.shields.io/badge/Python-2.7-yellow.svg)
 ![GPL 3.0](https://img.shields.io/badge/license-GPLv3-red.svg)
 
-A simple toolkit that contains little tools and capable to control the I/Os of some useful tools to make it easier your life in CTFs. 
+A simple toolkit that contains useful tools and capable of control the I/Os of those tools to make it easier your life in CTFs.
 
 ## :exclamation: Requirements
 
