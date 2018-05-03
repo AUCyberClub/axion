@@ -54,7 +54,7 @@ def volatility_cmdscan():
         elif choice == "0":
             sys.exit()
         if choice == 'p':
-            path = raw_input("Axion TERMINAL("+Style.BRIGHT+Fore.CYAN+"/file_analysis/find_file_ext"+Style.RESET_ALL+")\n--> New path: ")
+            path = raw_input("Axion TERMINAL("+Style.BRIGHT+Fore.CYAN+"/ram_analysis/volatility_cmdscan"+Style.RESET_ALL+")\n--> New path: ")
             config_set('paths', 'path', path)
             colorprint("success", "\n[*] Using "+path+"\n")
 
