@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <style>
+        body {
+            font-family: "Lato", sans-serif;
+            border: solid thin;
+            border-color: brown;
+            border-radius: 10px;
+            margin-top: 30px;
+            margin-bottom: 50px;
+            margin-right: 80px;
+            margin-left: 80px;
+        }
+        
+        p {
+            margin-top: 15px;
+            margin-bottom: 15px;
+            margin-right: 30px;
+            margin-left: 50px;
+        }
+        
+        h1 {
+            margin-top: 30px;
+            margin-bottom: 30px;
+            margin-right: 20px;
+            margin-left: 20px;
+            text-align: center;
+        }
+        
+        h2 {
+            margin-top: 15px;
+            margin-bottom: 5px;
+            margin-right: 10px;
+            margin-left: 20px;
+            padding: 15px;
+        }
+        
+        h3 {
+            margin-top: 5px;
+            margin-bottom: 5px;
+            margin-right: 10px;
+            margin-left: 20px;
+            padding: 15px;
+        }
+        
+        h4 {
+            margin-top: 5px;
+            margin-bottom: 5px;
+            margin-right: 10px;
+            margin-left: 20px;
+            padding: 15px;
+        }
+
+        h5 {
+            margin-top: 5px;
+            margin-bottom: 5px;
+            margin-right: 10px;
+            margin-left: 30px;
+            padding: 15px;
+        }
+        
+        img {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            border-radius: 2px;
+        }
+        
+        li {
+            margin-top: 5px;
+            margin-bottom: 5px;
+            margin-right: 10px;
+            margin-left: 50px;
+        }
+        
+        .highlight {
+            font-size: 13px;
+            margin-right: 30px;
+            margin-left: 50px;
+            line-height: 19px;
+            border-radius: 3px
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <h1>CTF GUIDE</h1>
+        <h2>What Is Forensics?</h2>
+        <h3>Introduction</h3>
+        <p>Actually its better to use the term of <strong><em>digital forensics</em></strong> or <em>(to be more precise)</em> <strong><em>computer forensics.</em></strong><br><br>The goal of computer forensics is to examine digital media in a forensically sound manner with the aim of identifying, preserving, recovering, analyzing and presenting facts and opinions about the digital information. 
+        </p>
+        <h3>What Is The Relation With CTFs?</h3>
+        <p>Particularly in jeopardy CTFs, the use rate of digital forensics as a separate category is low. The main reason of that is digital forensics is completely about the analysis rather than the direct attack/defense and it is very comprehensive field. Such that; if you put a finishing touch to a question in any category with a <strong><em>crime</em></strong> or <strong><em>investigation</em></strong> scenario, you may include the question in the forensics category. In order to obtain evidence (which is the flag here) you may need to touch all areas from recovery to steganographic steps. <br><br> But we'll be focusing on some common branches of digital forensics for now:</p>
+        <ul>
+            <li>Computer Forensics</li>
+            <ul>
+                <li>File Analysis</li>
+                <ul>
+                    <li>File Format Analysis and Data Recovery</li>
+                    <li>File Carving</li>
+                    <li>Steganography</li>
+                </ul>
+                <li>Memory Dump Analysis</li>
+                <li>Disks and Filesystems</li>
+            </ul>
+            <li>Network Forensics</li>
+        </ul>
+        <h3>Computer Forensics</h3>
+        <h4>File Analysis</h4>
+        <strong><p align="center">» Do not trust what you saw «</strong></p>
+        <br><p>Binary files are indispensable for forensics category. <br><br> Each binary file is created by putting data together in a specific grammar structure so that it can be identified and used by the systems/softwares. So it is enough to do a little manipulation in this syntax to corrupt a file. </p> 
+        <h5><strong>> File Format Analysis and Data Recovery</strong></h5>
+        <p>As we mentioned before recognizing file formats is based on <strong><em>magic bytes</em></strong> which are stored as <strong><em>header</em></strong> of files. <br><br> We use <strong><em>file</em></strong> command in UNIX to determine what really is the type of file. File extension is trivial in here.</p> 
+        <div class="highlight"><pre><span></span> $ file example.blablafiletype<br> example.blablafiletype: HTML document, UTF-8 Unicode text, with very long lines
+</pre></div>
+        <p>But sometimes files can be badly corrupted and in such cases header information is not enough to get the job done alone. If you encounter such a situation, you may need to fix the parts manually with the help of a hex editor<a href="https://www.aucyberclub.org/cozumler/blog/2018/02/15/dkhosctfwriteup.html"> (e.g.forensics300)</a> to recover files.</p>
+
+        <h5><strong>> File Carving</strong></h5>
+        <p>In fact, file carving is mostly in the file system and data recovery section but we'll consider it as a seperate part. The goal of carving based on <strong><em>structered data out of raw data.</em></strong> So it's all about file format structure.<br><br>Most valuable tools about this topic are <strong>binwalk</strong> and <strong>foremost</strong> which are really easy-to-use. But sometimes files or partitions could have huge binwalk output and you may need to carve only a single file manually. In such cases you can use <strong><em>dd.</em></strong></p>
+        <div class="highlight"><pre><span></span> $ dd if=in-file of=out-file bs=block-size skip=head-of-file-to-head-offset count=head-offset-to-end-offset<br></pre></div>
+
+        <h4>Memory Dump Analysis</h4>
+        <p>Basically memory analysis is based on the examination of memory snapshot taken from a computer while it's running. Volatile data can be stored by capturing a RAM image and analysed at any time. That data may contain datas like process list, open network connections, browsing history, notepad's and clipboard contents etc...<br><br>
+        <strong><em>Volatility</em></strong> can bu used to parse these values. Some common utilities of volatility are:</p>
+        <ul>
+            <li>pslist</li>
+            <li>notepad</li>
+            <li>cmdscan/consoles</li>
+            <li>malfind</li>
+            <li>connscan</li>
+            <li>screenshot</li>
+            <li>memdump</li>
+            <li>iehistory</li>
+        </ul>
+        <p>but before all of that you need to specify a profile for dump files.</p> 
+        <h3>Sources and Useful Links</h3>
+        <ul>
+            <li><a href="https://trailofbits.github.io/ctf/forensics/">trailofbits</a> - A useful source for a good start.</li>
+        </ul>
+        
+    </div>
+</body>
+
+</html>
